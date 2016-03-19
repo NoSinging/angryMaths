@@ -13,7 +13,9 @@ angryMaths.MainMenu.prototype = {
   },
   update: function() {
     if(this.game.input.activePointer.justPressed()) {
-      this.game.state.start('Game');
+
+      // going to level select state
+      this.game.state.start('LevelSelect');
     }
   }
 };
