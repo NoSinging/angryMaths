@@ -5,11 +5,11 @@ angryMaths.Boot = function() {};
 
 angryMaths.Boot.prototype = {
   preload: function() {
-    this.load.image('logo', 'assets/images/Logo.png');
+    this.load.image('logo', 'assets/images/logo.png');
     this.load.image('preloadbar', 'assets/images/preloader-bar.png');
   },
   create: function() {
-    this.game.stage.backgroundColor = '#fff';
+    this.game.stage.backgroundColor = '#000000';
 
     //  Unless you specifically know your game needs to support multi-touch I would recommend setting this to 1
     this.input.maxPointers = 1;
@@ -27,7 +27,6 @@ angryMaths.Boot.prototype = {
       this.scale.maxHeight = 1536;
       this.scale.forceLandscape = true;
       this.scale.pageAlignHorizontally = true;
-      //this.scale.setScreenSize(true);
       this.scale.refresh();
     }
 

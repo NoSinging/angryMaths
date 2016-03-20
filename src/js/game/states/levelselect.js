@@ -21,8 +21,15 @@ angryMaths.levelSelect.prototype = {
 		if(currentPage>pages-1){
 			currentPage = pages-1;
 		}
+
+		// creation of the thumbails group
+		levelThumbsGroup = game.add.group();
+		// determining level thumbnails width and height for each page
+		var levelLength = game.levels.thumbWidth*game.levels.thumbCols+game.levels.thumbSpacing*(game.levels.thumbCols-1);
+		var levelHeight = game.levels.thumbWidth*game.levels.thumbRows+game.levels.thumbSpacing*(game.levels.thumbRows-1);
+
 		// left arrow button, to turn one page left
-		leftArrow = game.add.button(50,420,"level_arrows",this.arrowClicked,this);
+		leftArrow = game.add.button((game.width-levelLength)/2,420,"level_arrows",this.arrowClicked,this);
 		leftArrow.anchor.setTo(0.5);
 		leftArrow.frame = 0;
 		// can we turn one page left?
@@ -30,18 +37,13 @@ angryMaths.levelSelect.prototype = {
 			leftArrow.alpha = 0.3;
 		}
 		// right arrow button, to turn one page right
-		rightArrow = game.add.button(270,420,"level_arrows",this.arrowClicked,this);
+		rightArrow = game.add.button((game.width+levelLength)/2,420,"level_arrows",this.arrowClicked,this);
 		rightArrow.anchor.setTo(0.5);
 		rightArrow.frame = 1;
 		// can we turn one page right?
 		if(currentPage==pages-1){
 			rightArrow.alpha = 0.3;
 		}
-		// creation of the thumbails group
-		levelThumbsGroup = game.add.group();
-		// determining level thumbnails width and height for each page
-		var levelLength = game.levels.thumbWidth*game.levels.thumbCols+game.levels.thumbSpacing*(game.levels.thumbCols-1);
-		var levelHeight = game.levels.thumbWidth*game.levels.thumbRows+game.levels.thumbSpacing*(game.levels.thumbRows-1);
 		// looping through each page
 		for(var l = 0; l < pages; l++){
 			// horizontal offset to have level thumbnails horizontally centered in the page

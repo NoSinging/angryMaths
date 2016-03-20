@@ -19,6 +19,9 @@ angryMaths.Preload.prototype = {
     this.load.spritesheet("levels", "assets/images/levels.png", game.levels.thumbWidth, game.levels.thumbHeight);
     this.load.spritesheet("level_arrows", "assets/images/level_arrows.png", 48, 48);
 
+    // load other images
+    this.load.image('square', 'assets/images/square-rounded-48.png');
+
     this.load.setPreloadSprite(this.preloadBar);
 
     this.load.onLoadComplete.add(this.onLoadComplete, this);
