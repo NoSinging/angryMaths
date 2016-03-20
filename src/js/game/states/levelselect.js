@@ -15,9 +15,9 @@ angryMaths.levelSelect.prototype = {
   		// how many pages are needed to show all levels?
 		// CAUTION!! EACH PAGE SHOULD HAVE THE SAME AMOUNT OF LEVELS, THAT IS
 		// THE NUMBER OF LEVELS *MUST* BE DIVISIBLE BY THUMBCOLS*THUMBROWS
-  		pages = game.global.starsArray.length/(game.global.thumbRows*game.global.thumbCols);
+  		pages = game.levels.starsArray.length/(game.levels.thumbRows*game.levels.thumbCols);
   		// current page according to last played level, if any
-		currentPage = Math.floor(game.global.level/(game.global.thumbRows*game.global.thumbCols));
+		currentPage = Math.floor(game.levels.level/(game.levels.thumbRows*game.levels.thumbCols));
 		if(currentPage>pages-1){
 			currentPage = pages-1;
 		}
@@ -40,8 +40,8 @@ angryMaths.levelSelect.prototype = {
 		// creation of the thumbails group
 		levelThumbsGroup = game.add.group();
 		// determining level thumbnails width and height for each page
-		var levelLength = game.global.thumbWidth*game.global.thumbCols+game.global.thumbSpacing*(game.global.thumbCols-1);
-		var levelHeight = game.global.thumbWidth*game.global.thumbRows+game.global.thumbSpacing*(game.global.thumbRows-1);
+		var levelLength = game.levels.thumbWidth*game.levels.thumbCols+game.levels.thumbSpacing*(game.levels.thumbCols-1);
+		var levelHeight = game.levels.thumbWidth*game.levels.thumbRows+game.levels.thumbSpacing*(game.levels.thumbRows-1);
 		// looping through each page
 		for(var l = 0; l < pages; l++){
 			// horizontal offset to have level thumbnails horizontally centered in the page
@@ -51,20 +51,20 @@ angryMaths.levelSelect.prototype = {
 			// (game.height-levelHeight)/2
 			var offsetY = 20;
 			// looping through each level thumbnails
-		     for(var i = 0; i < game.global.thumbRows; i ++){
-		     	for(var j = 0; j < game.global.thumbCols; j ++){
+		     for(var i = 0; i < game.levels.thumbRows; i ++){
+		     	for(var j = 0; j < game.levels.thumbCols; j ++){
 		     		// which level does the thumbnail refer?
-					var levelNumber = i*game.global.thumbCols+j+l*(game.global.thumbRows*game.global.thumbCols);
+					var levelNumber = i*game.levels.thumbCols+j+l*(game.levels.thumbRows*game.levels.thumbCols);
 					// adding the thumbnail, as a button which will call thumbClicked function if clicked
-					var levelThumb = game.add.button(offsetX+j*(game.global.thumbWidth+game.global.thumbSpacing), offsetY+i*(game.global.thumbHeight+game.global.thumbSpacing), "levels", this.thumbClicked, this);
+					var levelThumb = game.add.button(offsetX+j*(game.levels.thumbWidth+game.levels.thumbSpacing), offsetY+i*(game.levels.thumbHeight+game.levels.thumbSpacing), "levels", this.thumbClicked, this);
 					// shwoing proper frame
-					levelThumb.frame=game.global.starsArray[levelNumber];
+					levelThumb.frame=game.levels.starsArray[levelNumber];
 					// custom attribute
 					levelThumb.levelNumber = levelNumber+1;
 					// adding the level thumb to the group
 					levelThumbsGroup.add(levelThumb);
 					// if the level is playable, also write level number
-					if(game.global.starsArray[levelNumber]<4){
+					if(game.levels.starsArray[levelNumber]<4){
 						var style = {
 							font: "18px Arial",
 							fill: "#ffffff"
@@ -114,7 +114,7 @@ angryMaths.levelSelect.prototype = {
 	thumbClicked:function(button){
 		// the level is playable, then play the level!!
 		if(button.frame < 4){
-			game.global.level = button.levelNumber;
+			game.levels.level = button.levelNumber;
 			game.state.start("PlayLevel");
 		}
 		// else, let's shake the locked levels

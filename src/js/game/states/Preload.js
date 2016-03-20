@@ -16,7 +16,7 @@ angryMaths.Preload.prototype = {
 
 
     // preloading level menu assets
-    this.load.spritesheet("levels", "assets/images/levels.png", game.global.thumbWidth, game.global.thumbHeight);
+    this.load.spritesheet("levels", "assets/images/levels.png", game.levels.thumbWidth, game.levels.thumbHeight);
     this.load.spritesheet("level_arrows", "assets/images/level_arrows.png", 48, 48);
 
     this.load.setPreloadSprite(this.preloadBar);
