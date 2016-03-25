@@ -25,6 +25,13 @@ angryMaths.Preload.prototype = {
     this.load.setPreloadSprite(this.preloadBar);
 
     this.load.onLoadComplete.add(this.onLoadComplete, this);
+
+    // load the questions
+    this.load.json('questionsLevel1', 'config/questionsLevel1.json');
+    this.load.json('questionsLevel2', 'config/questionsLevel2.json');
+
+    // load this app version config
+    game.load.json('version', 'config/version.json');
   },
   create: function() {
     this.preloadBar.cropEnabled = false;

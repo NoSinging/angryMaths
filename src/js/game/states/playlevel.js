@@ -4,37 +4,8 @@ angryMaths.playLevel = function() {
 angryMaths.playLevel.prototype = {
   	create: function(){
 
-		this.questionJSON = {
-	  		"questions": [
-		        { // Question 1 - Multiple Choice, Single True Answer
-		            "q": "2 + 2 = ",
-		            "a": [
-		                {"option": "8",      "correct": false},
-		                {"option": "14",     "correct": false},
-		                {"option": "4",      "correct": true},
-		                {"option": "23",     "correct": false} // no comma here
-		            ]
-		        },
-		        { // Question 2 
-		            "q": "3 + 3 = ",
-		            "a": [
-		                {"option": "9",      "correct": false},
-		                {"option": "6",      "correct": true},
-		                {"option": "45",      "correct": false},
-		                {"option": "1",     "correct": false} // no comma here
-		            ]
-		        },
-		        { // Question 3 
-		            "q": "4 + 3 = ",
-		            "a": [
-		                {"option": "2",      "correct": false},
-		                {"option": "7",      "correct": true},
-		                {"option": "9",      "correct": false},
-		                {"option": "2",     "correct": false} // no comma here
-		            ]
-		        }
-		    ]
-		};
+  		var questionsKey = 'questionsLevel' + game.levels.level;
+		this.questionJSON = game.cache.getJSON(questionsKey);
 
 		this.options = [];
 		this.stars = 0;
@@ -92,7 +63,7 @@ angryMaths.playLevel.prototype = {
 	    // set the question text
 	    this.question.setText(this.questionJSON.questions[questionNumber].q);
 
-	    // set the ooptions
+	    // set the options
 	    for(var i=0; i<=3; i++){
 
 	    	// set the correct answer

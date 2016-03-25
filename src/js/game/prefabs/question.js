@@ -1,13 +1,3 @@
-// "use strict";
-// class Question {
-//     constructor(game, x, y) {
-//         console.log(game, x,y);
-//         var key = 'logo';
-//         Phaser.Sprite.call(this, game, x, y, key);
-//         this.scale.setTo(0.1);
-//     }
-// };
-
 
 var Question = function(game, x, y, key, frame) {
   Phaser.Sprite.call(this, game, x, y, 'square');
