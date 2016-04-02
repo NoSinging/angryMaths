@@ -9,7 +9,3 @@ Tick.prototype.constructor = Tick;
 Tick.prototype.update = function() {
   // write your prefab's specific update code here
 };
-
-Question.prototype.annimate = function() {
-  // 
-};

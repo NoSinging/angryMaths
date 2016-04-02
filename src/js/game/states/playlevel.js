@@ -44,10 +44,15 @@ angryMaths.playLevel.prototype = {
 
 		// Create the correct tick
 	    this.tick = new Tick(this.game, 200, this.game.height/3);
-    	this.tick.alpha = 0.1;
+    	this.tick.alpha = 0;
 	    // and add it to the game
 	    this.game.add.existing(this.tick);
 
+		// Create the incorrect cross
+	    this.cross = new Cross(this.game, 200, this.game.height/3);
+    	this.cross.alpha = 0;
+	    // and add it to the game
+	    this.game.add.existing(this.cross);
 
 
 
@@ -112,6 +117,8 @@ angryMaths.playLevel.prototype = {
 	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 100, "Linear", true, 0,0,true);
 		} else {
     		this.deathSound.play();
+		    //  Add tween  to tick 
+	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 100, "Linear", true, 0,0,true);
 		}
 		this.currentQuestionAnswered = true;
 		this.calculateStars();
