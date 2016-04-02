@@ -14,7 +14,7 @@ angryMaths.Preload.prototype = {
     this.load.audio('gameMusic', ['assets/audio/Pamgaea.mp3', 'assets/audio/Pamgaea.ogg']);
     this.load.audio('coin', 'assets/audio/coin.wav');
     this.load.audio('death', 'assets/audio/death.wav');
-    
+
     this.load.bitmapFont('minecraftia', 'assets/fonts/minecraftia/minecraftia.png', 'assets/fonts/minecraftia/minecraftia.xml');
 
 
@@ -34,6 +34,7 @@ angryMaths.Preload.prototype = {
     // load the questions
     this.load.json('questionsLevel1', 'config/questionsLevel1.json');
     this.load.json('questionsLevel2', 'config/questionsLevel2.json');
+    this.load.json('questionsLevel3', 'config/questionsLevel3.json');
 
     // load this app version config
     game.load.json('version', 'config/version.json');
