@@ -12,6 +12,9 @@ angryMaths.Preload.prototype = {
     this.preloadBar.anchor.setTo(0.5);
 
     this.load.audio('gameMusic', ['assets/audio/Pamgaea.mp3', 'assets/audio/Pamgaea.ogg']);
+    this.load.audio('coin', 'assets/audio/coin.wav');
+    this.load.audio('death', 'assets/audio/death.wav');
+    
     this.load.bitmapFont('minecraftia', 'assets/fonts/minecraftia/minecraftia.png', 'assets/fonts/minecraftia/minecraftia.xml');
 
 
@@ -21,6 +24,8 @@ angryMaths.Preload.prototype = {
 
     // load other images
     this.load.image('square', 'assets/images/square-rounded-48.png');
+    this.load.image('wrong', 'assets/images/red_cross.png');
+    this.load.image('correct', 'assets/images/check_mark.png');
 
     this.load.setPreloadSprite(this.preloadBar);
 
