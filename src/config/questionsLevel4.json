@@ -1,0 +1,285 @@
+{
+    "time": "40",
+    "rating": ["10", "14", "20"],
+    "questions": [
+        {   "id": "1",
+            "q": "10 + 1 = ?",
+            "a": [
+                {"option": "10",      "correct": false},
+                {"option": "11",     "correct": true},
+                {"option": "13",      "correct": false},
+                {"option": "7",     "correct": false} 
+            ]
+        },
+        {   "id": "2",
+            "q": "10 + 2 = ?",
+            "a": [
+                {"option": "9",      "correct": false},
+                {"option": "13",      "correct": false},
+                {"option": "12",      "correct": true},
+                {"option": "14",     "correct": false} 
+            ]
+        },
+        {   "id": "3",
+            "q": "10 + 3 = ?",
+            "a": [
+                {"option": "13",      "correct": true},
+                {"option": "103",      "correct": false},
+                {"option": "14",      "correct": false},
+                {"option": "11",     "correct": false} 
+            ]
+        },
+        {   "id": "4",
+            "q": "10 + 4 = ?",
+            "a": [
+                {"option": "104",      "correct": false},
+                {"option": "14",     "correct": true},
+                {"option": "16",      "correct": false},
+                {"option": "12",     "correct": false} 
+            ]
+        },
+        {   "id": "5",
+            "q": "10 + 5 = ?",
+            "a": [
+                {"option": "14",      "correct": false},
+                {"option": "16",      "correct": false},
+                {"option": "105",      "correct": false},
+                {"option": "15",     "correct": true} 
+            ]
+        },
+        {   "id": "6",
+            "q": "10 + 6 = ?",
+            "a": [
+                {"option": "16",      "correct": true},
+                {"option": "106",     "correct": false},
+                {"option": "17",      "correct": false},
+                {"option": "15",     "correct": false} 
+            ]
+        },
+        {   "id": "7",
+            "q": "10 + 7 = ?",
+            "a": [
+                {"option": "71",      "correct": false},
+                {"option": "18",      "correct": false},
+                {"option": "17",      "correct": true},
+                {"option": "16",     "correct": false} 
+            ]
+        },
+        {   "id": "8",
+            "q": "10 + 8 = ?",
+            "a": [
+                {"option": "108",      "correct": false},
+                {"option": "81",      "correct": false},
+                {"option": "16",      "correct": false},
+                {"option": "18",     "correct": true} 
+            ]
+        },
+        {   "id": "9",
+            "q": "10 + 9 = ?",
+            "a": [
+                {"option": "91",      "correct": false},
+                {"option": "18",     "correct": false},
+                {"option": "19",      "correct": true},
+                {"option": "20",     "correct": false} 
+            ]
+        },
+        {   "id": "10",
+            "q": "10 + 10 = ?",
+            "a": [
+                {"option": "100",      "correct": false},
+                {"option": "19",      "correct": false},
+                {"option": "20",      "correct": true},
+                {"option": "21",     "correct": false} 
+            ]
+        },
+        {   "id": "11",
+            "q": "0 +  10 = ?",
+            "a": [
+                {"option": "10",      "correct": true},
+                {"option": "100",     "correct": false},
+                {"option": "0",      "correct": false},
+                {"option": "11",     "correct": false} 
+            ]
+        },
+        {   "id": "12",
+            "q": "1 + 10 = ?",
+            "a": [
+                {"option": "112",      "correct": false},
+                {"option": "110",      "correct": false},
+                {"option": "11",      "correct": true},
+                {"option": "10",     "correct": false} 
+            ]
+        },
+        {   "id": "13",
+            "q": "2 + 10 = ?",
+            "a": [
+                {"option": "21",      "correct": false},
+                {"option": "12",      "correct": true},
+                {"option": "13",      "correct": false},
+                {"option": "210",     "correct": false} 
+            ]
+        },
+        {   "id": "14",
+            "q": "3 + 10 = ?",
+            "a": [
+                {"option": "31",      "correct": false},
+                {"option": "14",     "correct": false},
+                {"option": "13",      "correct": true},
+                {"option": "12",     "correct": false} 
+            ]
+        },
+        {   "id": "15",
+            "q": "4 + 10 = ?",
+            "a": [
+                {"option": "16",      "correct": false},
+                {"option": "410",      "correct": false},
+                {"option": "41",      "correct": false},
+                {"option": "14",     "correct": true} 
+            ]
+        },
+        {   "id": "16",
+            "q": "5 + 10 = ?",
+            "a": [
+                {"option": "16",      "correct": false},
+                {"option": "105",     "correct": false},
+                {"option": "15",      "correct": true},
+                {"option": "14",     "correct": false} 
+            ]
+        },
+        {   "id": "17",
+            "q": "6 + 10 = ?",
+            "a": [
+                {"option": "17",      "correct": false},
+                {"option": "16",      "correct": true},
+                {"option": "19",      "correct": false},
+                {"option": "61",     "correct": false} 
+            ]
+        },
+        {   "id": "18",
+            "q": "7 + 10 = ?",
+            "a": [
+                {"option": "18",      "correct": false},
+                {"option": "17",      "correct": true},
+                {"option": "16",      "correct": false},
+                {"option": "15",     "correct": false} 
+            ]
+        },
+        {   "id": "19",
+            "q": "8 + 10 = ?",
+            "a": [
+                {"option": "81",      "correct": false},
+                {"option": "181",     "correct": false},
+                {"option": "18",      "correct": true},
+                {"option": "19",     "correct": false} 
+            ]
+        },
+        {   "id": "20",
+            "q": "9 + 10 = ?",
+            "a": [
+                {"option": "20",      "correct": false},
+                {"option": "18",      "correct": false},
+                {"option": "19",      "correct": true},
+                {"option": "16",     "correct": false} 
+            ]
+        },
+        {   "id": "21",
+            "q": "10 + ? = 11",
+            "a": [
+                {"option": "11",      "correct": false},
+                {"option": "21",      "correct": false},
+                {"option": "1",      "correct": true},
+                {"option": "2",     "correct": false} 
+            ]
+        },
+        {   "id": "22",
+            "q": "10 + ? = 12",
+            "a": [
+                {"option": "2",      "correct": true},
+                {"option": "12",     "correct": false},
+                {"option": "22",      "correct": false},
+                {"option": "21",     "correct": false} 
+            ]
+        },
+        {   "id": "23",
+            "q": "10 + ? = 13",
+            "a": [
+                {"option": "11",      "correct": false},
+                {"option": "23",      "correct": false},
+                {"option": "3",      "correct": true},
+                {"option": "4",     "correct": false} 
+            ]
+        },
+        {   "id": "24",
+            "q": "? + 10 = 14",
+            "a": [
+                {"option": "4",      "correct": true},
+                {"option": "24",      "correct": false},
+                {"option": "3",      "correct": false},
+                {"option": "41",     "correct": false} 
+            ]
+        },
+        {   "id": "25",
+            "q": "? + 10 = 15",
+            "a": [
+                {"option": "15",      "correct": false},
+                {"option": "51",     "correct": false},
+                {"option": "7",      "correct": false},
+                {"option": "5",     "correct": true} 
+            ]
+        },
+        {   "id": "26",
+            "q": "10 + ? = 16",
+            "a": [
+                {"option": "8",      "correct": false},
+                {"option": "26",      "correct": false},
+                {"option": "7",      "correct": false},
+                {"option": "6",     "correct": true} 
+            ]
+        },
+        {   "id": "27",
+            "q": "10 + ? = 17",
+            "a": [
+                {"option": "27",      "correct": false},
+                {"option": "17",     "correct": false},
+                {"option": "7",      "correct": true},
+                {"option": "8",     "correct": false} 
+            ]
+        },
+        {   "id": "28",
+            "q": "? + 10 = 18",
+            "a": [
+                {"option": "1",      "correct": false},
+                {"option": "8",      "correct": true},
+                {"option": "9",      "correct": false},
+                {"option": "7",     "correct": false} 
+            ]
+        },
+        {   "id": "29",
+            "q": "? + 10 = 19",
+            "a": [
+                {"option": "30",      "correct": false},
+                {"option": "9",      "correct": true},
+                {"option": "29",      "correct": false},
+                {"option": "10",     "correct": false} 
+            ]
+        },
+        {   "id": "30",
+            "q": "10 + ? = 20",
+            "a": [
+                {"option": "30",      "correct": false},
+                {"option": "11",     "correct": false},
+                {"option": "10",      "correct": true},
+                {"option": "12",     "correct": false} 
+            ]
+        },
+        {   "id": "31",
+            "q": "10 + ? = 10",
+            "a": [
+                {"option": "11",      "correct": false},
+                {"option": "21",      "correct": false},
+                {"option": "0",      "correct": true},
+                {"option": "20",     "correct": false} 
+            ]
+        }
+    ]
+}
