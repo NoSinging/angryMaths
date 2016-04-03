@@ -15,6 +15,8 @@ class levels {
     // 1, 2, 3 = level finished with 1, 2, 3 stars
     // 4 = locked
     this.starsArray = [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+    this.retrieve();
+
     // level currently playing
     this.level = 0;
     }
@@ -27,5 +29,36 @@ class levels {
         if(stars>0 && this.starsArray[this.level]==4 && this.level<this.starsArray.length){
             this.starsArray[this.level] = 0;
         }
+        this.save();
+    }
+    save(){
+        if(typeof(Storage) !== "undefined") {
+            // Code for localStorage.
+            localStorage.levels = JSON.stringify(this.starsArray);
+            return true
+        } else {
+            // Sorry! No Web Storage support..
+            console.log('NO storage!');
+            return false
+        }
+    }
+    retrieve(){
+        if(typeof(Storage) !== "undefined") {
+            // Code for localStorage.
+            var levels =  localStorage.levels;          
+            if (typeof(levels) !== "undefined" && levels !== null && levels.length >= 0) {
+                // store levels already exist
+                this.starsArray = JSON.parse(levels);
+                return true;
+            } else {
+                // no levels stored yet
+                return false;
+            }
+        } else {
+            // Sorry! No Web Storage support..
+            console.log('NO storage!');
+            return false;
+        }
+        return false;
     }
 };
