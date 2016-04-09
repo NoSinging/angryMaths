@@ -23,11 +23,22 @@ angryMaths.playLevel.prototype = {
 			font: "32px Arial",
 			fill: "#fff000"
 		};
-		var levelTitle = game.add.text(0,0,"PLAYING LEVEL "+game.levels.level,this.style);
-		levelTitle.align = "center";
-        levelTitle.x = (game.width - levelTitle.width) / 2;
+		// var levelTitle = game.add.bitmapText(0, 0,'raffic', 'level '+game.levels.level, 32);
+  //       levelTitle.x = (game.width - levelTitle.width) / 2;
 
-         // create a question
+  		// create a timer bar
+  		this.timerBar = game.add.image(20,120, 'preloadbar');
+  		this.timeBarCropRect = new Phaser.Rectangle(0, 0, this.timerBar.width, this.timerBar.height);
+  		this.timerBar.crop(this.timeBarCropRect);
+
+		// create a Score
+  		this.scoreIcon = game.add.image(20,60, 'correct');
+  		this.scoreIcon.scale.setTo(0.5,0.5);
+  		this.scoreText = game.add.bitmapText(0, 0,'raffic', '0', 64);
+		this.scoreIcon.addChild(this.scoreText);
+
+
+        // create a question
 	    this.question = new Question(this.game, 200, this.game.height/4);
 	    // and add it to the game
 	    this.game.add.existing(this.question);
@@ -35,10 +46,11 @@ angryMaths.playLevel.prototype = {
 	    //create the option for multiple choice
 	    for(var i=0; i<=3; i++){
 	    	// create the option button
-			this.options[i] = game.add.button(game.width*(i+1)/5, 2*game.height/3,  "logo", this.questionAnswered, this);
+			this.options[i] = game.add.button(game.width*(i+1)/5, 2*game.height/3,  "blank", this.questionAnswered, this);
 
 		 	// create a child text object
-		 	var text = game.add.text(0, 0, '', this.style);
+		 	//var text = game.add.text(0, 0, '', this.style);
+		 	var text = game.add.bitmapText(0, 0,'raffic', '', 64);
 		 	this.options[i].addChild(text);
 		}
 
@@ -85,9 +97,13 @@ angryMaths.playLevel.prototype = {
 			this.askQuestion(this.currentQuestion);
 		}
 
-    	game.debug.text('Time left: ' + (this.timer.duration/1000).toFixed(0), 32, 64);
-    	game.debug.text('Questions correct: ' + this.questionsCorrect, 32, 96);
-    	game.debug.text('Stars: ' + this.stars, 32, 128);
+    	//game.debug.text('Time left: ' + (this.timer.duration/1000).toFixed(0), 32, 64);
+    	//game.debug.text('Questions correct: ' + this.questionsCorrect, 32, 96);
+    	//game.debug.text('Stars: ' + this.stars, 32, 128);
+
+    	// update the timebar
+    	this.timeBarCropRect.width = (this.timer.duration/(this.questionJSON.time*1000)) * 256;
+    	this.timerBar.updateCrop();
 	},
 	shutdown: function() {
 
@@ -121,6 +137,7 @@ angryMaths.playLevel.prototype = {
 	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 100, "Linear", true, 0,0,true);
 		}
 		this.currentQuestionAnswered = true;
+    	this.scoreText.text = this.questionsCorrect.toFixed(0);
 		this.calculateStars();
 	},
 	levelFinished: function(){

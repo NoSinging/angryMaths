@@ -15,7 +15,7 @@ angryMaths.Preload.prototype = {
     this.load.audio('coin', 'assets/audio/coin.wav');
     this.load.audio('death', 'assets/audio/death.wav');
 
-    this.load.bitmapFont('minecraftia', 'assets/fonts/minecraftia/minecraftia.png', 'assets/fonts/minecraftia/minecraftia.xml');
+    this.load.bitmapFont('raffic', 'assets/fonts/raffic/font.png', 'assets/fonts/raffic/font.xml');
 
 
     // preloading level menu assets
@@ -23,6 +23,7 @@ angryMaths.Preload.prototype = {
     this.load.spritesheet("level_arrows", "assets/images/level_arrows.png", 48, 48);
 
     // load other images
+    this.load.image('blank', 'assets/images/blank-64.png');
     this.load.image('square', 'assets/images/square-rounded-48.png');
     this.load.image('wrong', 'assets/images/red_cross.png');
     this.load.image('correct', 'assets/images/check_mark.png');

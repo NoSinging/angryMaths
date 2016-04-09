@@ -6,7 +6,7 @@ angryMaths.MainMenu.prototype = {
     this.splash.anchor.setTo(0.5);
 
 
-    this.startText = this.game.add.bitmapText(0,0, 'minecraftia', 'tap to start', 32);
+    this.startText = this.game.add.bitmapText(0,0, 'raffic', 'tap to start', 32);
     this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
     this.startText.y = this.game.height / 2 + this.splash.height / 2;
 

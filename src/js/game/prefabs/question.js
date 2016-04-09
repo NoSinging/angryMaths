@@ -1,10 +1,10 @@
 
 var Question = function(game, x, y, key, frame) {
-  var style = { font: "32px Arial", fill: "#ff0044"};
-  Phaser.Text.call(this, game, x, y, 'some text', style);
+  //var style = { font: "32px Arial", fill: "#ff0044"};
+  Phaser.BitmapText.call(this, game, x, y,'raffic', 'some text', 64);
 };
 
-Question.prototype = Object.create(Phaser.Text.prototype);
+Question.prototype = Object.create(Phaser.BitmapText.prototype);
 Question.prototype.constructor = Question;
 
 Question.prototype.update = function() {
