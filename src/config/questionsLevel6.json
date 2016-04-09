@@ -1,0 +1,106 @@
+{
+    "time": "40",
+    "title": "6 x tables",
+    "rating": ["6", "8", "10"],
+    "questions": [
+        {   "id": "1",
+            "q": "1 x 6 = ?",
+            "a": [
+                {"option": "10",      "correct": false},
+                {"option": "6",     "correct": true},
+                {"option": "12",      "correct": false},
+                {"option": "7",     "correct": false} 
+            ]
+        },
+        {   "id": "2",
+            "q": "2 x 6 = ?",
+            "a": [
+                {"option": "9",      "correct": false},
+                {"option": "13",      "correct": false},
+                {"option": "12",      "correct": true},
+                {"option": "14",     "correct": false} 
+            ]
+        },
+        {   "id": "3",
+            "q": "3 x 6 = ?",
+            "a": [
+                {"option": "18",      "correct": true},
+                {"option": "16",      "correct": false},
+                {"option": "14",      "correct": false},
+                {"option": "19",     "correct": false} 
+            ]
+        },
+        {   "id": "4",
+            "q": "4 x 6 = ?",
+            "a": [
+                {"option": "46",      "correct": false},
+                {"option": "24",     "correct": true},
+                {"option": "16",      "correct": false},
+                {"option": "20",     "correct": false} 
+            ]
+        },
+        {   "id": "5",
+            "q": "5 x 6 = ?",
+            "a": [
+                {"option": "35",      "correct": false},
+                {"option": "36",      "correct": false},
+                {"option": "56",      "correct": false},
+                {"option": "30",     "correct": true} 
+            ]
+        },
+        {   "id": "6",
+            "q": "6 x 6 = ?",
+            "a": [
+                {"option": "36",      "correct": true},
+                {"option": "66",     "correct": false},
+                {"option": "48",      "correct": false},
+                {"option": "32",     "correct": false} 
+            ]
+        },
+        {   "id": "7",
+            "q": "7 x 6 = ?",
+            "a": [
+                {"option": "40",      "correct": false},
+                {"option": "36",      "correct": false},
+                {"option": "42",      "correct": true},
+                {"option": "49",     "correct": false} 
+            ]
+        },
+        {   "id": "8",
+            "q": "8 x 6 = ?",
+            "a": [
+                {"option": "68",      "correct": false},
+                {"option": "56",      "correct": false},
+                {"option": "42",      "correct": false},
+                {"option": "48",     "correct": true} 
+            ]
+        },
+        {   "id": "9",
+            "q": "9 x 6 = ?",
+            "a": [
+                {"option": "96",      "correct": false},
+                {"option": "48",     "correct": false},
+                {"option": "54",      "correct": true},
+                {"option": "56",     "correct": false} 
+            ]
+        },
+        {   "id": "10",
+            "q": "10 x 6 = ?",
+            "a": [
+                {"option": "54",      "correct": false},
+                {"option": "61",      "correct": false},
+                {"option": "60",      "correct": true},
+                {"option": "50",     "correct": false} 
+            ]
+        },
+        {   "id": "11",
+            "q": "11 x 6 = ?",
+            "a": [
+                {"option": "66",      "correct": true},
+                {"option": "60",     "correct": false},
+                {"option": "67",      "correct": false},
+                {"option": "61",     "correct": false} 
+            ]
+        }
+    ]
+}

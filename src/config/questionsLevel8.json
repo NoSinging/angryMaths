@@ -1,0 +1,106 @@
+{
+    "time": "40",
+    "title": "8 x tables",
+    "rating": ["6", "8", "10"],
+    "questions": [
+        {   "id": "1",
+            "q": "1 x 8 = ?",
+            "a": [
+                {"option": "6",      "correct": false},
+                {"option": "17",      "correct": false},
+                {"option": "8",     "correct": true},
+                {"option": "9",     "correct": false} 
+            ]
+        },
+        {   "id": "2",
+            "q": "2 x 8 = ?",
+            "a": [
+                {"option": "9",      "correct": false},
+                {"option": "10",      "correct": false},
+                {"option": "16",      "correct": true},
+                {"option": "18",     "correct": false} 
+            ]
+        },
+        {   "id": "3",
+            "q": "3 x 8 = ?",
+            "a": [
+                {"option": "24",      "correct": true},
+                {"option": "26",      "correct": false},
+                {"option": "28",      "correct": false},
+                {"option": "29",     "correct": false} 
+            ]
+        },
+        {   "id": "4",
+            "q": "4 x 8 = ?",
+            "a": [
+                {"option": "36",      "correct": false},
+                {"option": "32",     "correct": true},
+                {"option": "38",      "correct": false},
+                {"option": "42",     "correct": false} 
+            ]
+        },
+        {   "id": "5",
+            "q": "5 x 8 = ?",
+            "a": [
+                {"option": "35",      "correct": false},
+                {"option": "42",      "correct": false},
+                {"option": "58",      "correct": false},
+                {"option": "40",     "correct": true} 
+            ]
+        },
+        {   "id": "6",
+            "q": "6 x 8 = ?",
+            "a": [
+                {"option": "48",      "correct": true},
+                {"option": "56",     "correct": false},
+                {"option": "54",      "correct": false},
+                {"option": "64",     "correct": false} 
+            ]
+        },
+        {   "id": "7",
+            "q": "7 x 8 = ?",
+            "a": [
+                {"option": "42",      "correct": false},
+                {"option": "56",      "correct": true},
+                {"option": "64",      "correct": false},
+                {"option": "54",     "correct": false} 
+            ]
+        },
+        {   "id": "8",
+            "q": "8 x 8 = ?",
+            "a": [
+                {"option": "68",      "correct": false},
+                {"option": "48",      "correct": false},
+                {"option": "66",      "correct": false},
+                {"option": "64",     "correct": true} 
+            ]
+        },
+        {   "id": "9",
+            "q": "9 x 8 = ?",
+            "a": [
+                {"option": "98",      "correct": false},
+                {"option": "17",     "correct": false},
+                {"option": "72",      "correct": true},
+                {"option": "56",     "correct": false} 
+            ]
+        },
+        {   "id": "10",
+            "q": "10 x 8 = ?",
+            "a": [
+                {"option": "80",      "correct": true},
+                {"option": "81",      "correct": false},
+                {"option": "78",      "correct": false},
+                {"option": "18",     "correct": false} 
+            ]
+        },
+        {   "id": "11",
+            "q": "11 x 8 = ?",
+            "a": [
+                {"option": "77",     "correct": false},
+                {"option": "88",      "correct": true},
+                {"option": "82",      "correct": false},
+                {"option": "72",     "correct": false} 
+            ]
+        }
+    ]
+}

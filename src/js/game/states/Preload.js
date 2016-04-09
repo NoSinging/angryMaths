@@ -37,6 +37,12 @@ angryMaths.Preload.prototype = {
     this.load.json('questionsLevel2', 'config/questionsLevel2.json');
     this.load.json('questionsLevel3', 'config/questionsLevel3.json');
     this.load.json('questionsLevel4', 'config/questionsLevel4.json');
+    this.load.json('questionsLevel5', 'config/questionsLevel5.json');
+    this.load.json('questionsLevel6', 'config/questionsLevel6.json');
+    this.load.json('questionsLevel7', 'config/questionsLevel7.json');
+    this.load.json('questionsLevel8', 'config/questionsLevel8.json');
+    this.load.json('questionsLevel9', 'config/questionsLevel9.json');
+    this.load.json('questionsLevel10', 'config/questionsLevel10.json');
 
     // load this app version config
     game.load.json('version', 'config/version.json');

@@ -16,6 +16,7 @@ angryMaths.levelSelect.prototype = {
 		// CAUTION!! EACH PAGE SHOULD HAVE THE SAME AMOUNT OF LEVELS, THAT IS
 		// THE NUMBER OF LEVELS *MUST* BE DIVISIBLE BY THUMBCOLS*THUMBROWS
   		pages = game.levels.starsArray.length/(game.levels.thumbRows*game.levels.thumbCols);
+  		console.log(pages);
   		// current page according to last played level, if any
 		currentPage = Math.floor(game.levels.level/(game.levels.thumbRows*game.levels.thumbCols));
 		if(currentPage>pages-1){
