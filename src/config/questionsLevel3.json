@@ -1,284 +1,105 @@
 {
     "time": "40",
-    "rating": ["10", "14", "20"],
+    "title": "3 x tables",
+    "rating": ["6", "8", "10"],
     "questions": [
         {   "id": "1",
-            "q": "2 + 9 = ?",
+            "q": "1 x 3 = ?",
             "a": [
-                {"option": "10",      "correct": false},
-                {"option": "11",     "correct": true},
                 {"option": "13",      "correct": false},
-                {"option": "7",     "correct": false} 
+                {"option": "3",     "correct": true},
+                {"option": "6",      "correct": false},
+                {"option": "4",     "correct": false} 
             ]
         },
         {   "id": "2",
-            "q": "2 + 8 = ?",
+            "q": "2 x 3 = ?",
             "a": [
                 {"option": "9",      "correct": false},
-                {"option": "12",      "correct": false},
-                {"option": "10",      "correct": true},
-                {"option": "14",     "correct": false} 
+                {"option": "8",      "correct": false},
+                {"option": "6",      "correct": true},
+                {"option": "5",     "correct": false} 
             ]
         },
         {   "id": "3",
-            "q": "2 + 10 = ?",
+            "q": "3 x 3 = ?",
             "a": [
-                {"option": "12",      "correct": true},
-                {"option": "10",      "correct": false},
-                {"option": "14",      "correct": false},
-                {"option": "11",     "correct": false} 
+                {"option": "9",      "correct": true},
+                {"option": "12",      "correct": false},
+                {"option": "16",      "correct": false},
+                {"option": "33",     "correct": false} 
             ]
         },
         {   "id": "4",
-            "q": "2 + 7 = ?",
+            "q": "4 x 3 = ?",
             "a": [
-                {"option": "10",      "correct": false},
-                {"option": "9",     "correct": true},
-                {"option": "11",      "correct": false},
-                {"option": "12",     "correct": false} 
+                {"option": "16",      "correct": false},
+                {"option": "12",     "correct": true},
+                {"option": "18",      "correct": false},
+                {"option": "14",     "correct": false} 
             ]
         },
         {   "id": "5",
-            "q": "3 + 7 = ?",
+            "q": "5 x 3 = ?",
             "a": [
-                {"option": "13",      "correct": false},
-                {"option": "9",      "correct": false},
-                {"option": "11",      "correct": false},
-                {"option": "10",     "correct": true} 
+                {"option": "20",      "correct": false},
+                {"option": "8",      "correct": false},
+                {"option": "55",      "correct": false},
+                {"option": "15",     "correct": true} 
             ]
         },
         {   "id": "6",
-            "q": "3 + 8 = ?",
+            "q": "6 x 3 = ?",
             "a": [
-                {"option": "11",      "correct": true},
-                {"option": "9",     "correct": false},
-                {"option": "12",      "correct": false},
-                {"option": "13",     "correct": false} 
+                {"option": "18",      "correct": true},
+                {"option": "36",     "correct": false},
+                {"option": "22",      "correct": false},
+                {"option": "20",     "correct": false} 
             ]
         },
         {   "id": "7",
-            "q": "3 + 6 = ?",
+            "q": "7 x 3 = ?",
             "a": [
                 {"option": "10",      "correct": false},
-                {"option": "8",      "correct": false},
-                {"option": "9",      "correct": true},
-                {"option": "7",     "correct": false} 
+                {"option": "17",      "correct": false},
+                {"option": "21",      "correct": true},
+                {"option": "22",     "correct": false} 
             ]
         },
         {   "id": "8",
-            "q": "3 + 9 = ?",
+            "q": "8 x 3 = ?",
             "a": [
-                {"option": "11",      "correct": false},
-                {"option": "13",      "correct": false},
-                {"option": "14",      "correct": false},
-                {"option": "12",     "correct": true} 
+                {"option": "18",      "correct": false},
+                {"option": "32",      "correct": false},
+                {"option": "22",      "correct": false},
+                {"option": "24",     "correct": true} 
             ]
         },
         {   "id": "9",
-            "q": "4 + 6 = ?",
+            "q": "9 x 3 = ?",
             "a": [
-                {"option": "9",      "correct": false},
-                {"option": "11",     "correct": false},
-                {"option": "10",      "correct": true},
-                {"option": "12",     "correct": false} 
+                {"option": "93",      "correct": false},
+                {"option": "47",     "correct": false},
+                {"option": "27",      "correct": true},
+                {"option": "28",     "correct": false} 
             ]
         },
         {   "id": "10",
-            "q": "4 + 7 = ?",
+            "q": "10 x 3 = ?",
             "a": [
-                {"option": "10",      "correct": false},
-                {"option": "12",      "correct": false},
-                {"option": "11",      "correct": true},
-                {"option": "9",     "correct": false} 
+                {"option": "13",      "correct": false},
+                {"option": "33",      "correct": false},
+                {"option": "30",      "correct": true},
+                {"option": "31",     "correct": false} 
             ]
         },
         {   "id": "11",
-            "q": "4 + 5 = ?",
+            "q": "11 x 3 = ?",
             "a": [
-                {"option": "9",      "correct": true},
-                {"option": "11",     "correct": false},
-                {"option": "7",      "correct": false},
-                {"option": "10",     "correct": false} 
-            ]
-        },
-        {   "id": "12",
-            "q": "5 + 5 = ?",
-            "a": [
-                {"option": "12",      "correct": false},
-                {"option": "11",      "correct": false},
-                {"option": "10",      "correct": true},
-                {"option": "14",     "correct": false} 
-            ]
-        },
-        {   "id": "13",
-            "q": "5 + 6 = ?",
-            "a": [
+                {"option": "33",      "correct": true},
+                {"option": "30",     "correct": false},
                 {"option": "13",      "correct": false},
-                {"option": "11",      "correct": true},
-                {"option": "9",      "correct": false},
-                {"option": "10",     "correct": false} 
-            ]
-        },
-        {   "id": "14",
-            "q": "5 + 7 = ?",
-            "a": [
-                {"option": "15",      "correct": false},
-                {"option": "14",     "correct": false},
-                {"option": "12",      "correct": true},
-                {"option": "13",     "correct": false} 
-            ]
-        },
-        {   "id": "15",
-            "q": "5 + 4 = ?",
-            "a": [
-                {"option": "6",      "correct": false},
-                {"option": "7",      "correct": false},
-                {"option": "8",      "correct": false},
-                {"option": "9",     "correct": true} 
-            ]
-        },
-        {   "id": "16",
-            "q": "6 + 4 = ?",
-            "a": [
-                {"option": "11",      "correct": false},
-                {"option": "12",     "correct": false},
-                {"option": "10",      "correct": true},
-                {"option": "14",     "correct": false} 
-            ]
-        },
-        {   "id": "17",
-            "q": "6 + 5 = ?",
-            "a": [
-                {"option": "12",      "correct": false},
-                {"option": "11",      "correct": true},
-                {"option": "9",      "correct": false},
-                {"option": "13",     "correct": false} 
-            ]
-        },
-        {   "id": "18",
-            "q": "6 + 3 = ?",
-            "a": [
-                {"option": "8",      "correct": false},
-                {"option": "9",      "correct": true},
-                {"option": "11",      "correct": false},
-                {"option": "12",     "correct": false} 
-            ]
-        },
-        {   "id": "19",
-            "q": "6 + 6 = ?",
-            "a": [
-                {"option": "66",      "correct": false},
-                {"option": "13",     "correct": false},
-                {"option": "12",      "correct": true},
-                {"option": "6",     "correct": false} 
-            ]
-        },
-        {   "id": "20",
-            "q": "7 + 3 = ?",
-            "a": [
-                {"option": "12",      "correct": false},
-                {"option": "11",      "correct": false},
-                {"option": "10",      "correct": true},
-                {"option": "13",     "correct": false} 
-            ]
-        },
-        {   "id": "21",
-            "q": "7 + 4 = ?",
-            "a": [
-                {"option": "14",      "correct": false},
-                {"option": "16",      "correct": false},
-                {"option": "11",      "correct": true},
-                {"option": "13",     "correct": false} 
-            ]
-        },
-        {   "id": "22",
-            "q": "7 + 5 = ?",
-            "a": [
-                {"option": "12",      "correct": true},
-                {"option": "17",     "correct": false},
-                {"option": "15",      "correct": false},
-                {"option": "75",     "correct": false} 
-            ]
-        },
-        {   "id": "23",
-            "q": "7 + 2 = ?",
-            "a": [
-                {"option": "72",      "correct": false},
-                {"option": "8",      "correct": false},
-                {"option": "9",      "correct": true},
-                {"option": "10",     "correct": false} 
-            ]
-        },
-        {   "id": "24",
-            "q": "8 + 2 = ?",
-            "a": [
-                {"option": "10",      "correct": true},
-                {"option": "12",      "correct": false},
-                {"option": "14",      "correct": false},
-                {"option": "11",     "correct": false} 
-            ]
-        },
-        {   "id": "25",
-            "q": "8 + 3 = ?",
-            "a": [
-                {"option": "15",      "correct": false},
-                {"option": "13",     "correct": false},
-                {"option": "12",      "correct": false},
-                {"option": "11",     "correct": true} 
-            ]
-        },
-        {   "id": "26",
-            "q": "8 + 4 = ?",
-            "a": [
-                {"option": "18",      "correct": false},
-                {"option": "14",      "correct": false},
-                {"option": "10",      "correct": false},
-                {"option": "12",     "correct": true} 
-            ]
-        },
-        {   "id": "27",
-            "q": "8 + 1 = ?",
-            "a": [
-                {"option": "11",      "correct": false},
-                {"option": "10",     "correct": false},
-                {"option": "9",      "correct": true},
-                {"option": "12",     "correct": false} 
-            ]
-        },
-        {   "id": "28",
-            "q": "9 + 1 = ?",
-            "a": [
-                {"option": "11",      "correct": false},
-                {"option": "10",      "correct": true},
-                {"option": "9",      "correct": false},
-                {"option": "12",     "correct": false} 
-            ]
-        },
-        {   "id": "29",
-            "q": "9 + 2 = ?",
-            "a": [
-                {"option": "13",      "correct": false},
-                {"option": "11",      "correct": true},
-                {"option": "12",      "correct": false},
-                {"option": "10",     "correct": false} 
-            ]
-        },
-        {   "id": "30",
-            "q": "9 + 3 = ?",
-            "a": [
-                {"option": "93",      "correct": false},
-                {"option": "11",     "correct": false},
-                {"option": "12",      "correct": true},
-                {"option": "14",     "correct": false} 
-            ]
-        },
-        {   "id": "31",
-            "q": "10 + 1 = ?",
-            "a": [
-                {"option": "13",      "correct": false},
-                {"option": "12",      "correct": false},
-                {"option": "11",      "correct": true},
-                {"option": "10",     "correct": false} 
+                {"option": "31",     "correct": false} 
             ]
         }
     ]

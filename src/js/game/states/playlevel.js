@@ -9,8 +9,8 @@ angryMaths.playLevel.prototype = {
 
 		this.options = [];
 		this.stars = 0;
-		this.currentQuestion = -1;
-		this.currentQuestionAnswered = true;
+		this.currentQuestion = 0;
+		this.currentQuestionAnswered = false;
 		this.totalQuestions = this.questionJSON.questions.length;
 		this.questionsCorrect = 0;
 		this.score = 0;
@@ -49,7 +49,6 @@ angryMaths.playLevel.prototype = {
 			this.options[i] = game.add.button(game.width*(i+1)/5, 2*game.height/3,  "blank", this.questionAnswered, this);
 
 		 	// create a child text object
-		 	//var text = game.add.text(0, 0, '', this.style);
 		 	var text = game.add.bitmapText(0, 0,'raffic', '', 64);
 		 	this.options[i].addChild(text);
 		}
@@ -79,18 +78,19 @@ angryMaths.playLevel.prototype = {
 
 	    // audio
 	    this.coinSound = this.game.add.audio('coin');
-	    this.deathSound = this.game.add.audio('death');
 
+	    // ask the first question
+		this.askQuestion(this.currentQuestion);
 	},
 	update: function() {
 		// if all the questions are answered then the level is finished
-		if (this.currentQuestion == (this.totalQuestions -1) && this.currentQuestionAnswered) {
+		if (this.currentQuestion == (this.totalQuestions -1) && this.currentQuestionAnswered && !this.isQuestionTransitioning()) {
 			this.levelFinished();
 			return;
 		}
 
 		// TODO: is this best here or in the questioned Answered method?
-		if (this.currentQuestionAnswered) {
+		if (this.currentQuestionAnswered && !this.isQuestionTransitioning()) {
 			// ask the next question
 			this.currentQuestionAnswered = false;
 			this.currentQuestion++;
@@ -124,16 +124,24 @@ angryMaths.playLevel.prototype = {
 
 	},
 	questionAnswered: function(option) {
+		// if a tick or cross is already in progress then ignore the answer
+		if (this.isQuestionTransitioning()) {
+			console.log('question in transition');
+			console.log('tickTween: ' + typeof(this.tickTween) + ' is running: ' + this.tickTween.isRunning);
+			console.log('crossTween: ' + typeof(this.crossTween) + ' is running: ' + this.crossTween.isRunning);
+			return;
+		}
+
 		if (option.correct) {
 			this.questionsCorrect++;
 			this.updateScore();
     		this.coinSound.play();
 
 		    //  Add tween  to tick 
-	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 200, "Linear", true, 0,0,true);
+	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
 		} else {
 		    //  Add tween  to tick 
-	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 200, "Linear", true, 0,0,true);
+	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
 		}
 		this.currentQuestionAnswered = true;
     	this.scoreText.text = this.questionsCorrect.toFixed(0);
@@ -144,6 +152,9 @@ angryMaths.playLevel.prototype = {
 		game.levels.levelFinished(this.stars);
 		// back to level selection
 		game.state.start("LevelSelect");
+	},
+	isQuestionTransitioning: function(){
+		return (typeof(this.tickTween) != 'undefined' && this.tickTween.isRunning) || (typeof(this.crossTween) != 'undefined' && this.crossTween.isRunning);
 	},
 	updateScore: function(){
 		//

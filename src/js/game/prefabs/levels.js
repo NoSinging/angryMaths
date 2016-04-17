@@ -62,4 +62,20 @@ class levels {
         }
         return false;
     }
+    getMaxStars(){
+        return this.starsArray.length * 3;
+    }
+    getTotalStars(){
+        var totalStars = 0;
+        var levelStars = 0;
+        var i = 0;
+        var len = this.starsArray.length;
+        for (; i < len; i++) { 
+            levelStars = this.starsArray[i];
+            if (levelStars < 4 && levelStars > 0) {
+                totalStars += levelStars;
+            }
+        }
+        return totalStars;
+    }
 };

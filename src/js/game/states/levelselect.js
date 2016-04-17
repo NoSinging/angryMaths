@@ -17,7 +17,7 @@ angryMaths.levelSelect.prototype = {
   		//
 
   		this.starCountIcon = game.add.image(20,60, 'star');
-  		this.starCountText = game.add.bitmapText(64, 10,'raffic', this.getTotalStars() + '/' + this.getMaxStars(), 64);
+  		this.starCountText = game.add.bitmapText(64, 10,'raffic', game.levels.getTotalStars() + '/' + game.levels.getMaxStars(), 64);
 		this.starCountIcon.addChild(this.starCountText);
 
 		info = game.add.text(16, 30, ' ');
@@ -164,20 +164,6 @@ angryMaths.levelSelect.prototype = {
 			}, 20, Phaser.Easing.Cubic.None);
 			buttonTween.start();
 		}
-	},
-	getMaxStars:function(){
-		return game.levels.starsArray.length * 3;
-	},
-	getTotalStars:function(){
-		var totalStars = 0;
-		var levelStars = 0;
-		for (i = 0, len = game.levels.starsArray.length; i < len; i++) { 
-			levelStars = game.levels.starsArray[i];
-			if (levelStars < 4 && levelStars > 0) {
-				totalStars += levelStars;
-			}
-		}
-		return totalStars;
 	},
 	displayScaleInfo:function(){
 
