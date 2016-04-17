@@ -16,17 +16,18 @@ angryMaths.Boot.prototype = {
 
     if (this.game.device.desktop) {
       //  If you have any desktop specific settings, they can go in here
-      this.scale.pageAlignHorizontally = true;
+      game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      game.scale.setMinMax(480, 260, 2048, 2732);
+      game.scale.pageAlignHorizontally = true;
+      game.scale.pageAlignVertically = true;
+      this.scale.refresh();
     } else {
       //  Same goes for mobile settings.
-      //  In this case we're saying "scale the game, no lower than 480x260 and no higher than 1024x768"
-      this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-      this.scale.minWidth = 568;
-      this.scale.minHeight = 600;
-      this.scale.maxWidth = 2048;
-      this.scale.maxHeight = 1536;
-      this.scale.forceLandscape = true;
-      this.scale.pageAlignHorizontally = true;
+      //  scale the game, no lower than low res desktop (480x260) and no higher than ipad pro (2048, 2732)
+      game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      game.scale.setMinMax(480, 260, 2048, 2732);
+      game.scale.pageAlignHorizontally = true;
+      game.scale.pageAlignVertically = true;
       this.scale.refresh();
     }
 

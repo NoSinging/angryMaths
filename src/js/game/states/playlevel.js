@@ -130,11 +130,10 @@ angryMaths.playLevel.prototype = {
     		this.coinSound.play();
 
 		    //  Add tween  to tick 
-	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 100, "Linear", true, 0,0,true);
+	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 200, "Linear", true, 0,0,true);
 		} else {
-    		this.deathSound.play();
 		    //  Add tween  to tick 
-	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 100, "Linear", true, 0,0,true);
+	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 200, "Linear", true, 0,0,true);
 		}
 		this.currentQuestionAnswered = true;
     	this.scoreText.text = this.questionsCorrect.toFixed(0);

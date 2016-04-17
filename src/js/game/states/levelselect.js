@@ -8,42 +8,64 @@ angryMaths.levelSelect = function() {
 	// arrows to navigate through level pages
 	var leftArrow;
 	var rightArrow;
+
+	var info
   };
 
 angryMaths.levelSelect.prototype = {
   	create: function(){
+  		//
+
+  		this.starCountIcon = game.add.image(20,60, 'star');
+  		this.starCountText = game.add.bitmapText(64, 10,'raffic', this.getTotalStars() + '/' + this.getMaxStars(), 64);
+		this.starCountIcon.addChild(this.starCountText);
+
+		info = game.add.text(16, 30, ' ');
+		info.font = "Courier";
+		info.fontSize = 24;
+		info.fill = "#ffffff";
+		info.lineSpacing = 4;
+		info.setShadow(2, 2);
+
+		levelScaleFactor = 2.0;
+
   		// how many pages are needed to show all levels?
 		// CAUTION!! EACH PAGE SHOULD HAVE THE SAME AMOUNT OF LEVELS, THAT IS
 		// THE NUMBER OF LEVELS *MUST* BE DIVISIBLE BY THUMBCOLS*THUMBROWS
   		pages = game.levels.starsArray.length/(game.levels.thumbRows*game.levels.thumbCols);
   		console.log(pages);
-  		// current page according to last played level, if any
-		currentPage = Math.floor(game.levels.level/(game.levels.thumbRows*game.levels.thumbCols));
-		if(currentPage>pages-1){
-			currentPage = pages-1;
-		}
 
 		// creation of the thumbails group
 		levelThumbsGroup = game.add.group();
 		// determining level thumbnails width and height for each page
-		var levelLength = game.levels.thumbWidth*game.levels.thumbCols+game.levels.thumbSpacing*(game.levels.thumbCols-1);
-		var levelHeight = game.levels.thumbWidth*game.levels.thumbRows+game.levels.thumbSpacing*(game.levels.thumbRows-1);
+		var levelLength = levelScaleFactor*game.levels.thumbWidth*game.levels.thumbCols+game.levels.thumbSpacing*(game.levels.thumbCols-1);
+		var levelHeight = levelScaleFactor*game.levels.thumbWidth*game.levels.thumbRows+game.levels.thumbSpacing*(game.levels.thumbRows-1);
 
-		// left arrow button, to turn one page left
-		leftArrow = game.add.button((game.width-levelLength)/2,420,"level_arrows",this.arrowClicked,this);
-		leftArrow.anchor.setTo(0.5);
-		leftArrow.frame = 0;
-		// can we turn one page left?
-		if(currentPage==0){
-			leftArrow.alpha = 0.3;
-		}
-		// right arrow button, to turn one page right
-		rightArrow = game.add.button((game.width+levelLength)/2,420,"level_arrows",this.arrowClicked,this);
-		rightArrow.anchor.setTo(0.5);
-		rightArrow.frame = 1;
-		// can we turn one page right?
-		if(currentPage==pages-1){
-			rightArrow.alpha = 0.3;
+  		if (pages > 1) {
+	  		// current page according to last played level, if any
+			currentPage = Math.floor(game.levels.level/(game.levels.thumbRows*game.levels.thumbCols));
+			if(currentPage>pages-1){
+				currentPage = pages-1;
+			}
+
+			// left arrow button, to turn one page left
+			leftArrow = game.add.button((game.width-levelLength)/2,420,"level_arrows",this.arrowClicked,this);
+			leftArrow.anchor.setTo(0.5);
+			leftArrow.frame = 0;
+			// can we turn one page left?
+			if(currentPage==0){
+				leftArrow.alpha = 0.3;
+			}
+			// right arrow button, to turn one page right
+			rightArrow = game.add.button((game.width+levelLength)/2,420,"level_arrows",this.arrowClicked,this);
+			rightArrow.anchor.setTo(0.5);
+			rightArrow.frame = 1;
+			// can we turn one page right?
+			if(currentPage==pages-1){
+				rightArrow.alpha = 0.3;
+			}
+		} else 		{
+			currentPage = 0;
 		}
 		// looping through each page
 		for(var l = 0; l < pages; l++){
@@ -52,20 +74,22 @@ angryMaths.levelSelect.prototype = {
 			// I am not interested in having level thumbnails vertically centered in the page, but
 			// if you are, simple replace my "20" with
 			// (game.height-levelHeight)/2
-			var offsetY = 20;
+			var offsetY = (game.height-levelHeight)/2;
 			// looping through each level thumbnails
 		     for(var i = 0; i < game.levels.thumbRows; i ++){
 		     	for(var j = 0; j < game.levels.thumbCols; j ++){
 		     		// which level does the thumbnail refer?
 					var levelNumber = i*game.levels.thumbCols+j+l*(game.levels.thumbRows*game.levels.thumbCols);
 					// adding the thumbnail, as a button which will call thumbClicked function if clicked
-					var levelThumb = game.add.button(offsetX+j*(game.levels.thumbWidth+game.levels.thumbSpacing), offsetY+i*(game.levels.thumbHeight+game.levels.thumbSpacing), "levels", this.thumbClicked, this);
+					var levelThumb = game.add.button(offsetX+j*(levelScaleFactor*game.levels.thumbWidth+game.levels.thumbSpacing), offsetY+i*(levelScaleFactor*game.levels.thumbHeight+game.levels.thumbSpacing), "levels", this.thumbClicked, this);
 					// shwoing proper frame
 					levelThumb.frame=game.levels.starsArray[levelNumber];
 					// custom attribute
 					levelThumb.levelNumber = levelNumber+1;
 					// adding the level thumb to the group
 					levelThumbsGroup.add(levelThumb);
+					// scale level Thumb DH
+					levelThumb.scale.setTo(levelScaleFactor, levelScaleFactor);
 					// if the level is playable, also write level number
 					if(game.levels.starsArray[levelNumber]<4){
 						var style = {
@@ -78,9 +102,12 @@ angryMaths.levelSelect.prototype = {
 					}
 				}
 			}
-		}
+		} 
 		// scrolling thumbnails group according to level position
 		levelThumbsGroup.x = currentPage * game.width * -1
+	},
+	update:function() {
+		//this.displayScaleInfo();
 	},
 	arrowClicked:function(button){
 		// touching right arrow and still not reached last page
@@ -137,5 +164,31 @@ angryMaths.levelSelect.prototype = {
 			}, 20, Phaser.Easing.Cubic.None);
 			buttonTween.start();
 		}
+	},
+	getMaxStars:function(){
+		return game.levels.starsArray.length * 3;
+	},
+	getTotalStars:function(){
+		var totalStars = 0;
+		var levelStars = 0;
+		for (i = 0, len = game.levels.starsArray.length; i < len; i++) { 
+			levelStars = game.levels.starsArray[i];
+			if (levelStars < 4 && levelStars > 0) {
+				totalStars += levelStars;
+			}
+		}
+		return totalStars;
+	},
+	displayScaleInfo:function(){
+
+		s = "Game size: " + game.width + " x " + game.height + "\n";
+		s = s.concat("Actual size: " + game.scale.width + " x " + game.scale.height + "\n");
+		s = s.concat("minWidth: " + game.scale.minWidth + " - minHeight: " + game.scale.minHeight + "\n");
+		s = s.concat("maxWidth: " + game.scale.maxWidth + " - maxHeight: " + game.scale.maxHeight + "\n");
+		s = s.concat("aspect ratio: " + game.scale.aspectRatio + "\n");
+		s = s.concat("parent is window: " + game.scale.parentIsWindow + "\n");
+		s = s.concat("bounds x: " + game.scale.bounds.x + " y: " + game.scale.bounds.y + " width:\
+		" + game.scale.bounds.width + " height: " + game.scale.bounds.height + "\n");
+		info.text = s;
 	}
 };

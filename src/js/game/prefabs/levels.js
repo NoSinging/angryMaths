@@ -1,9 +1,9 @@
 "use strict";
 class levels {
     constructor() {
-    this.thumbRows = 2;
+    this.thumbRows = 3;
     // number of thumbnail cololumns
-    this.thumbCols = 5;
+    this.thumbCols = 4;
     // width of a thumbnail, in pixels
     this.thumbWidth = 64;
     // height of a thumbnail, in pixels
@@ -15,7 +15,7 @@ class levels {
     // 1, 2, 3 = level finished with 1, 2, 3 stars
     // 4 = locked
     //this.starsArray = [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
-    this.starsArray = [0,4,4,4,4,4,4,4,4,4];
+    this.starsArray = [0,4,4,4,4,4,4,4,4,4,4,4];
     this.retrieve();
 
     // level currently playing
