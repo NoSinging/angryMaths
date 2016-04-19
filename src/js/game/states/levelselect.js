@@ -9,7 +9,7 @@ angryMaths.levelSelect = function() {
 	var leftArrow;
 	var rightArrow;
 
-	var info
+	var info;
   };
 
 angryMaths.levelSelect.prototype = {

@@ -6,12 +6,16 @@ angryMaths.playLevel.prototype = {
 
   		var questionsKey = 'questionsLevel' + game.levels.level;
 		this.questionJSON = game.cache.getJSON(questionsKey);
+		this.questions = this.questionJSON.questions;
+
+		// sort questions according to order
+		this.sortQuestions();
 
 		this.options = [];
 		this.stars = 0;
 		this.currentQuestion = 0;
 		this.currentQuestionAnswered = false;
-		this.totalQuestions = this.questionJSON.questions.length;
+		this.totalQuestions = this.questions.length;
 		this.questionsCorrect = 0;
 		this.score = 0;
 		this.STAR1 = this.questionJSON.rating[0];
@@ -97,10 +101,6 @@ angryMaths.playLevel.prototype = {
 			this.askQuestion(this.currentQuestion);
 		}
 
-    	//game.debug.text('Time left: ' + (this.timer.duration/1000).toFixed(0), 32, 64);
-    	//game.debug.text('Questions correct: ' + this.questionsCorrect, 32, 96);
-    	//game.debug.text('Stars: ' + this.stars, 32, 128);
-
     	// update the timebar
     	this.timeBarCropRect.width = (this.timer.duration/(this.questionJSON.time*1000)) * 256;
     	this.timerBar.updateCrop();
@@ -108,18 +108,31 @@ angryMaths.playLevel.prototype = {
 	shutdown: function() {
 
 	},
+	sortQuestions: function() {
+		this.questions.sort(function (a, b) {
+		  if (Number(a.order) > Number(b.order)) {
+		    return 1;
+		  }
+		  if (Number(a.order) < Number(b.order)) {
+		    return -1;
+		  }
+		  // a must be equal to b
+		  // randomise sorting or equal order
+		  return (Math.random() < 0.5) ? -1:1;;
+		});
+	},
 	askQuestion: function(questionNumber) {
 	    // set the question text
-	    this.question.setText(this.questionJSON.questions[questionNumber].q);
+	    this.question.setText(this.questions[questionNumber].q);
 
 	    // set the options
 	    for(var i=0; i<=3; i++){
 
 	    	// set the correct answer
-			this.options[i].correct = this.questionJSON.questions[questionNumber].a[i].correct;
+			this.options[i].correct = this.questions[questionNumber].a[i].correct;
 
 		 	// set the text
-		 	this.options[i].children[0].text = this.questionJSON.questions[questionNumber].a[i].option;
+		 	this.options[i].children[0].text = this.questions[questionNumber].a[i].option;
 		}
 
 	},
