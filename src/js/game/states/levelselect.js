@@ -14,8 +14,7 @@ angryMaths.levelSelect = function() {
 
 angryMaths.levelSelect.prototype = {
   	create: function(){
-  		//
-
+  		// display stars
   		this.starCountIcon = game.add.image(20,60, 'star');
   		this.starCountText = game.add.bitmapText(64, 10,'raffic', game.levels.getTotalStars() + '/' + game.levels.getMaxStars(), 64);
 		this.starCountIcon.addChild(this.starCountText);
@@ -33,7 +32,6 @@ angryMaths.levelSelect.prototype = {
 		// CAUTION!! EACH PAGE SHOULD HAVE THE SAME AMOUNT OF LEVELS, THAT IS
 		// THE NUMBER OF LEVELS *MUST* BE DIVISIBLE BY THUMBCOLS*THUMBROWS
   		pages = game.levels.starsArray.length/(game.levels.thumbRows*game.levels.thumbCols);
-  		console.log(pages);
 
 		// creation of the thumbails group
 		levelThumbsGroup = game.add.group();
@@ -102,7 +100,7 @@ angryMaths.levelSelect.prototype = {
 					}
 				}
 			}
-		} 
+		}
 		// scrolling thumbnails group according to level position
 		levelThumbsGroup.x = currentPage * game.width * -1
 	},

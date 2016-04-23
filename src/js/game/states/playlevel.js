@@ -80,7 +80,7 @@ angryMaths.playLevel.prototype = {
 	    //  Create our Timer
 	    this.timer = game.time.create(false);
 
-	    //  Set a TimerEvent to occur after 12 seconds
+	    //  Set a TimerEvent to occur after configured seconds
 	    this.timer.add(this.questionJSON.time*1000, this.levelFinished, this);
 
 	    //  Start the timer
@@ -154,9 +154,6 @@ angryMaths.playLevel.prototype = {
 	questionAnswered: function(option) {
 		// if a tick or cross is already in progress then ignore the answer
 		if (this.isQuestionTransitioning()) {
-			console.log('question in transition');
-			console.log('tickTween: ' + typeof(this.tickTween) + ' is running: ' + this.tickTween.isRunning);
-			console.log('crossTween: ' + typeof(this.crossTween) + ' is running: ' + this.crossTween.isRunning);
 			return;
 		}
 
@@ -165,14 +162,14 @@ angryMaths.playLevel.prototype = {
 			this.updateScore();
     		this.coinSound.play();
 
-		    //  Add tween  to tick 
+		    //  Add tween  to tick
 	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
 
 	    	// update graphic of answered questions
 	    	game.add.image((this.currentQuestion+1)*24,60, 'circleGreen');
 
 		} else {
-		    //  Add tween  to tick 
+		    //  Add tween  to tick
 	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
 
 	    	// update graphic of answered questions
@@ -186,7 +183,7 @@ angryMaths.playLevel.prototype = {
 		this.calculateStars();
 		game.levels.levelFinished(this.stars);
 		// back to level selection
-		game.state.start("LevelSelect");
+		game.state.start("LevelOver");
 	},
 	isQuestionTransitioning: function(){
 		return (typeof(this.tickTween) != 'undefined' && this.tickTween.isRunning) || (typeof(this.crossTween) != 'undefined' && this.crossTween.isRunning);
