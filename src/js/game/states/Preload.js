@@ -32,6 +32,9 @@ angryMaths.Preload.prototype = {
     this.load.image('circleGrey', 'assets/images/circle-16-grey.png');
     this.load.image('circleGreen', 'assets/images/circle-16-green.png');
     this.load.image('circleRed', 'assets/images/circle-16-red.png');
+    this.load.image('replay', 'assets/images/refresh64.png');
+    this.load.image('next', 'assets/images/arrow64.png');
+    this.load.image('menu', 'assets/images/menu64.png');
 
     this.load.setPreloadSprite(this.preloadBar);
 

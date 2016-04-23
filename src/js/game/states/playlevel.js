@@ -91,6 +91,9 @@ angryMaths.playLevel.prototype = {
 
 	    // ask the first question
 		this.askQuestion(this.currentQuestion);
+
+        // navigation
+        game.add.button(24, game.height - 160,  "menu", this.menu, this);
 	},
 	update: function() {
 		// if all the questions are answered then the level is finished
@@ -168,15 +171,20 @@ angryMaths.playLevel.prototype = {
 	    	// update graphic of answered questions
 	    	game.add.image((this.currentQuestion+1)*24,60, 'circleGreen');
 
+            // mark as correctly answered
+            this.questions[this.currentQuestion].answeredCorrectly = true;
+
 		} else {
 		    //  Add tween  to tick
 	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
 
 	    	// update graphic of answered questions
 	    	game.add.image((this.currentQuestion+1)*24,60, 'circleRed');
+
+            // mark as incorrectly answered
+            this.questions[this.currentQuestion].answeredCorrectly = false;
 		}
 		this.currentQuestionAnswered = true;
-    	//this.scoreText.text = this.questionsCorrect.toFixed(0);
 		this.calculateStars();
 	},
 	levelFinished: function(){
@@ -215,5 +223,9 @@ angryMaths.playLevel.prototype = {
 	tickCompleted: function(){
 	    //
     	this.tick.alpha = 0.1;
-	}
+	},
+    menu: function() {
+        // going to level select state
+        this.game.state.start('LevelSelect');
+    }
 }

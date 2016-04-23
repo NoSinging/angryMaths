@@ -7,27 +7,67 @@ angryMaths.LevelOver.prototype = {
     var starIcon = "star";
 
     // get the number of stars
-    var stars = this.game.state.states['PlayLevel'].stars;
+    var stars = game.state.states['PlayLevel'].stars;
     console.log(stars);
 
-    // Well done text
-    var levelOverTextYoffest = 200;
-    this.startText = this.game.add.bitmapText(0,0, 'raffic', 'Well done', 32);
-    this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
-    this.startText.y = this.game.height / 2 + - levelOverTextYoffest;
 
 
     // Show stars for that level
     for(var i=1; i<=3; i++){
       // show either the gold or grey icon
       starIcon = (i<=stars) ? "star":"starGrey";
-      game.add.image((this.game.width / 2) + (i-2)*64 , this.game.height / 2,  starIcon);
+      game.add.image((this.game.width / 2) + (i-2)*64 , 200,  starIcon);
     }
 
 
-    this.startText = this.game.add.bitmapText(0,0, 'raffic', 'tap to continue', 32);
+    // get the questions and answers from the played level
+    this.questions = game.state.states['PlayLevel'].questions;
+
+
+    // Show up to 3 incorrect answers
+    var displayAnswer = '';
+    var displayCount = 0;
+    for(var i=0; i<this.questions.length && displayCount<3; i++){
+      if (!this.questions[i].answeredCorrectly) {
+        displayAnswer = this.questions[i].display;
+        game.add.bitmapText(this.game.width / 2, 400 + displayCount*64, 'raffic', displayAnswer, 32);
+        displayCount++;
+      }
+    }
+
+    // if there were incorrect answers say so
+    var incorrectAnswerText = (displayCount > 0) ? ", retry these ... ":"";
+
+
+    // Well done text
+    var wellDoneText = '';
+    switch (stars) {
+    case 0:
+        wellDoneText = "ass wipe";
+        break;
+    case 1:
+        wellDoneText = "meh...";
+        break;
+    case 2:
+        wellDoneText = "nice";
+        break;
+    case 3:
+        wellDoneText = "awesome!";
+        break;
+    default:
+        wellDoneText = "unusual!";
+    }
+
+    wellDoneText += incorrectAnswerText;
+
+    this.startText = this.game.add.bitmapText(0,0, 'raffic', wellDoneText, 32);
     this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
-    this.startText.y = this.game.height / 2 + levelOverTextYoffest;
+    this.startText.y = 300;
+
+    // navigation
+    game.add.button(game.width/2 -200, 800,  "replay", this.replay, this);
+    game.add.button(game.width/2, 800,  "menu", this.menu, this);
+    game.add.button(game.width/2 +200, 800,  "next", this.next, this);
 
   },
   update: function() {
@@ -36,5 +76,18 @@ angryMaths.LevelOver.prototype = {
       // going to level select state
       this.game.state.start('LevelSelect');
     }
+  },
+  menu: function() {
+    // going to level select state
+    this.game.state.start('LevelSelect');
+  },
+  replay: function() {
+    // going to level select state
+    this.game.state.start('PlayLevel');
+  },
+  next: function() {
+    // going to level select state
+    game.levels.level++;
+    this.game.state.start('PlayLevel');
   }
 };
