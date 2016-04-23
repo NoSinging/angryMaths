@@ -12,6 +12,7 @@ angryMaths.playLevel.prototype = {
 		this.sortQuestions();
 
 		this.options = [];
+		this.circles = [];
 		this.stars = 0;
 		this.currentQuestion = 0;
 		this.currentQuestionAnswered = false;
@@ -31,15 +32,16 @@ angryMaths.playLevel.prototype = {
   //       levelTitle.x = (game.width - levelTitle.width) / 2;
 
   		// create a timer bar
-  		this.timerBar = game.add.image(20,120, 'preloadbar');
+  		this.timerBar = game.add.image(24,100, 'preloadbar');
+  		this.timerBar.scale.setTo(1,this.totalQuestions*24/256);
   		this.timeBarCropRect = new Phaser.Rectangle(0, 0, this.timerBar.width, this.timerBar.height);
   		this.timerBar.crop(this.timeBarCropRect);
 
 		// create a Score
-  		this.scoreIcon = game.add.image(20,60, 'correct');
-  		this.scoreIcon.scale.setTo(0.5,0.5);
-  		this.scoreText = game.add.bitmapText(0, 0,'raffic', '0', 64);
-		this.scoreIcon.addChild(this.scoreText);
+  // 		this.scoreIcon = game.add.image(20,60, 'correct');
+  // 		this.scoreIcon.scale.setTo(0.5,0.5);
+  // 		this.scoreText = game.add.bitmapText(0, 0,'raffic', '0', 64);
+		// this.scoreIcon.addChild(this.scoreText);
 
 
         // create a question
@@ -69,7 +71,11 @@ angryMaths.playLevel.prototype = {
 	    // and add it to the game
 	    this.game.add.existing(this.cross);
 
-
+	    // create cicles to show total questions
+	    for(var i=1; i<=this.totalQuestions; i++){
+	    	// create the option button
+			this.circles[i] = game.add.image(i*24, 60,  "circleGrey");
+		}
 
 	    //  Create our Timer
 	    this.timer = game.time.create(false);
@@ -108,6 +114,12 @@ angryMaths.playLevel.prototype = {
 	shutdown: function() {
 
 	},
+	sortOptions: function(questionNumber) {
+		this.questions[questionNumber].a.sort(function (a, b) {
+		  // randomise sorting or equal order
+		  return (Math.random() < 0.5) ? -1:1;
+		});
+	},
 	sortQuestions: function() {
 		this.questions.sort(function (a, b) {
 		  if (Number(a.order) > Number(b.order)) {
@@ -118,12 +130,15 @@ angryMaths.playLevel.prototype = {
 		  }
 		  // a must be equal to b
 		  // randomise sorting or equal order
-		  return (Math.random() < 0.5) ? -1:1;;
+		  return (Math.random() < 0.5) ? -1:1;
 		});
 	},
 	askQuestion: function(questionNumber) {
 	    // set the question text
 	    this.question.setText(this.questions[questionNumber].q);
+
+	    // sort the options
+	    this.sortOptions(questionNumber);
 
 	    // set the options
 	    for(var i=0; i<=3; i++){
@@ -152,12 +167,19 @@ angryMaths.playLevel.prototype = {
 
 		    //  Add tween  to tick 
 	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
+
+	    	// update graphic of answered questions
+	    	game.add.image((this.currentQuestion+1)*24,60, 'circleGreen');
+
 		} else {
 		    //  Add tween  to tick 
 	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
+
+	    	// update graphic of answered questions
+	    	game.add.image((this.currentQuestion+1)*24,60, 'circleRed');
 		}
 		this.currentQuestionAnswered = true;
-    	this.scoreText.text = this.questionsCorrect.toFixed(0);
+    	//this.scoreText.text = this.questionsCorrect.toFixed(0);
 		this.calculateStars();
 	},
 	levelFinished: function(){

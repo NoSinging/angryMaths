@@ -28,6 +28,9 @@ angryMaths.Preload.prototype = {
     this.load.image('wrong', 'assets/images/red_cross.png');
     this.load.image('correct', 'assets/images/check_mark.png');
     this.load.image('star', 'assets/images/star64.png');
+    this.load.image('circleGrey', 'assets/images/circle-16-grey.png');
+    this.load.image('circleGreen', 'assets/images/circle-16-green.png');
+    this.load.image('circleRed', 'assets/images/circle-16-red.png');
 
     this.load.setPreloadSprite(this.preloadBar);
 
