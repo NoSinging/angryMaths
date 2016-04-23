@@ -13,7 +13,7 @@ angryMaths.Preload.prototype = {
 
     this.load.audio('gameMusic', ['assets/audio/Pamgaea.mp3', 'assets/audio/Pamgaea.ogg']);
     this.load.audio('coin', 'assets/audio/coin.wav');
-    this.load.audio('death', 'assets/audio/death.wav');
+    //this.load.audio('death', 'assets/audio/death.wav');
 
     this.load.bitmapFont('raffic', 'assets/fonts/raffic/font.png', 'assets/fonts/raffic/font.xml');
 
