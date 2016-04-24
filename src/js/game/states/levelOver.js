@@ -43,13 +43,13 @@ angryMaths.LevelOver.prototype = {
     var wellDoneText = '';
     switch (stars) {
     case 0:
-        wellDoneText = "ass wipe";
+        wellDoneText = "keep trying!";
         break;
     case 1:
-        wellDoneText = "meh...";
+        wellDoneText = "nice work";
         break;
     case 2:
-        wellDoneText = "nice";
+        wellDoneText = "great";
         break;
     case 3:
         wellDoneText = "awesome!";
@@ -88,6 +88,6 @@ angryMaths.LevelOver.prototype = {
   next: function() {
     // going to level select state
     game.levels.level++;
-    this.game.state.start('PlayLevel');
+    this.game.state.start('LevelStart');
   }
 };

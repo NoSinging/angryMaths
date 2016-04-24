@@ -143,7 +143,7 @@ angryMaths.levelSelect.prototype = {
 		// the level is playable, then play the level!!
 		if(button.frame < 4){
 			game.levels.level = button.levelNumber;
-			game.state.start("PlayLevel");
+			game.state.start("LevelStart");
 		}
 		// else, let's shake the locked levels
 		else{
