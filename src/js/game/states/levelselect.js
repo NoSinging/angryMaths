@@ -19,6 +19,9 @@ angryMaths.levelSelect.prototype = {
   		this.starCountText = game.add.bitmapText(64, 10,'raffic', game.levels.getTotalStars() + '/' + game.levels.getMaxStars(), 64);
 		this.starCountIcon.addChild(this.starCountText);
 
+		// add setting
+    	game.add.button(20, game.height-100,  "settings", this.settings, this);
+
 		info = game.add.text(16, 30, ' ');
 		info.font = "Courier";
 		info.fontSize = 24;
@@ -162,6 +165,9 @@ angryMaths.levelSelect.prototype = {
 			}, 20, Phaser.Easing.Cubic.None);
 			buttonTween.start();
 		}
+	},
+	settings:function() {
+		game.state.start("Settings");
 	},
 	displayScaleInfo:function(){
 

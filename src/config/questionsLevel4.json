@@ -1,6 +1,6 @@
 {
     "time": "40",
-    "title": "2 x (really hard!)",
+    "title": "x2 (missing number)",
     "rating": ["6", "8", "10"],
     "questions": [
         {   "id": "1",
@@ -11,7 +11,7 @@
                 {"option": "1",      "correct": true},
                 {"option": "2",     "correct": false},
                 {"option": "6",      "correct": false},
-                {"option": "4",     "correct": false} 
+                {"option": "4",     "correct": false}
             ]
         },
         {   "id": "2",
@@ -22,7 +22,7 @@
                 {"option": "2",      "correct": true},
                 {"option": "8",      "correct": false},
                 {"option": "4",      "correct": false},
-                {"option": "5",     "correct": false} 
+                {"option": "5",     "correct": false}
             ]
         },
         {   "id": "3",
@@ -33,7 +33,7 @@
                 {"option": "3",      "correct": true},
                 {"option": "2",      "correct": false},
                 {"option": "6",      "correct": false},
-                {"option": "4",     "correct": false} 
+                {"option": "4",     "correct": false}
             ]
         },
         {   "id": "4",
@@ -44,7 +44,7 @@
                 {"option": "4",      "correct": true},
                 {"option": "8",     "correct": false},
                 {"option": "2",      "correct": false},
-                {"option": "3",     "correct": false} 
+                {"option": "3",     "correct": false}
             ]
         },
         {   "id": "5",
@@ -55,7 +55,7 @@
                 {"option": "5",      "correct": true},
                 {"option": "20",      "correct": false},
                 {"option": "4",      "correct": false},
-                {"option": "10",     "correct": false} 
+                {"option": "10",     "correct": false}
             ]
         },
         {   "id": "6",
@@ -66,7 +66,7 @@
                 {"option": "6",      "correct": true},
                 {"option": "14",     "correct": false},
                 {"option": "5",      "correct": false},
-                {"option": "4",     "correct": false} 
+                {"option": "4",     "correct": false}
             ]
         },
         {   "id": "7",
@@ -77,7 +77,7 @@
                 {"option": "7",      "correct": true},
                 {"option": "6",      "correct": false},
                 {"option": "16",      "correct": false},
-                {"option": "28",     "correct": false} 
+                {"option": "28",     "correct": false}
             ]
         },
         {   "id": "8",
@@ -88,7 +88,7 @@
                 {"option": "8",      "correct": true},
                 {"option": "9",      "correct": false},
                 {"option": "6",      "correct": false},
-                {"option": "16",     "correct": false} 
+                {"option": "16",     "correct": false}
             ]
         },
         {   "id": "9",
@@ -99,7 +99,7 @@
                 {"option": "9",      "correct": true},
                 {"option": "8",     "correct": false},
                 {"option": "20",      "correct": false},
-                {"option": "7",     "correct": false} 
+                {"option": "7",     "correct": false}
             ]
         },
         {   "id": "10",
@@ -110,7 +110,7 @@
                 {"option": "10",      "correct": true},
                 {"option": "12",      "correct": false},
                 {"option": "9",      "correct": false},
-                {"option": "11",     "correct": false} 
+                {"option": "11",     "correct": false}
             ]
         }
     ]

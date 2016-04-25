@@ -17,5 +17,6 @@ game.state.add("LevelSelect", angryMaths.levelSelect);
 game.state.add("PlayLevel", angryMaths.playLevel);
 game.state.add("LevelOver", angryMaths.LevelOver);
 game.state.add("LevelStart", angryMaths.LevelStart);
+game.state.add("Settings", angryMaths.Settings);
 
 game.state.start('Boot');

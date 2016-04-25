@@ -14,8 +14,8 @@ class levels {
     // 0 = playable yet unfinished level
     // 1, 2, 3 = level finished with 1, 2, 3 stars
     // 4 = locked
-    //this.starsArray = [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
-    this.starsArray = [0,4,4,4,4,4,4,4,4,4,4,4];
+    this.INITIAL_GAME_STARS = [0,4,4,4,4,4,4,4,4,4,4,4];
+    this.starsArray = this.INITIAL_GAME_STARS;
     this.retrieve();
 
     // level currently playing
@@ -32,6 +32,15 @@ class levels {
         }
         this.save();
     }
+    isNextLevelUnlocked(){
+        // test next level exists and it's status
+        return (this.level<this.starsArray.length && this.starsArray[this.level] !=4);
+    }
+    clearProgress(){
+        // reset to initial star array
+        this.starsArray = this.INITIAL_GAME_STARS;
+        this.save();
+    }
     save(){
         if(typeof(Storage) !== "undefined") {
             // Code for localStorage.
@@ -46,7 +55,7 @@ class levels {
     retrieve(){
         if(typeof(Storage) !== "undefined") {
             // Code for localStorage.
-            var levels =  localStorage.levels;          
+            var levels =  localStorage.levels;
             if (typeof(levels) !== "undefined" && levels !== null && levels.length >= 0) {
                 // store levels already exist
                 this.starsArray = JSON.parse(levels);
@@ -70,7 +79,7 @@ class levels {
         var levelStars = 0;
         var i = 0;
         var len = this.starsArray.length;
-        for (; i < len; i++) { 
+        for (; i < len; i++) {
             levelStars = this.starsArray[i];
             if (levelStars < 4 && levelStars > 0) {
                 totalStars += levelStars;
