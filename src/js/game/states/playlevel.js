@@ -32,6 +32,12 @@ angryMaths.playLevel.prototype = {
   //       levelTitle.x = (game.width - levelTitle.width) / 2;
 
   		// create a timer bar
+  		// background
+  		this.timerBarBackground = game.add.image(24,100, 'preloadbar');
+  		this.timerBarBackground.scale.setTo(1,2);
+  		this.timerBarBackground.anchor.y = 0.25;
+  		this.timerBarBackground.alpha = 0.3;
+  		// main bar
   		this.timerBar = game.add.image(24,100, 'preloadbar');
   		this.timerBar.scale.setTo(1,this.totalQuestions*24/256);
   		this.timeBarCropRect = new Phaser.Rectangle(0, 0, this.timerBar.width, this.timerBar.height);
