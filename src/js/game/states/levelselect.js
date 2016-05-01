@@ -14,6 +14,9 @@ angryMaths.levelSelect = function() {
 
 angryMaths.levelSelect.prototype = {
   	create: function(){
+  		// backgroung
+    	game.add.sprite(0, 0, 'background');
+
   		// display stars
   		this.starCountIcon = game.add.image(20,60, 'star');
   		this.starCountText = game.add.bitmapText(64, 10,'raffic', game.levels.getTotalStars() + '/' + game.levels.getMaxStars(), 64);
@@ -29,7 +32,7 @@ angryMaths.levelSelect.prototype = {
 		info.lineSpacing = 4;
 		info.setShadow(2, 2);
 
-		levelScaleFactor = 2.0;
+		levelScaleFactor = .75;
 
   		// how many pages are needed to show all levels?
 		// CAUTION!! EACH PAGE SHOULD HAVE THE SAME AMOUNT OF LEVELS, THAT IS
@@ -91,16 +94,28 @@ angryMaths.levelSelect.prototype = {
 					levelThumbsGroup.add(levelThumb);
 					// scale level Thumb DH
 					levelThumb.scale.setTo(levelScaleFactor, levelScaleFactor);
-					// if the level is playable, also write level number
-					if(game.levels.starsArray[levelNumber]<4){
-						var style = {
-							font: "18px Arial",
-							fill: "#ffffff"
-						};
-						var levelText = game.add.text(levelThumb.x+5,levelThumb.y+5,levelNumber+1,style);
-						levelText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 1);
-						levelThumbsGroup.add(levelText);
+
+					// Add a label in each level selection
+				    var questionJSON = game.cache.getJSON('questionsLevel' + (levelNumber+1));
+				    var levelLabel = questionJSON.label;
+					var levelThumbText = game.add.bitmapText(40, 40,'raffic', levelLabel, 64);
+					levelThumb.addChild(levelThumbText);
+					if (game.levels.starsArray[levelNumber] == 4) {
+						levelThumbText.alpha = 0.5;
 					}
+
+					//
+
+					// if the level is playable, also write level number
+					// if(game.levels.starsArray[levelNumber]<4){
+					// 	var style = {
+					// 		font: "18px Arial",
+					// 		fill: "#ffffff"
+					// 	};
+					// 	var levelText = game.add.text(levelThumb.x+5,levelThumb.y+5,levelNumber+1,style);
+					// 	levelText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 1);
+					// 	levelThumbsGroup.add(levelText);
+					// }
 				}
 			}
 		}

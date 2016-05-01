@@ -3,6 +3,8 @@ angryMaths.LevelStart = function() {};
 angryMaths.LevelStart.prototype = {
   create: function() {
 
+    game.add.sprite(0, 0, 'background');
+
     var questionsKey = 'questionsLevel' + game.levels.level;
     var questionJSON = game.cache.getJSON(questionsKey);
     var levelTitle = questionJSON.title;

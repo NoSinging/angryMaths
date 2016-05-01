@@ -4,6 +4,8 @@ angryMaths.playLevel = function() {
 angryMaths.playLevel.prototype = {
   	create: function(){
 
+    	game.add.sprite(0, 0, 'background');
+
   		var questionsKey = 'questionsLevel' + game.levels.level;
 		this.questionJSON = game.cache.getJSON(questionsKey);
 		this.questions = this.questionJSON.questions;

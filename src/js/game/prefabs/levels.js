@@ -5,9 +5,9 @@ class levels {
     // number of thumbnail cololumns
     this.thumbCols = 4;
     // width of a thumbnail, in pixels
-    this.thumbWidth = 64;
+    this.thumbWidth = 180; //64;
     // height of a thumbnail, in pixels
-    this.thumbHeight = 64;
+    this.thumbHeight = 160; //64;
     // space among thumbnails, in pixels
     this.thumbSpacing = 8;
     // array with finished levels and stars collected.

@@ -1,6 +1,7 @@
 {
     "time": "40",
-    "title": "x2 (missing number)",
+    "label": "x2",
+    "title": "? x 2",
     "rating": ["6", "8", "10"],
     "questions": [
         {   "id": "1",

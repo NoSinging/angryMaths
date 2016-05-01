@@ -3,6 +3,7 @@ angryMaths.LevelOver = function() {};
 angryMaths.LevelOver.prototype = {
   create: function() {
 
+    game.add.sprite(0, 0, 'background');
 
     var starIcon = "star";
 

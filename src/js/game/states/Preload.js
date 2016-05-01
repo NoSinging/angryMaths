@@ -37,6 +37,7 @@ angryMaths.Preload.prototype = {
     this.load.image('menu', 'assets/images/menu64.png');
     this.load.image('play', 'assets/images/play64.png');
     this.load.image('settings', 'assets/images/settings-64.png');
+    this.load.image('background', 'assets/images/background.png');
 
     this.load.setPreloadSprite(this.preloadBar);
 
