@@ -66,11 +66,14 @@ angryMaths.LevelOver.prototype = {
     this.startText.y = 300;
 
     // navigation
-    game.add.button(game.width/2 -200, 800,  "replay", this.replay, this);
-    game.add.button(game.width/2, 800,  "menu", this.menu, this);
+    this.menuButton = game.add.button(game.width/2-200, 800,  "menu", this.menu, this);
+    this.menuButton.anchor.setTo(0.5);
+    this.replyButton = game.add.button(game.width/2, 800,  "replay", this.replay, this);
+    this.replyButton.anchor.setTo(0.5);
     // show the 'play' next level if it's available
     if (game.levels.isNextLevelUnlocked()) {
-      game.add.button(game.width/2 +200, 800,  "play", this.next, this);
+      this.nextButton = game.add.button(game.width/2 +200, 800,  "next", this.next, this);
+      this.nextButton.anchor.setTo(0.5);
     }
 
   },
