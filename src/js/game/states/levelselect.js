@@ -14,7 +14,7 @@ angryMaths.levelSelect = function() {
 
 angryMaths.levelSelect.prototype = {
   	create: function(){
-  		// backgroung
+  		// background
     	game.add.sprite(0, 0, 'background');
 
   		// display stars

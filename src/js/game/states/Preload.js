@@ -25,8 +25,8 @@ angryMaths.Preload.prototype = {
     // load other images
     this.load.image('blank', 'assets/images/blank-64.png');
     this.load.image('square', 'assets/images/square-rounded-48.png');
-    this.load.image('wrong', 'assets/images/red_cross.png');
-    this.load.image('correct', 'assets/images/check_mark.png');
+    this.load.image('wrong', 'assets/images/icon_bomb.png');
+    this.load.image('correct', 'assets/images/icon_emergency_kit.png');
     this.load.image('star', 'assets/images/star64.png');
     this.load.image('starGrey', 'assets/images/star64grey.png');
     this.load.image('circleGrey', 'assets/images/circle-16-grey.png');
@@ -35,9 +35,14 @@ angryMaths.Preload.prototype = {
     this.load.image('replay', 'assets/images/btn_cicle_retry_right_red.png');
     this.load.image('next', 'assets/images/btn_cicle_right_red.png');
     this.load.image('menu', 'assets/images/btn_cicle_menu_red.png');
+    this.load.image('menuGreen', 'assets/images/btn_cicle_menu_green.png');
     this.load.image('play', 'assets/images/btn_play_n.png');
     this.load.image('settings', 'assets/images/btn_cicle_setting_red.png');
     this.load.image('back', 'assets/images/btn_back.png');
+    this.load.image('timer', 'assets/images/icon_time.png');
+    this.load.image('progressOuter', 'assets/images/progress_outer.png');
+    this.load.image('progressBarGreen', 'assets/images/progress_bar_green.png');
+
 
     this.load.setPreloadSprite(this.preloadBar);
 

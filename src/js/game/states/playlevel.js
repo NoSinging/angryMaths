@@ -34,16 +34,17 @@ angryMaths.playLevel.prototype = {
   //       levelTitle.x = (game.width - levelTitle.width) / 2;
 
   		// create a timer bar
-  		// background
-  		this.timerBarBackground = game.add.image(24,100, 'preloadbar');
-  		this.timerBarBackground.scale.setTo(1,2);
-  		this.timerBarBackground.anchor.y = 0.25;
-  		this.timerBarBackground.alpha = 0.3;
-  		// main bar
-  		this.timerBar = game.add.image(24,100, 'preloadbar');
-  		this.timerBar.scale.setTo(1,this.totalQuestions*24/256);
+  		// progress outer
+  		this.timerBarBackground = game.add.image(40,100, 'progressOuter');
+  		// progress bar
+  		this.timerBar = game.add.image(110,116, 'progressBarGreen');
   		this.timeBarCropRect = new Phaser.Rectangle(0, 0, this.timerBar.width, this.timerBar.height);
   		this.timerBar.crop(this.timeBarCropRect);
+  		this.timerBarWidth = this.timerBar.width;
+
+  		// timer icon
+  		this.timerIcon = game.add.image(10,80, 'timer');
+
 
 		// create a Score
   // 		this.scoreIcon = game.add.image(20,60, 'correct');
@@ -101,7 +102,7 @@ angryMaths.playLevel.prototype = {
 		this.askQuestion(this.currentQuestion);
 
         // navigation
-        game.add.button(24, game.height - 160,  "menu", this.menu, this);
+        game.add.button(24, game.height - 160,  "menuGreen", this.menu, this);
 	},
 	update: function() {
 		// if all the questions are answered then the level is finished
@@ -119,7 +120,7 @@ angryMaths.playLevel.prototype = {
 		}
 
     	// update the timebar
-    	this.timeBarCropRect.width = (this.timer.duration/(this.questionJSON.time*1000)) * 256;
+    	this.timeBarCropRect.width = (this.timer.duration/(this.questionJSON.time*1000)) * this.timerBarWidth;
     	this.timerBar.updateCrop();
 	},
 	shutdown: function() {
