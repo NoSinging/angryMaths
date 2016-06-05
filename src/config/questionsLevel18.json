@@ -1,0 +1,118 @@
+{
+    "time": "45",
+    "label": "x7",
+    "title": "x7",
+    "rating": ["6", "8", "10"],
+    "questions": [
+        {   "id": "",
+            "order": "0",
+            "display": "1 x 7 = 7",
+            "q": "1 x 7 = ?",
+            "a": [
+                {"option": "7",      "correct": true},
+                {"option": "6",     "correct": false},
+                {"option": "12",      "correct": false},
+                {"option": "8",     "correct": false}
+            ]
+        },
+        {   "id": "2",
+            "order": "0",
+            "display": "2 x 7 = 14",
+            "q": "2 x 7 = ?",
+            "a": [
+            {"option": "14",      "correct": true},
+                {"option": "13",      "correct": false},
+                {"option": "9",      "correct": false},
+                {"option": "16",     "correct": false}
+            ]
+        },
+        {   "id": "3",
+            "order": "0",
+            "display": "3 x 7 = 21",
+            "q": "3 x 7 = ?",
+            "a": [
+                {"option": "21",      "correct": true},
+                {"option": "22",      "correct": false},
+                {"option": "23",      "correct": false},
+                {"option": "24",     "correct": false}
+            ]
+        },
+        {   "id": "4",
+            "order": "0",
+            "display": "4 x 7 = 28",
+            "q": "4 x 7 = ?",
+            "a": [
+                {"option": "28",      "correct": true},
+                {"option": "26",     "correct": false},
+                {"option": "32",      "correct": false},
+                {"option": "22",     "correct": false}
+            ]
+        },
+        {   "id": "5",
+            "order": "0",
+            "display": "5 x 7 = 35",
+            "q": "5 x 7 = ?",
+            "a": [
+                {"option": "35",      "correct": true},
+                {"option": "36",      "correct": false},
+                {"option": "56",      "correct": false},
+                {"option": "26",     "correct": false}
+            ]
+        },
+        {   "id": "6",
+            "order": "0",
+            "display": "6 x 7 = 42",
+            "q": "6 x 7 = ?",
+            "a": [
+                {"option": "42",      "correct": true},
+                {"option": "36",     "correct": false},
+                {"option": "48",      "correct": false},
+                {"option": "32",     "correct": false}
+            ]
+        },
+        {   "id": "7",
+            "order": "0",
+            "display": "7 x 7 = 49",
+            "q": "7 x 7 = ?",
+            "a": [
+                {"option": "49",      "correct": true},
+                {"option": "42",      "correct": false},
+                {"option": "48",      "correct": false},
+                {"option": "39",     "correct": false}
+            ]
+        },
+        {   "id": "8",
+            "order": "0",
+            "display": "8 x 7 = 56",
+            "q": "8 x 7 = ?",
+            "a": [
+                {"option": "56",      "correct": true},
+                {"option": "54",      "correct": false},
+                {"option": "58",      "correct": false},
+                {"option": "46",     "correct": false}
+            ]
+        },
+        {   "id": "9",
+            "order": "0",
+            "display": "9 x 7 = 63",
+            "q": "9 x 7 = ?",
+            "a": [
+                {"option": "63",      "correct": true},
+                {"option": "72",     "correct": false},
+                {"option": "56",      "correct": false},
+                {"option": "64",     "correct": false}
+            ]
+        },
+        {   "id": "10",
+            "order": "0",
+            "display": "10 x 7 = 70",
+            "q": "10 x 7 = ?",
+            "a": [
+                {"option": "70",      "correct": true},
+                {"option": "71",      "correct": false},
+                {"option": "77",      "correct": false},
+                {"option": "17",     "correct": false}
+            ]
+        }
+    ]
+}

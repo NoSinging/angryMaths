@@ -15,11 +15,17 @@ angryMaths.LevelStart.prototype = {
     this.playButton = game.add.button(game.width/2, game.height/2,  "play", this.next, this);
     this.playButton.anchor.setTo(0.5);
 
+    // navigation
+    game.add.button(24, game.height - 160,  "menu", this.menu, this);
   },
   update: function() {
   },
   next: function() {
     // play the level
     this.game.state.start('PlayLevel');
+  },
+  menu: function() {
+      // going to level select state
+      this.game.state.start('LevelSelect');
   }
 };

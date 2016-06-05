@@ -7,7 +7,7 @@ angryMaths.Settings.prototype = {
     game.add.button(game.width/2, game.height/2 + 100,  "replay", this.clearProgress, this);
 
     // navigation
-    game.add.button(100, 800,  "menu", this.menu, this);
+    game.add.button(100, 800,  "back", this.back, this);
   },
   update: function() {
   },
@@ -15,8 +15,8 @@ angryMaths.Settings.prototype = {
     // going to level select state
     game.levels.clearProgress();
   },
-  menu: function() {
+  back: function() {
     // going to level select state
-    this.game.state.start('LevelSelect');
+    this.game.state.start('MainMenu');
   }
 };

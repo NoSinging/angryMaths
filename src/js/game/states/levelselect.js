@@ -18,12 +18,12 @@ angryMaths.levelSelect.prototype = {
     	game.add.sprite(0, 0, 'background');
 
   		// display stars
-  		this.starCountIcon = game.add.image(20,60, 'star');
+  		this.starCountIcon = game.add.image(game.width-300,60, 'star');
   		this.starCountText = game.add.bitmapText(64, 10,'raffic', game.levels.getTotalStars() + '/' + game.levels.getMaxStars(), 64);
 		this.starCountIcon.addChild(this.starCountText);
 
 		// add return to main menu
-    	game.add.button(20, game.height-100,  "back", this.home, this);
+    	game.add.button(20, 40,  "back", this.home, this);
 
 		info = game.add.text(16, 30, ' ');
 		info.font = "Courier";
@@ -78,7 +78,7 @@ angryMaths.levelSelect.prototype = {
 			// I am not interested in having level thumbnails vertically centered in the page, but
 			// if you are, simple replace my "20" with
 			// (game.height-levelHeight)/2
-			var offsetY = (game.height-levelHeight)/2;
+			var offsetY = 120 + (game.height-levelHeight)/2;
 			// looping through each level thumbnails
 		     for(var i = 0; i < game.levels.thumbRows; i ++){
 		     	for(var j = 0; j < game.levels.thumbCols; j ++){
@@ -98,7 +98,7 @@ angryMaths.levelSelect.prototype = {
 					// Add a label in each level selection
 				    var questionJSON = game.cache.getJSON('questionsLevel' + (levelNumber+1));
 				    var levelLabel = questionJSON.label;
-					var levelThumbText = game.add.bitmapText(40, 40,'raffic', levelLabel, 64);
+					var levelThumbText = game.add.bitmapText(32, 40,'raffic', levelLabel, 64);
 					levelThumb.addChild(levelThumbText);
 					if (game.levels.starsArray[levelNumber] == 4) {
 						levelThumbText.alpha = 0.5;
