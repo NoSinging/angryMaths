@@ -35,22 +35,16 @@ angryMaths.playLevel.prototype = {
 
   		// create a timer bar
   		// progress outer
-  		this.timerBarBackground = game.add.image(40,100, 'progressOuter');
+  		var timerBarOffsetY = 120;
+  		this.timerBarBackground = game.add.image(40,timerBarOffsetY + 20, 'progressOuter');
   		// progress bar
-  		this.timerBar = game.add.image(110,116, 'progressBarGreen');
+  		this.timerBar = game.add.image(110,timerBarOffsetY + 36, 'progressBarGreen');
   		this.timeBarCropRect = new Phaser.Rectangle(0, 0, this.timerBar.width, this.timerBar.height);
   		this.timerBar.crop(this.timeBarCropRect);
   		this.timerBarWidth = this.timerBar.width;
 
   		// timer icon
-  		this.timerIcon = game.add.image(10,80, 'timer');
-
-
-		// create a Score
-  // 		this.scoreIcon = game.add.image(20,60, 'correct');
-  // 		this.scoreIcon.scale.setTo(0.5,0.5);
-  // 		this.scoreText = game.add.bitmapText(0, 0,'raffic', '0', 64);
-		// this.scoreIcon.addChild(this.scoreText);
+  		this.timerIcon = game.add.image(0,timerBarOffsetY, 'timer');
 
 
         // create a question
@@ -80,10 +74,20 @@ angryMaths.playLevel.prototype = {
 	    // and add it to the game
 	    this.game.add.existing(this.cross);
 
+
+  		// question progress outer
+  		var questionBarOffsetY = 20;
+  		this.questionBarBackground = game.add.image(40,questionBarOffsetY + 10, 'progressOuter');
+
+  		// correct question icon
+  		this.correctQuestionIcon = game.add.image(10,questionBarOffsetY, 'correct');
+		this.correctQuestionIcon.scale.setTo(0.7,0.7);
+
 	    // create cicles to show total questions
+	    this.questionProgressXspacing = 300/this.totalQuestions;
 	    for(var i=1; i<=this.totalQuestions; i++){
 	    	// create the option button
-			this.circles[i] = game.add.image(i*24, 60,  "circleGrey");
+			//this.circles[i] = game.add.image(90+ i*this.questionProgressXspacing, questionBarOffsetY + 40,  "circleGrey");
 		}
 
 	    //  Create our Timer
@@ -178,7 +182,8 @@ angryMaths.playLevel.prototype = {
 	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
 
 	    	// update graphic of answered questions
-	    	game.add.image((this.currentQuestion+1)*24,60, 'circleGreen');
+	    	this.progressIcon = game.add.image(80+(this.currentQuestion+1)*this.questionProgressXspacing,50, 'correct');
+	    	this.progressIcon.scale.setTo(0.25,0.25);
 
             // mark as correctly answered
             this.questions[this.currentQuestion].answeredCorrectly = true;
@@ -188,7 +193,8 @@ angryMaths.playLevel.prototype = {
 	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
 
 	    	// update graphic of answered questions
-	    	game.add.image((this.currentQuestion+1)*24,60, 'circleRed');
+	    	this.progressIcon = game.add.image(80+(this.currentQuestion+1)*this.questionProgressXspacing,50, 'wrong');
+	    	this.progressIcon.scale.setTo(0.25,0.25);
 
             // mark as incorrectly answered
             this.questions[this.currentQuestion].answeredCorrectly = false;
