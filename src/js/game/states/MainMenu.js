@@ -12,7 +12,7 @@ angryMaths.MainMenu.prototype = {
     this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
     this.startText.y = this.game.height / 2 + this.startText.height / 2 - 200
 
-    this.settingsButton = game.add.button(20, game.height-100,  "settings", this.settings, this);
+    this.settingsButton = game.add.button(20, game.height-200,  "settings", this.settings, this);
 
   },
   update: function() {

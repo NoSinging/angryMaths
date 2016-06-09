@@ -37,11 +37,12 @@ angryMaths.Preload.prototype = {
     this.load.image('menu', 'assets/images/btn_cicle_menu_red.png');
     this.load.image('menuGreen', 'assets/images/btn_cicle_menu_green.png');
     this.load.image('play', 'assets/images/btn_play_n.png');
-    this.load.image('settings', 'assets/images/btn_cicle_setting_red.png');
+    this.load.image('settings', 'assets/images/btn_cicle_setting_green.png');
     this.load.image('back', 'assets/images/btn_back.png');
     this.load.image('timer', 'assets/images/icon_time.png');
     this.load.image('progressOuter', 'assets/images/progress_outer.png');
     this.load.image('progressBarGreen', 'assets/images/progress_bar_green.png');
+    this.load.image('frame', 'assets/images/frame.png');
 
 
     this.load.setPreloadSprite(this.preloadBar);

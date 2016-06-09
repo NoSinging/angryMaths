@@ -48,17 +48,18 @@ angryMaths.playLevel.prototype = {
 
 
         // create a question
-	    this.question = new Question(this.game, 200, this.game.height/4);
+	    this.question = new Question(this.game, 200, this.game.height/2);
+
 	    // and add it to the game
 	    this.game.add.existing(this.question);
 
 	    //create the option for multiple choice
 	    for(var i=0; i<=3; i++){
 	    	// create the option button
-			this.options[i] = game.add.button(game.width*(i+1)/5, 2*game.height/3,  "blank", this.questionAnswered, this);
+			this.options[i] = game.add.button((game.width*(i+1)/5) - 60, 2*game.height/3,  "frame", this.questionAnswered, this);
 
 		 	// create a child text object
-		 	var text = game.add.bitmapText(0, 0,'raffic', '', 64);
+		 	var text = game.add.bitmapText(20, 30,'raffic', '', 64);
 		 	this.options[i].addChild(text);
 		}
 
@@ -152,6 +153,7 @@ angryMaths.playLevel.prototype = {
 	askQuestion: function(questionNumber) {
 	    // set the question text
 	    this.question.setText(this.questions[questionNumber].q);
+	    this.question.x = this.game.width / 2 - this.question.textWidth / 2;
 
 	    // sort the options
 	    this.sortOptions(questionNumber);
@@ -164,6 +166,8 @@ angryMaths.playLevel.prototype = {
 
 		 	// set the text
 		 	this.options[i].children[0].text = this.questions[questionNumber].a[i].option;
+		 	// centre text in frame along x axis
+    		this.options[i].children[0].x = this.options[i].width / 2 - this.options[i].children[0].textWidth / 2;
 		}
 
 	},
