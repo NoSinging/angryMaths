@@ -14,12 +14,12 @@ angryMaths.playLevel.prototype = {
 		this.sortQuestions();
 
 		this.options = [];
-		this.circles = [];
 		this.stars = 0;
 		this.currentQuestion = 0;
 		this.currentQuestionAnswered = false;
 		this.totalQuestions = this.questions.length;
 		this.questionsCorrect = 0;
+		this.questionsWrong = 0;
 		this.score = 0;
 		this.STAR1 = this.questionJSON.rating[0];
 		this.STAR2 = this.questionJSON.rating[1];
@@ -86,10 +86,6 @@ angryMaths.playLevel.prototype = {
 
 	    // create cicles to show total questions
 	    this.questionProgressXspacing = 300/this.totalQuestions;
-	    for(var i=1; i<=this.totalQuestions; i++){
-	    	// create the option button
-			//this.circles[i] = game.add.image(90+ i*this.questionProgressXspacing, questionBarOffsetY + 40,  "circleGrey");
-		}
 
 	    //  Create our Timer
 	    this.timer = game.time.create(false);
@@ -101,7 +97,7 @@ angryMaths.playLevel.prototype = {
 	    this.timer.start();
 
 	    // audio
-	    this.coinSound = this.game.add.audio('coin');
+	    //this.coinSound = this.game.add.audio('coin');
 
 	    // ask the first question
 		this.askQuestion(this.currentQuestion);
@@ -180,7 +176,7 @@ angryMaths.playLevel.prototype = {
 		if (option.correct) {
 			this.questionsCorrect++;
 			this.updateScore();
-    		this.coinSound.play();
+    		//this.coinSound.play();
 
 		    //  Add tween  to tick
 	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
@@ -193,6 +189,8 @@ angryMaths.playLevel.prototype = {
             this.questions[this.currentQuestion].answeredCorrectly = true;
 
 		} else {
+			this.questionsWrong++;
+			
 		    //  Add tween  to tick
 	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
 

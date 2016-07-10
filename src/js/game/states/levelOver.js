@@ -9,7 +9,9 @@ angryMaths.LevelOver.prototype = {
 
     // get the number of stars
     var stars = game.state.states['PlayLevel'].stars;
-    console.log(stars);
+    var totalCorrect = game.state.states['PlayLevel'].questionsCorrect;
+    var totalWrong = game.state.states['PlayLevel'].questionsWrong;
+    console.log(stars, answeredCorrectly, answeredWrongly);
 
 
 
@@ -20,6 +22,12 @@ angryMaths.LevelOver.prototype = {
       game.add.image((this.game.width / 2) + (i-2)*64 , 200,  starIcon);
     }
 
+    // show the number right and wrong
+    game.add.image(100, 300,  "correct");
+    game.add.bitmapText(250, 350, 'raffic', '' + totalCorrect, 64);
+
+    game.add.image(400 , 300,  "wrong");
+    game.add.bitmapText(550, 350, 'raffic', '' + totalWrong, 64);
 
     // get the questions and answers from the played level
     this.questions = game.state.states['PlayLevel'].questions;
@@ -28,11 +36,18 @@ angryMaths.LevelOver.prototype = {
     // Show up to 3 incorrect answers
     var displayAnswer = '';
     var displayCount = 0;
-    for(var i=0; i<this.questions.length && displayCount<3; i++){
+    var AnswerXoffset = 0;
+    var AnswerYoffset = 0;
+
+    for(var i=0; i<this.questions.length; i++){
       if (!this.questions[i].answeredCorrectly) {
         displayAnswer = this.questions[i].display;
-        game.add.bitmapText(this.game.width / 2, 400 + displayCount*64, 'raffic', displayAnswer, 32);
+        game.add.bitmapText(100 + AnswerXoffset, 560 + displayCount*64 + AnswerYoffset, 'raffic', displayAnswer, 32);
         displayCount++;
+        if (displayCount>4) {
+          AnswerXoffset = 300;
+          AnswerYoffset = -320;
+        }
       }
     }
 
@@ -63,16 +78,16 @@ angryMaths.LevelOver.prototype = {
 
     this.startText = this.game.add.bitmapText(0,0, 'raffic', wellDoneText, 32);
     this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
-    this.startText.y = 300;
+    this.startText.y = 500;
 
     // navigation
-    this.menuButton = game.add.button(game.width/2-200, 800,  "menu", this.menu, this);
+    this.menuButton = game.add.button(game.width/2-200, 1000,  "menu", this.menu, this);
     this.menuButton.anchor.setTo(0.5);
-    this.replyButton = game.add.button(game.width/2, 800,  "replay", this.replay, this);
+    this.replyButton = game.add.button(game.width/2, 1000,  "replay", this.replay, this);
     this.replyButton.anchor.setTo(0.5);
     // show the 'play' next level if it's available
     if (game.levels.isNextLevelUnlocked()) {
-      this.nextButton = game.add.button(game.width/2 +200, 800,  "next", this.next, this);
+      this.nextButton = game.add.button(game.width/2 +200, 1000,  "next", this.next, this);
       this.nextButton.anchor.setTo(0.5);
     }
 

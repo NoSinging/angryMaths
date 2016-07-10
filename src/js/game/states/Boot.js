@@ -5,8 +5,8 @@ angryMaths.Boot = function() {};
 
 angryMaths.Boot.prototype = {
   preload: function() {
-    this.load.image('logo', 'assets/images/logo.png');
-    this.load.image('preloadbar', 'assets/images/preloader-bar.png');
+    this.load.image('logo', 'assets/images/loading_text.png');
+    this.load.image('preloadbar', 'assets/images/loading_bar.png');
     this.load.image('background', 'assets/images/background.png');
   },
   create: function() {
