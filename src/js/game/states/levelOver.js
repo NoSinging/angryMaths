@@ -11,7 +11,6 @@ angryMaths.LevelOver.prototype = {
     var stars = game.state.states['PlayLevel'].stars;
     var totalCorrect = game.state.states['PlayLevel'].questionsCorrect;
     var totalWrong = game.state.states['PlayLevel'].questionsWrong;
-    console.log(stars, answeredCorrectly, answeredWrongly);
 
 
 

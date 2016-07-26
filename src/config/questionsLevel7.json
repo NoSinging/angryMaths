@@ -105,7 +105,7 @@
         },
         {   "id": "10",
             "order": "0",
-            "display": "10 x 3 = 3",
+            "display": "10 x 3 = 30",
             "q": "? x 3 = 30",
             "a": [
                 {"option": "10",      "correct": true},
