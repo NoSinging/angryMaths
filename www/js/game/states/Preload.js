@@ -5,7 +5,7 @@ angryMaths.Preload = function() {
 angryMaths.Preload.prototype = {
   preload: function() {
 
-    this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
+    this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loadingtext');
     this.splash.anchor.setTo(0.5);
 
     this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
@@ -23,15 +23,12 @@ angryMaths.Preload.prototype = {
     this.load.spritesheet("level_arrows", "assets/images/level_arrows.png", 48, 48);
 
     // load other images
+    this.load.image('logo', 'assets/images/logo.png');
     this.load.image('blank', 'assets/images/blank-64.png');
-    //this.load.image('square', 'assets/images/square-rounded-48.png');
     this.load.image('wrong', 'assets/images/icon_bomb.png');
     this.load.image('correct', 'assets/images/icon_emergency_kit.png');
     this.load.image('star', 'assets/images/star64.png');
     this.load.image('starGrey', 'assets/images/star64grey.png');
-    //this.load.image('circleGrey', 'assets/images/circle-16-grey.png');
-    //this.load.image('circleGreen', 'assets/images/circle-16-green.png');
-    //this.load.image('circleRed', 'assets/images/circle-16-red.png');
     this.load.image('replay', 'assets/images/btn_cicle_retry_right_red.png');
     this.load.image('next', 'assets/images/btn_cicle_right_red.png');
     this.load.image('menu', 'assets/images/btn_cicle_menu_red.png');

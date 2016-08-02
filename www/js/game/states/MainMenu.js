@@ -5,6 +5,9 @@ angryMaths.MainMenu.prototype = {
     this.add.sprite(0, 0, 'background');
 
 
+    this.logo = game.add.image(game.width/2 - 256,60, 'logo');
+    this.logo.scale.setTo(0.5, 0.5);
+
     this.playButton = game.add.button(game.width/2, this.game.height / 2,"play",this.play,this);
     this.playButton.anchor.setTo(0.5);
 
