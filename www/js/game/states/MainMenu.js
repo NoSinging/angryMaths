@@ -5,17 +5,16 @@ angryMaths.MainMenu.prototype = {
     this.add.sprite(0, 0, 'background');
 
 
-    this.logo = game.add.image(game.width/2 - 256,60, 'logo');
-    this.logo.scale.setTo(0.5, 0.5);
+    this.logo = game.add.image(0,360, 'helmet2');
 
-    this.playButton = game.add.button(game.width/2, this.game.height / 2,"play",this.play,this);
-    this.playButton.anchor.setTo(0.5);
+    this.playButton = game.add.button(400, 540,"play",this.play,this);
 
     this.startText = this.game.add.bitmapText(0,0, 'raffic', 'times table mission', 64);
     this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
-    this.startText.y = this.game.height / 2 + this.startText.height / 2 - 200
+    this.startText.y = 200
 
-    this.settingsButton = game.add.button(20, game.height-200,  "settings", this.settings, this);
+    // setting button
+    // this.settingsButton = game.add.button(20, game.height-200,  "settings", this.settings, this);
 
   },
   update: function() {

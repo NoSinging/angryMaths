@@ -24,6 +24,7 @@ angryMaths.Preload.prototype = {
 
     // load other images
     this.load.image('logo', 'assets/images/logo.png');
+    this.load.image('helmet2', 'assets/images/mathsmission2helmet.png');
     this.load.image('blank', 'assets/images/blank-64.png');
     this.load.image('wrong', 'assets/images/icon_bomb.png');
     this.load.image('correct', 'assets/images/icon_emergency_kit.png');

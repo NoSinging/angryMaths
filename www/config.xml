@@ -1,23 +1,14 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.incrediblespottydog.helloworld" version="1.0.0">
-  <name>Angry Math</name>
-  <description>A times table mission.</description>
-  <author href="http://phonegap.com" email="support@phonegap.com">PhoneGap Team</author>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.incrediblespottydog.helloworld" version="1.1.0">
+  <name>times table mission</name>
+  <description>A times table mission</description>
+  <author href="http://incrediblespottydog.com" email="support@incrediblespottydog.com">The incredible spotty dog</author>
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="14"/>
   <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
-  <icon src="icon.png"/>
-  <splash src="splash.png" />
+  <icon src="assets/images/icon.png"/>
+  <splash src="assets/images/splash.png" />
   <platform name="android">
   </platform>
   <access origin="*"/>
-  <allow-intent href="http://*/*"/>
-  <allow-intent href="https://*/*"/>
-  <allow-intent href="tel:*"/>
-  <allow-intent href="sms:*"/>
-  <allow-intent href="mailto:*"/>
-  <allow-intent href="geo:*"/>
-  <platform name="android">
-    <allow-intent href="market:*"/>
-  </platform>
 </widget>
