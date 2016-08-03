@@ -1,4 +1,9 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.incrediblespottydog.helloworld" version="1.1.0">
+  <widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.incrediblespottydog.timestablemission"
+    versionCode = "2"
+    version     = "1.1.0" >
+
   <name>times table mission</name>
   <description>A times table mission</description>
   <author href="http://incrediblespottydog.com" email="support@incrediblespottydog.com">The incredible spotty dog</author>
