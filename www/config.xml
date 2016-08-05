@@ -9,8 +9,7 @@
   <author href="http://incrediblespottydog.com" email="support@incrediblespottydog.com">The incredible spotty dog</author>
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
-  <preference name="android-minSdkVersion" value="14"/>
-  <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
+  <preference name="android-minSdkVersion" value="16"/>
   <icon src="assets/images/icon.png"/>
   <splash src="assets/images/splash.png" />
   <platform name="android">
