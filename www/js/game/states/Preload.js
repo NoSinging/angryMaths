@@ -23,7 +23,6 @@ angryMaths.Preload.prototype = {
     this.load.spritesheet("level_arrows", "assets/images/level_arrows.png", 48, 48);
 
     // load other images
-    this.load.image('logo', 'assets/images/logo.png');
     this.load.image('helmet2', 'assets/images/mathsmission2helmet.png');
     this.load.image('blank', 'assets/images/blank-64.png');
     this.load.image('wrong', 'assets/images/icon_bomb.png');
