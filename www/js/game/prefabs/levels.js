@@ -1,6 +1,5 @@
-"use strict";
-class levels {
-    constructor() {
+function levels() {
+
     this.thumbRows = 7;
     // number of thumbnail cololumns
     this.thumbCols = 4;
@@ -20,8 +19,9 @@ class levels {
 
     // level currently playing
     this.level = 0;
-    }
-    levelFinished(stars){
+}
+
+levels.prototype.levelFinished = function(stars) {
         // did we improved our stars in current level?
         if(this.starsArray[this.level-1]<stars){
             this.starsArray[this.level-1] = stars;
@@ -31,17 +31,20 @@ class levels {
             this.starsArray[this.level] = 0;
         }
         this.save();
-    }
-    isNextLevelUnlocked(){
+};
+
+levels.prototype.isNextLevelUnlocked = function(){
         // test next level exists and it's status
         return (this.level<this.starsArray.length && this.starsArray[this.level] !=4);
-    }
-    clearProgress(){
+};
+
+levels.prototype.clearProgress = function(){
         // reset to initial star array
         this.starsArray = this.INITIAL_GAME_STARS;
         this.save();
-    }
-    save(){
+};
+
+levels.prototype.save = function(){
         if(typeof(Storage) !== "undefined") {
             // Code for localStorage.
             localStorage.levels = JSON.stringify(this.starsArray);
@@ -51,8 +54,9 @@ class levels {
             console.log('NO storage!');
             return false
         }
-    }
-    retrieve(){
+};
+
+levels.prototype.retrieve = function(){
         if(typeof(Storage) !== "undefined") {
             // Code for localStorage.
             var levels =  localStorage.levels;
@@ -70,11 +74,13 @@ class levels {
             return false;
         }
         return false;
-    }
-    getMaxStars(){
+};
+
+levels.prototype.getMaxStars = function(){
         return this.starsArray.length * 3;
-    }
-    getTotalStars(){
+};
+
+levels.prototype.getTotalStars = function(){
         var totalStars = 0;
         var levelStars = 0;
         var i = 0;
@@ -86,5 +92,4 @@ class levels {
             }
         }
         return totalStars;
-    }
 };
