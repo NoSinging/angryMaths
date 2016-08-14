@@ -13,7 +13,7 @@
   <!-- iOS compatible generic icon, no transparency -->
   <icon src="res/icon/generic/icon.png"/>
   <splash src="splash.png" />
-  <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/gbenvenuti/cordova-plugin-screen-orientation.git#1.4.2"  />
+  <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/apache/cordova-plugin-screen-orientation"  />
   <preference name="Orientation" value="portrait" />
 
   <platform name="android">
