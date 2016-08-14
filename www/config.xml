@@ -10,7 +10,6 @@
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="portrait" />
-  <preference name="Fullscreen" value="true" />
   <preference name="android-minSdkVersion" value="16"/>
   <!-- iOS compatible generic icon, no transparency -->
   <icon src="res/icon/generic/icon.png"/>
