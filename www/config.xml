@@ -6,11 +6,11 @@
 
   <name>times table mission</name>
   <description>A times table mission</description>
-  <author href="http://incrediblespottydog.com" email="support@incrediblespottydog.com">The incredible spotty dog</author>
+  <author href="http://incrediblespottydog.com" email="hello@incrediblespottydog.com">The incredible spotty dog</author>
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
-  <icon src="assets/images/icon.png"/>
+  <icon src="res/icon/generic/icon.png"/>
   <splash src="assets/images/splash.png" />
   <platform name="android">
   </platform>
