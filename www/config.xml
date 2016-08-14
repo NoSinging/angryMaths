@@ -10,8 +10,9 @@
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
+  <!-- iOS compatible generic icon, no transparency -->
   <icon src="res/icon/generic/icon.png"/>
-  <splash src="assets/images/splash.png" />
+  <splash src="splash.png" />
   <platform name="android">
   </platform>
   <platform name="ios">
@@ -36,6 +37,16 @@
         <icon src="res/icon/ios/icon-small.png" width="29" height="29" />
         <icon src="res/icon/ios/icon-small@2x.png" width="58" height="58" />
    </platform>
+
+  <platform name="ios">
+    <splash src="res/screen/ios/screen-iphone-portrait.png" width="320" height="480" />
+    <splash src="res/screen/ios/screen-iphone-portrait-2x.png" width="640" height="960" />
+    <splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" height="1136" />
+    <splash src="res/screen/ios/screen-iphone-portrait-667h.png" width="750" height="1334" />
+    <splash src="res/screen/ios/screen-iphone-portrait-736h.png" width="1242" height="2208" />
+    <splash src="res/screen/ios/screen-ipad-portrait.png" width="768" height="1024" />
+    <splash src="res/screen/ios/screen-ipad-portrait-2x.png" width="1536" height="2048" />
+  </platform>
 
   <access origin="*"/>
 </widget>
