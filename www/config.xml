@@ -9,11 +9,13 @@
   <author href="http://incrediblespottydog.com" email="hello@incrediblespottydog.com">The incredible spotty dog</author>
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
-  <preference name="Orientation" value="portrait" />
   <preference name="android-minSdkVersion" value="16"/>
   <!-- iOS compatible generic icon, no transparency -->
   <icon src="res/icon/generic/icon.png"/>
   <splash src="splash.png" />
+  <plugin name="cordova-plugin-screen-orientation" spec="1.4.0" source="pgb" />
+  <preference name="Orientation" value="portrait" />
+
   <platform name="android">
   </platform>
   <platform name="ios">
