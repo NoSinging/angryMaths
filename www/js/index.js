@@ -41,6 +41,9 @@ var app = {
 
         console.log('Received Event: ' + id);
 
+        // set to portrait
+        screen.lockOrientation('portrait');
+
         app.initializeGame();
 
     },
