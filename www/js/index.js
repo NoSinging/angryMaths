@@ -34,6 +34,13 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+
+        // set to portrait
+        screen.lockOrientation('portrait');
+
+        // hide the splash screen
+        navigator.splashscreen.hide()
+
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
@@ -41,8 +48,6 @@ var app = {
 
         console.log('Received Event: ' + id);
 
-        // set to portrait
-        screen.lockOrientation('portrait');
 
         app.initializeGame();
 

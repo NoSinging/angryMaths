@@ -11,6 +11,7 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
   <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/apache/cordova-plugin-screen-orientation"  />
+  <plugin name="cordova-plugin-splashscreen" spec="2.1.0" source="pgb" />
   <preference name="Orientation" value="portrait" />
 
   <platform name="android">
@@ -42,7 +43,7 @@
     <icon height="167" src="res/icons/ios/icon-83.5-2x.png" width="167" />
 </platform>
 
-<preference name="SplashScreen" value="screen"/>
+<preference name="SplashScreenDelay" value="10000" />
 <platform name="android">
     <splash density="port-hdpi" src="res/screens/android/screen-hdpi-portrait.png" />
     <splash density="port-ldpi" src="res/screens/android/screen-ldpi-portrait.png" />
