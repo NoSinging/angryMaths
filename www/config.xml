@@ -10,46 +10,56 @@
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
-  <!-- iOS compatible generic icon, no transparency -->
-  <icon src="res/icon/generic/icon.png"/>
-  <splash src="splash.png" />
   <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/apache/cordova-plugin-screen-orientation"  />
   <preference name="Orientation" value="portrait" />
 
   <platform name="android">
-  </platform>
-  <platform name="ios">
-        <!-- iOS 9.0+ -->
-        <!-- iPad -->
-        <!-- DH Guess - TODO -->
-        <icon src="res/icon/ios/icon-83.5@2x.png" width="167" height="167" />
-        <!-- iOS 8.0+ -->
-        <!-- iPhone 6 Plus  -->
-        <icon src="res/icon/ios/icon-60@3x.png" width="180" height="180" />
-        <!-- iOS 7.0+ -->
-        <!-- iPhone / iPod Touch  -->
-        <icon src="res/icon/ios/icon-60.png" width="60" height="60" />
-        <icon src="res/icon/ios/icon-60@2x.png" width="120" height="120" />
-        <!-- iPad -->
-        <icon src="res/icon/ios/icon-76.png" width="76" height="76" />
-        <icon src="res/icon/ios/icon-76@2x.png" width="152" height="152" />
-        <!-- Spotlight Icon -->
-        <icon src="res/icon/ios/icon-40.png" width="40" height="40" />
-        <icon src="res/icon/ios/icon-40@2x.png" width="80" height="80" />
-        <!-- iPhone Spotlight and Settings Icon -->
-        <icon src="res/icon/ios/icon-small.png" width="29" height="29" />
-        <icon src="res/icon/ios/icon-small@2x.png" width="58" height="58" />
-   </platform>
+    <icon density="ldpi" src="res/icons/android/icon-36-ldpi.png" />
+    <icon density="mdpi" src="res/icons/android/icon-48-mdpi.png" />
+    <icon density="hdpi" src="res/icons/android/icon-72-hdpi.png" />
+    <icon density="xhdpi" src="res/icons/android/icon-96-xhdpi.png" />
+    <icon density="xxhdpi" src="res/icons/android/icon-144-xxhdpi.png" />
+    <icon density="xxxhdpi" src="res/icons/android/icon-192-xxxhdpi.png" />
+</platform>
+<platform name="ios">
+    <icon height="29" src="res/icons/ios/icon-small.png" width="29" />
+    <icon height="58" src="res/icons/ios/icon-small-2x.png" width="58" />
+    <icon height="87" src="res/icons/ios/icon-small-3x.png" width="87" />
+    <icon height="40" src="res/icons/ios/icon-40.png" width="40" />
+    <icon height="80" src="res/icons/ios/icon-40-2x.png" width="80" />
+    <icon height="120" src="res/icons/ios/icon-40-3x.png" width="120" />
+    <icon height="50" src="res/icons/ios/icon-50.png" width="50" />
+    <icon height="100" src="res/icons/ios/icon-50-2x.png" width="100" />
+    <icon height="57" src="res/icons/ios/icon-57.png" width="57" />
+    <icon height="114" src="res/icons/ios/icon-57-2x.png" width="114" />
+    <icon height="60" src="res/icons/ios/icon-60.png" width="60" />
+    <icon height="120" src="res/icons/ios/icon-60-2x.png" width="120" />
+    <icon height="180" src="res/icons/ios/icon-60-3x.png" width="180" />
+    <icon height="72" src="res/icons/ios/icon-72.png" width="72" />
+    <icon height="144" src="res/icons/ios/icon-72-2x.png" width="144" />
+    <icon height="76" src="res/icons/ios/icon-76.png" width="76" />
+    <icon height="152" src="res/icons/ios/icon-76-2x.png" width="152" />
+    <icon height="167" src="res/icons/ios/icon-83.5-2x.png" width="167" />
+</platform>
 
-  <platform name="ios">
-    <splash src="res/screen/ios/screen-iphone-portrait.png" width="320" height="480" />
-    <splash src="res/screen/ios/screen-iphone-portrait-2x.png" width="640" height="960" />
-    <splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" height="1136" />
-    <splash src="res/screen/ios/screen-iphone-portrait-667h.png" width="750" height="1334" />
-    <splash src="res/screen/ios/screen-iphone-portrait-736h.png" width="1242" height="2208" />
-    <splash src="res/screen/ios/screen-ipad-portrait.png" width="768" height="1024" />
-    <splash src="res/screen/ios/screen-ipad-portrait-2x.png" width="1536" height="2048" />
-  </platform>
-
+<preference name="SplashScreen" value="screen"/>
+<platform name="android">
+    <splash density="port-hdpi" src="res/screens/android/screen-hdpi-portrait.png" />
+    <splash density="port-ldpi" src="res/screens/android/screen-ldpi-portrait.png" />
+    <splash density="port-mdpi" src="res/screens/android/screen-mdpi-portrait.png" />
+    <splash density="port-xhdpi" src="res/screens/android/screen-xhdpi-portrait.png" />
+    <splash density="port-xxhdpi" src="res/screens/android/screen-xxhdpi-portrait.png" />
+    <splash density="port-xxxhdpi" src="res/screens/android/screen-xxxhdpi-portrait.png" />
+</platform>
+<platform name="ios">
+    <splash width="640" height="1136" src="res/screens/ios/screen-iphone-568h-2x.png" />
+    <splash width="320" height="480" src="res/screens/ios/screen-iphone-portrait.png" />
+    <splash width="640" height="960" src="res/screens/ios/screen-iphone-portrait-2x.png" />
+    <splash width="750" height="1334" src="res/screens/ios/screen-iphone-portrait-667h.png" />
+    <splash width="1242" height="2208" src="res/screens/ios/screen-iphone-portrait-736h.png" />
+    <splash width="768" height="1024" src="res/screens/ios/screen-ipad-portrait.png" />
+    <splash width="1536" height="2048" src="res/screens/ios/screen-ipad-portrait-2x.png" />
+    <splash width="2048" height="2732" src="res/screens/ios/screen-ipad-portrait-ipadpro.png" />
+</platform>
   <access origin="*"/>
 </widget>

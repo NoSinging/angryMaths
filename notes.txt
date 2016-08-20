@@ -1,29 +1,6 @@
-To Ten
-Makes Ten
-ten with carry over
-doubles
-near doubles
-To Twenty
-Makes Twenty
-twenty with carry over
-Adding on 10 from 0
-Adding on 10 from x
-Adding on 2 from 0
-Adding on 2 from x
-Adding on 3 from 0
-Adding on 3 from x
-Adding on 4 from 0
-Adding on 4 from x
-Adding on 5 from 0
-Adding on 5 from x
-Adding on 6 from 0
-Adding on 6 from x
-Adding on 7 from 0
-Adding on 7 from x
-Adding on 8 from 0
-Adding on 8 from x
-Adding on 9 from 0
-Adding on 9 from x
-Adding 2 digit numbers
-Makes 100
+useful resources
+icons and splash
+http://pgicons.abiro.com/
+
+
 ...

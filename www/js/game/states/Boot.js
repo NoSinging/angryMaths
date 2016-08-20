@@ -10,7 +10,7 @@ angryMaths.Boot.prototype = {
     this.load.image('background', 'assets/images/background.png');
   },
   create: function() {
-    this.game.stage.backgroundColor = '#ffffff';
+    this.game.stage.backgroundColor = '#000000';
 
     //  Unless you specifically know your game needs to support multi-touch I would recommend setting this to 1
     this.input.maxPointers = 1;
