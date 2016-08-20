@@ -38,8 +38,6 @@ var app = {
         // set to portrait
         screen.lockOrientation('portrait');
 
-        // hide the splash screen
-        navigator.splashscreen.hide()
 
         app.receivedEvent('deviceready');
     },
@@ -76,5 +74,8 @@ var app = {
 
         game.state.start('Boot');
         console.log('Phaser Game initiated: ');
+
+        // hide the splash screen
+        navigator.splashscreen.hide()
     }
 };
