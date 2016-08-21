@@ -22,11 +22,15 @@ angryMaths.LevelOver.prototype = {
     }
 
     // show the number right and wrong
-    game.add.image(100, 300,  "correct");
-    game.add.bitmapText(250, 350, 'raffic', '' + totalCorrect, 64);
+    // it's 146 wide
+    var correctX = (this.game.width / 3) - 146/2
+    game.add.image(correctX, 300,  "correct");
+    game.add.bitmapText(correctX+150, 350, 'raffic', '' + totalCorrect, 64);
 
-    game.add.image(400 , 300,  "wrong");
-    game.add.bitmapText(550, 350, 'raffic', '' + totalWrong, 64);
+
+    var wrongX = (2*this.game.width / 3) - 146/2
+    game.add.image(wrongX , 300,  "wrong");
+    game.add.bitmapText(wrongX+150, 350, 'raffic', '' + totalWrong, 64);
 
     // get the questions and answers from the played level
     this.questions = game.state.states['PlayLevel'].questions;
@@ -41,10 +45,10 @@ angryMaths.LevelOver.prototype = {
     for(var i=0; i<this.questions.length; i++){
       if (!this.questions[i].answeredCorrectly) {
         displayAnswer = this.questions[i].display;
-        game.add.bitmapText(100 + AnswerXoffset, 560 + displayCount*64 + AnswerYoffset, 'raffic', displayAnswer, 32);
+        game.add.bitmapText(correctX + AnswerXoffset, 560 + displayCount*64 + AnswerYoffset, 'raffic', displayAnswer, 32);
         displayCount++;
         if (displayCount>4) {
-          AnswerXoffset = 300;
+          AnswerXoffset = this.game.width/3;
           AnswerYoffset = -320;
         }
       }

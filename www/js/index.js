@@ -17,6 +17,7 @@
  * under the License.
  */
 var game;
+var deviceIsiPad = false;
 var app = {
     // Application Constructor
     initialize: function() {
@@ -38,6 +39,11 @@ var app = {
         // set to portrait
         screen.lockOrientation('portrait');
 
+        // the device model comes from phonegap plugin, e.g. iPad6,3
+        // determine if this is running as a native app an iPad
+        if (!(typeof device === 'undefined')) {
+        deviceIsiPad = device.model.includes("iPad");
+        }
 
         app.receivedEvent('deviceready');
     },
@@ -54,10 +60,21 @@ var app = {
         // *window.devicePixelRatio
         // let's set a target device iphone 5
         // aspect 9:16
-        // 640 x 1136 twice 320 x 568
-        // (todo: change to iphone 6 as target: 750 x 1334)
+        // 640 x 1136 resolution twice 320 x 568 logical
         var targetDeviceWidth = 640;
         var targetDeviceHeight = 1136;
+
+        // let's do something special for native app on ipads, as we love them
+        // consider the iPad2
+        // aspect 3:4
+        // 1536 x 2048 resolution
+        // 768 x 1024 logical
+        // let's just adjust the device width only, to achieve the 3:4 aspect
+        // and let phasers scale manager scale it up.
+
+        if (deviceIsiPad) {
+            targetDeviceWidth = 852;
+        }
 
         game = new Phaser.Game(targetDeviceWidth, targetDeviceHeight, Phaser.AUTO, '');
 
