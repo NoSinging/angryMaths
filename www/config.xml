@@ -8,13 +8,15 @@
   <description>A times table mission</description>
   <author href="http://incrediblespottydog.com" email="hello@incrediblespottydog.com">The incredible spotty dog</author>
   <content src="index.html"/>
-  <preference name="DisallowOverscroll" value="true"/>
-  <preference name="android-minSdkVersion" value="16"/>
   <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/apache/cordova-plugin-screen-orientation"  />
   <plugin name="org.apache.cordova.splashscreen" spec="1.0.0" source="pgb" />
   <plugin name="org.apache.cordova.device" spec="0.3.0" source="pgb" />
   <preference name="Orientation" value="portrait" />
+  <preference name="DisallowOverscroll" value="true"/>
 
+
+  <!-- Android only -->
+  <preference name="android-minSdkVersion" value="16"/>
   <platform name="android">
     <icon density="ldpi" src="res/icons/android/icon-36-ldpi.png" />
     <icon density="mdpi" src="res/icons/android/icon-48-mdpi.png" />
@@ -23,6 +25,20 @@
     <icon density="xxhdpi" src="res/icons/android/icon-144-xxhdpi.png" />
     <icon density="xxxhdpi" src="res/icons/android/icon-192-xxxhdpi.png" />
 </platform>
+
+<platform name="android">
+    <splash density="port-hdpi" src="res/screens/android/screen-hdpi-portrait.png" />
+    <splash density="port-ldpi" src="res/screens/android/screen-ldpi-portrait.png" />
+    <splash density="port-mdpi" src="res/screens/android/screen-mdpi-portrait.png" />
+    <splash density="port-xhdpi" src="res/screens/android/screen-xhdpi-portrait.png" />
+    <splash density="port-xxhdpi" src="res/screens/android/screen-xxhdpi-portrait.png" />
+    <splash density="port-xxxhdpi" src="res/screens/android/screen-xxxhdpi-portrait.png" />
+</platform>
+
+  <!-- iOS only -->
+  <preference name="target-device" value="universal" />
+  <preference name="deployment-target" value="9.0" />
+
 <platform name="ios">
     <icon height="29" src="res/icons/ios/icon-small.png" width="29" />
     <icon height="58" src="res/icons/ios/icon-small-2x.png" width="58" />
@@ -44,14 +60,6 @@
     <icon height="167" src="res/icons/ios/icon-83.5-2x.png" width="167" />
 </platform>
 
-<platform name="android">
-    <splash density="port-hdpi" src="res/screens/android/screen-hdpi-portrait.png" />
-    <splash density="port-ldpi" src="res/screens/android/screen-ldpi-portrait.png" />
-    <splash density="port-mdpi" src="res/screens/android/screen-mdpi-portrait.png" />
-    <splash density="port-xhdpi" src="res/screens/android/screen-xhdpi-portrait.png" />
-    <splash density="port-xxhdpi" src="res/screens/android/screen-xxhdpi-portrait.png" />
-    <splash density="port-xxxhdpi" src="res/screens/android/screen-xxxhdpi-portrait.png" />
-</platform>
 <platform name="ios">
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashScreenBackgroundColor" value="black" /> <!-- defaults to "#464646" -->
@@ -64,10 +72,13 @@
     <splash width="1536" height="2048" src="res/screens/ios/screen-ipad-portrait-2x.png" />
     <splash width="2048" height="2732" src="res/screens/ios/screen-ipad-portrait-ipadpro.png" />
 </platform>
+
+  <!-- browser only -->
 <platform name="browser">
     <preference name="SplashScreen" value="res/screens/ios/screen-iphone-portrait.png" /> <!-- defaults to "/img/logo.png" -->
     <preference name="SplashScreenDelay" value="7000" /> <!-- defaults to "3000" -->
     <preference name="ShowSplashScreen" value="true" /> <!-- defaults to "true" -->
 </platform>
+
   <access origin="*"/>
 </widget>
