@@ -1,8 +1,8 @@
   <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "com.incrediblespottydog.timestablemission"
-    versionCode = "3"
-    version     = "1.2.0" >
+    versionCode = "4"
+    version     = "1.2.1" >
 
   <name>times table mission</name>
   <description>A times table mission</description>
@@ -72,6 +72,7 @@
     <splash width="1536" height="2048" src="res/screens/ios/screen-ipad-portrait-2x.png" />
     <splash width="2048" height="2732" src="res/screens/ios/screen-ipad-portrait-ipadpro.png" />
 </platform>
+
 
   <!-- browser only -->
 <platform name="browser">
