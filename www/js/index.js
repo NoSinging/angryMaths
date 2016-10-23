@@ -90,9 +90,9 @@ var app = {
         game.state.add("Settings", angryMaths.Settings);
 
         game.state.start('Boot');
-        console.log('Phaser Game initiated: ');
 
         // hide the splash screen
+        // Cordova function
         navigator.splashscreen.hide()
     }
 };

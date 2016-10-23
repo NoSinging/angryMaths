@@ -8,11 +8,10 @@ angryMaths.LevelOver.prototype = {
     var starIcon = "star";
 
     // get the number of stars
+    // TODO: stop pocking in the internals of others
     var stars = game.state.states['PlayLevel'].stars;
-    var totalCorrect = game.state.states['PlayLevel'].questionsCorrect;
-    var totalWrong = game.state.states['PlayLevel'].questionsWrong;
-
-
+    var totalCorrect = game.state.states['PlayLevel'].scoreBar.score;
+    var totalWrong = game.state.states['PlayLevel'].scoreBar.totalWrong;
 
     // Show stars for that level
     for(var i=1; i<=3; i++){
@@ -31,32 +30,6 @@ angryMaths.LevelOver.prototype = {
     var wrongX = (2*this.game.width / 3) - 146/2
     game.add.image(wrongX , 300,  "wrong");
     game.add.bitmapText(wrongX+150, 350, 'raffic', '' + totalWrong, 64);
-
-    // get the questions and answers from the played level
-    this.questions = game.state.states['PlayLevel'].questions;
-
-
-    // Show up to 3 incorrect answers
-    var displayAnswer = '';
-    var displayCount = 0;
-    var AnswerXoffset = 0;
-    var AnswerYoffset = 0;
-
-    for(var i=0; i<this.questions.length; i++){
-      if (!this.questions[i].answeredCorrectly) {
-        displayAnswer = this.questions[i].display;
-        game.add.bitmapText(correctX + AnswerXoffset, 560 + displayCount*64 + AnswerYoffset, 'raffic', displayAnswer, 32);
-        displayCount++;
-        if (displayCount>4) {
-          AnswerXoffset = this.game.width/3;
-          AnswerYoffset = -320;
-        }
-      }
-    }
-
-    // if there were incorrect answers say so
-    var incorrectAnswerText = (displayCount > 0) ? ", retry these ... ":"";
-
 
     // Well done text
     var wellDoneText = '';
@@ -77,9 +50,7 @@ angryMaths.LevelOver.prototype = {
         wellDoneText = "unusual!";
     }
 
-    wellDoneText += incorrectAnswerText;
-
-    this.startText = this.game.add.bitmapText(0,0, 'raffic', wellDoneText, 32);
+    this.startText = this.game.add.bitmapText(0,0, 'raffic', wellDoneText, 64);
     this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
     this.startText.y = 500;
 

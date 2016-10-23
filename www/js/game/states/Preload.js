@@ -42,6 +42,22 @@ angryMaths.Preload.prototype = {
     this.load.image('frame', 'assets/images/frame.png');
 
 
+
+
+    // answers frame
+    // TODO rationalise these with above, e.g. remove answerFrame?
+    game.load.image('answerFrame', 'frame.png');
+
+    game.load.image('progressBar', 'progress_outer.png');
+
+    // Duplicate Tick and cross with bomb and healthkit
+    game.load.image('bomb', 'icon_bomb.png');
+    game.load.image('healthKit', 'icon_emergency_kit.png');
+
+    game.load.spritesheet('explosion', 'part_explosion.png',1000,1000);
+
+
+
     this.load.setPreloadSprite(this.preloadBar);
 
     this.load.onLoadComplete.add(this.onLoadComplete, this);

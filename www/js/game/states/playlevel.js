@@ -1,4 +1,8 @@
 angryMaths.playLevel = function() {
+		var mouseBody;
+		var mouseConstraint;
+		var questionManager;
+		var scoreBar;
   };
 
 angryMaths.playLevel.prototype = {
@@ -6,32 +10,33 @@ angryMaths.playLevel.prototype = {
 
     	game.add.sprite(0, 0, 'background');
 
-  		var questionsKey = 'questionsLevel' + game.levels.level;
-		this.questionJSON = game.cache.getJSON(questionsKey);
-		this.questions = this.questionJSON.questions;
+	    // create the score tray
+	    this.scoreBar = new ScoreBar(game, 40,20);
 
+	    // create a single question manager
+	    this.questionManager = new QuestionManager(game.levels.level, this.scoreBar);
+
+	    //  objects with their own collision groups to  collide with the world bounds
+	    //  what this does is adjust the bounds to use its own collision group.
+	    game.physics.p2.updateBoundsCollisionGroup();
+
+	    // create physics body for mouse which we will use for dragging clicked bodies
+	    // TODO best placed here or at world set up?
+	    this.mouseBody = new p2.Body();
+	    game.physics.p2.world.addBody(this.mouseBody);
+
+	    // attach pointer events, max 1 point to save confusion on touch devices
+	    game.input.maxPointers = 1;
+	    game.input.onDown.add(this.click, this);
+	    game.input.onUp.add(this.release, this);
+	    game.input.addMoveCallback(this.move, this);
+
+		// TODO: is the required?
 		// sort questions according to order
-		this.sortQuestions();
+		//this.sortQuestions();
 
-		this.options = [];
 		this.stars = 0;
-		this.currentQuestion = 0;
-		this.currentQuestionAnswered = false;
-		this.totalQuestions = this.questions.length;
-		this.questionsCorrect = 0;
-		this.questionsWrong = 0;
-		this.score = 0;
-		this.STAR1 = this.questionJSON.rating[0];
-		this.STAR2 = this.questionJSON.rating[1];
-		this.STAR3 = this.questionJSON.rating[2];
 
-		// showing level title
-		this.style = {
-			font: "32px Arial",
-			fill: "#fff000"
-		};
-		// var levelTitle = game.add.bitmapText(0, 0,'raffic', 'level '+game.levels.level, 32);
-  //       levelTitle.x = (game.width - levelTitle.width) / 2;
 
   		// create a timer bar
   		// progress outer
@@ -46,93 +51,46 @@ angryMaths.playLevel.prototype = {
   		// timer icon
   		this.timerIcon = game.add.image(0,timerBarOffsetY, 'timer');
 
-
-        // create a question
-	    this.question = new Question(this.game, 200, this.game.height/2);
-
-	    // and add it to the game
-	    this.game.add.existing(this.question);
-
-	    //create the option for multiple choice
-	    for(var i=0; i<=3; i++){
-	    	// create the option button
-			this.options[i] = game.add.button((game.width*(i+1)/5) - 60, 2*game.height/3,  "frame", this.questionAnswered, this);
-
-		 	// create a child text object
-		 	var text = game.add.bitmapText(20, 30,'raffic', '', 64);
-		 	this.options[i].addChild(text);
-		}
-
-		// Create the correct tick
-	    this.tick = new Tick(this.game, 200, this.game.height/3);
-    	this.tick.alpha = 0;
-	    // and add it to the game
-	    this.game.add.existing(this.tick);
-
-		// Create the incorrect cross
-	    this.cross = new Cross(this.game, 200, this.game.height/3);
-    	this.cross.alpha = 0;
-	    // and add it to the game
-	    this.game.add.existing(this.cross);
-
-
-  		// question progress outer
-  		var questionBarOffsetY = 20;
-  		this.questionBarBackground = game.add.image(40,questionBarOffsetY + 10, 'progressOuter');
-
-  		// correct question icon
-  		this.correctQuestionIcon = game.add.image(10,questionBarOffsetY, 'correct');
-		this.correctQuestionIcon.scale.setTo(0.7,0.7);
-
-	    // create cicles to show total questions
-	    this.questionProgressXspacing = 300/this.totalQuestions;
-
 	    //  Create our Timer
 	    this.timer = game.time.create(false);
 
 	    //  Set a TimerEvent to occur after configured seconds
-	    this.timer.add(this.questionJSON.time*1000, this.levelFinished, this);
+	    //TODO read time from JSON
+	    this.timer.add(this.questionManager.questionJSON.time*1000, this.levelFinished, this);
 
 	    //  Start the timer
 	    this.timer.start();
 
-	    // audio
-	    //this.coinSound = this.game.add.audio('coin');
-
-	    // ask the first question
-		this.askQuestion(this.currentQuestion);
-
         // navigation
-        game.add.button(24, game.height - 160,  "menuGreen", this.menu, this);
+        game.add.button(game.width - 160, 40,  "menuGreen", this.menu, this);
+
 	},
 	update: function() {
-		// if all the questions are answered then the level is finished
-		if (this.currentQuestion == (this.totalQuestions -1) && this.currentQuestionAnswered && !this.isQuestionTransitioning()) {
-			this.levelFinished();
-			return;
-		}
 
-		// TODO: is this best here or in the questioned Answered method?
-		if (this.currentQuestionAnswered && !this.isQuestionTransitioning()) {
-			// ask the next question
-			this.currentQuestionAnswered = false;
-			this.currentQuestion++;
-			this.askQuestion(this.currentQuestion);
+		//TODO: stop pocking into the internals of questionManager
+		if (this.questionManager.questionStatus == 'COMPLETE'){
+		    // release any touch holds on answers
+		    // TODO check this on a touch device
+		    this.release();
+		    // start the next question
+		    this.questionManager.currentQuestion++;
+		    this.questionManager.intro();
 		}
 
     	// update the timebar
-    	this.timeBarCropRect.width = (this.timer.duration/(this.questionJSON.time*1000)) * this.timerBarWidth;
+    	// TODO time from JSON
+    	this.timeBarCropRect.width = (this.timer.duration/(this.questionManager.questionJSON.time*1000)) * this.timerBarWidth;
     	this.timerBar.updateCrop();
 	},
 	shutdown: function() {
 
 	},
-	sortOptions: function(questionNumber) {
-		this.questions[questionNumber].a.sort(function (a, b) {
-		  // randomise sorting or equal order
-		  return (Math.random() < 0.5) ? -1:1;
-		});
-	},
+	// sortOptions: function(questionNumber) {
+	// 	this.questions[questionNumber].a.sort(function (a, b) {
+	// 	  // randomise sorting or equal order
+	// 	  return (Math.random() < 0.5) ? -1:1;
+	// 	});
+	// },
 	sortQuestions: function() {
 		this.questions.sort(function (a, b) {
 		  if (Number(a.order) > Number(b.order)) {
@@ -146,103 +104,70 @@ angryMaths.playLevel.prototype = {
 		  return (Math.random() < 0.5) ? -1:1;
 		});
 	},
-	askQuestion: function(questionNumber) {
-	    // set the question text
-	    this.question.setText(this.questions[questionNumber].q);
-	    this.question.x = this.game.width / 2 - this.question.textWidth / 2;
-
-	    // sort the options
-	    this.sortOptions(questionNumber);
-
-	    // set the options
-	    for(var i=0; i<=3; i++){
-
-	    	// set the correct answer
-			this.options[i].correct = this.questions[questionNumber].a[i].correct;
-
-		 	// set the text
-		 	this.options[i].children[0].text = this.questions[questionNumber].a[i].option;
-		 	// centre text in frame along x axis
-    		this.options[i].children[0].x = this.options[i].width / 2 - this.options[i].children[0].textWidth / 2;
-		}
-
-	},
-	questionAnswered: function(option) {
-		// if a tick or cross is already in progress then ignore the answer
-		if (this.isQuestionTransitioning()) {
-			return;
-		}
-
-		if (option.correct) {
-			this.questionsCorrect++;
-			this.updateScore();
-    		//this.coinSound.play();
-
-		    //  Add tween  to tick
-	    	this.tickTween = game.add.tween(this.tick).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
-
-	    	// update graphic of answered questions
-	    	this.progressIcon = game.add.image(80+(this.currentQuestion+1)*this.questionProgressXspacing,50, 'correct');
-	    	this.progressIcon.scale.setTo(0.25,0.25);
-
-            // mark as correctly answered
-            this.questions[this.currentQuestion].answeredCorrectly = true;
-
-		} else {
-			this.questionsWrong++;
-			
-		    //  Add tween  to tick
-	    	this.crossTween = game.add.tween(this.cross).to( { alpha: 1 }, 300, "Linear", true, 0,0,true);
-
-	    	// update graphic of answered questions
-	    	this.progressIcon = game.add.image(80+(this.currentQuestion+1)*this.questionProgressXspacing,50, 'wrong');
-	    	this.progressIcon.scale.setTo(0.25,0.25);
-
-            // mark as incorrectly answered
-            this.questions[this.currentQuestion].answeredCorrectly = false;
-		}
-		this.currentQuestionAnswered = true;
-		this.calculateStars();
-	},
 	levelFinished: function(){
 		this.calculateStars();
 		game.levels.levelFinished(this.stars);
 		// back to level selection
 		game.state.start("LevelOver");
 	},
-	isQuestionTransitioning: function(){
-		return (typeof(this.tickTween) != 'undefined' && this.tickTween.isRunning) || (typeof(this.crossTween) != 'undefined' && this.crossTween.isRunning);
-	},
-	updateScore: function(){
-		//
-		this.score += this.getQuestionScore();
-	},
 	calculateStars: function(){
-		//
-		if (this.score >= this.STAR3) {
+		STAR1 = this.questionManager.questionJSON.rating[0];
+		STAR2 = this.questionManager.questionJSON.rating[1];
+		STAR3 = this.questionManager.questionJSON.rating[2];
+
+		if (this.scoreBar.score >= STAR3) {
 			this.stars = 3;
-		} else if (this.score >= this.STAR2) {
+		} else if (this.scoreBar.score >= STAR2) {
 			this.stars = 2;
 		} else
-		if (this.score >= this.STAR1) {
+		if (this.scoreBar.score >= STAR1) {
 			this.stars = 1;
 		} else
 		{
 			this.stars = 0;
 		}
 	},
-	getQuestionScore: function(){
-		//
-		var questionScore = 1;
-
-		return questionScore;
-	},
-	tickCompleted: function(){
-	    //
-    	this.tick.alpha = 0.1;
-	},
     menu: function() {
         // going to level select state
         this.game.state.start('LevelSelect');
-    }
+    },
+
+    click: function(pointer) {
+
+	    // enable pick up of answers, by doing a hit test on the touch/mouse pointer with the answers
+	    var bodies = game.physics.p2.hitTest(pointer.position, this.questionManager.getAnswerBodies());
+
+	    // p2 uses different coordinate system, so convert the pointer position to p2's coordinate system
+	    var physicsPos = [game.physics.p2.pxmi(pointer.position.x), game.physics.p2.pxmi(pointer.position.y)];
+
+
+	    if (bodies.length)
+	    {
+	        var clickedBody = bodies[0];
+
+	        var localPointInBody = [0, 0];
+	        // this function takes physicsPos and coverts it to the body's local coordinate system
+	        clickedBody.toLocalFrame(localPointInBody, physicsPos);
+
+	        // use a revoluteContraint to attach mouseBody to the clicked body
+	        this.mouseConstraint = this.game.physics.p2.createRevoluteConstraint(this.mouseBody, [0, 0], clickedBody, [game.physics.p2.mpxi(localPointInBody[0]), game.physics.p2.mpxi(localPointInBody[1]) ]);
+	    }
+
+	},
+
+    release: function() {
+
+	    // release the answers from any touch/mouse holed by removing constraint from object's body
+	    game.physics.p2.removeConstraint(this.mouseConstraint);
+
+	},
+
+    move: function(pointer) {
+
+	    // p2 uses different coordinate system, so convert the pointer position to p2's coordinate system
+	    this.mouseBody.position[0] = game.physics.p2.pxmi(pointer.position.x);
+	    this.mouseBody.position[1] = game.physics.p2.pxmi(pointer.position.y);
+
+	}
+
 }
