@@ -27,8 +27,16 @@ Answer.prototype.update = function() {
 };
 
 Answer.prototype.setText = function(text) {
-    // update text and centre is on x axis
+    // update text, scale it to fit and centre is on x axis
+    textScaleRatio = 1.0;
+    maxTextWidth = this.width-32.0;
     this.answerTextChild.text = text;
+    // and scale it down to fit into the frame if it's too big
+    if (this.answerTextChild.width > maxTextWidth)  {
+        textScaleRatio = maxTextWidth/this.answerTextChild.width;
+    }
+
+    this.answerTextChild.scale.setTo(textScaleRatio, textScaleRatio)
     this.answerTextChild.x = -this.answerTextChild.width/2;
 };
 

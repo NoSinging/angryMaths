@@ -1,7 +1,7 @@
 
 var ScoreBar = function(game, x, y, key, frame) {
     // The ScoreBar is a sprite, image is progress bar
-    Phaser.Sprite.call(this, game, x, y, 'progressBar');
+    Phaser.Sprite.call(this, game, x, y, 'progressOuter');
     game.add.existing(this);
 
     // Add the health kit icon

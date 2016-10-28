@@ -85,25 +85,6 @@ angryMaths.playLevel.prototype = {
 	shutdown: function() {
 
 	},
-	// sortOptions: function(questionNumber) {
-	// 	this.questions[questionNumber].a.sort(function (a, b) {
-	// 	  // randomise sorting or equal order
-	// 	  return (Math.random() < 0.5) ? -1:1;
-	// 	});
-	// },
-	sortQuestions: function() {
-		this.questions.sort(function (a, b) {
-		  if (Number(a.order) > Number(b.order)) {
-		    return 1;
-		  }
-		  if (Number(a.order) < Number(b.order)) {
-		    return -1;
-		  }
-		  // a must be equal to b
-		  // randomise sorting or equal order
-		  return (Math.random() < 0.5) ? -1:1;
-		});
-	},
 	levelFinished: function(){
 		this.calculateStars();
 		game.levels.levelFinished(this.stars);

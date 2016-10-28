@@ -1,5 +1,5 @@
 var QuestionMark = function(game, x, y) {
-    Phaser.Sprite.call(this, game, x, y, 'answerFrame');
+    Phaser.Sprite.call(this, game, x, y, 'frame');
     game.add.existing(this);
     game.physics.p2.enable(this);
     this.body.clearShapes();

@@ -39,22 +39,22 @@ angryMaths.Preload.prototype = {
     this.load.image('timer', 'assets/images/icon_time.png');
     this.load.image('progressOuter', 'assets/images/progress_outer.png');
     this.load.image('progressBarGreen', 'assets/images/progress_bar_green.png');
-    this.load.image('frame', 'assets/images/frame.png');
+    this.load.image('frame', 'assets/images/answerFrame.png');
 
 
 
 
     // answers frame
     // TODO rationalise these with above, e.g. remove answerFrame?
-    game.load.image('answerFrame', 'frame.png');
+    game.load.image('answerFrame', 'assets/images/answerFrame.png');
 
-    game.load.image('progressBar', 'progress_outer.png');
+    //game.load.image('progressBar', 'progress_outer.png');
 
     // Duplicate Tick and cross with bomb and healthkit
-    game.load.image('bomb', 'icon_bomb.png');
-    game.load.image('healthKit', 'icon_emergency_kit.png');
+    game.load.image('bomb', 'assets/images/icon_bomb.png');
+    game.load.image('healthKit', 'assets/images/icon_emergency_kit.png');
 
-    game.load.spritesheet('explosion', 'part_explosion.png',1000,1000);
+    game.load.spritesheet('explosion', 'assets/images/part_explosion.png',1000,1000);
 
 
 

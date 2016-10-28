@@ -28,10 +28,6 @@ angryMaths.Boot.prototype = {
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.physics.p2.gravity.y = 1000;
     game.physics.p2.setImpactEvents(true);
-    //  objects with their own collision groups to  collide with the world bounds
-    //  what this does is adjust the bounds to use its own collision group.
-    // TODO: best placed here or play level?
-    game.physics.p2.updateBoundsCollisionGroup();
 
     //  By this point the preloader assets have loaded to the cache, we've set the game settings
     //  So now let's start the real preloader going
