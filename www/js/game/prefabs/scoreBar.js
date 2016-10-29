@@ -33,13 +33,14 @@ ScoreBar.prototype.addToScore = function(boolenCorrectAnswer) {
 };
 
 
-ScoreBar.prototype.createScore = function(cargo) {
+ScoreBar.prototype.createScore = function(cargo, delay) {
 
     // hide the cargo in the answer
     cargo.alpha = 0.0;
     // create an image of the cargo initially located at cargo parent (the answer)
     scoreCargo = game.add.image(cargo.parent.x,cargo.parent.y, cargo.key);
-    scoreCargo.scale.setTo(0.75,0.75);
+    //TODO: why do I need to scale here to match the answer cargo?
+    scoreCargo.scale.setTo(0.94,0.94);
     scoreCargo.anchor.x = 0.5;
     scoreCargo.anchor.y = 0.5;
     game.add.existing(scoreCargo);
@@ -47,16 +48,16 @@ ScoreBar.prototype.createScore = function(cargo) {
 
     // then move it to the score tray
     scoreCargoTween = game.add.tween(scoreCargo);
-    targetX = this.x + 70 + this.cargos.length * 25;
+    targetX = this.x + 70 + this.cargos.length * 28;
     targetY = this.y + 40;
     scoreCargoTween.to( {x: targetX,  y: targetY}, 500);
-    scoreCargoTween.delay(500);
+    scoreCargoTween.delay(delay);
     scoreCargoTween.start();
 
     // and scale it down as it moves to the tray
     scoreCargoScaleTween = game.add.tween(scoreCargo.scale);
     scoreCargoScaleTween.to({ x: .2, y: .2 }, 500);
-    scoreCargoScaleTween.delay(500);
+    scoreCargoScaleTween.delay(delay);
     scoreCargoScaleTween.start();
 
     return scoreCargoScaleTween;

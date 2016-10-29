@@ -14,6 +14,7 @@ var Answers = function(questions) {
 
     this.questions = questions;
     this.correctAnswer;
+    this.chosenAnswer;
 };
 
 Answers.prototype.setCollisionGroup = function(CollisionGroup) {
@@ -67,11 +68,11 @@ Answers.prototype.playAnimation = function() {
     }
 };
 
-Answers.prototype.fadeOutIncorrect = function() {
+Answers.prototype.fadeOutIncorrect = function(duration) {
 
     for (i = 0; i < this.answers.length; i++) {
         if (!this.answers[i].isCorrect) {
-            this.answers[i].fadeOut();
+            this.answers[i].fadeOut(duration);
         }
     }
 };
@@ -100,17 +101,25 @@ Answers.prototype.randomiseArray = function(array) {
     },
 
 
-Answers.prototype.fadeOut = function() {
+Answers.prototype.fadeOut = function(duration) {
 
     for (i = 0; i < this.answers.length; i++) {
-        this.answers[i].fadeOut();
+        this.answers[i].fadeOut(duration);
     }
 
 };
 
-Answers.prototype.moveCorrectAnswerToQuestionMark = function(questionMark) {
+Answers.prototype.setChosenAnswer = function(Answer) {
+    this.chosenAnswer = Answer;
+};
+
+Answers.prototype.getChosenAnswer = function() {
+    return this.chosenAnswer;
+};
+
+Answers.prototype.moveCorrectAnswerToQuestionMark = function(questionMark, duration) {
     // TODO get correct question mark
-    return this.correctAnswer.moveToSprite(questionMark);
+    return this.correctAnswer.moveToSprite(questionMark, duration);
 };
 
 

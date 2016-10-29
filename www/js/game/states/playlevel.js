@@ -67,18 +67,23 @@ angryMaths.playLevel.prototype = {
 	},
 	update: function() {
 
-		//TODO: stop pocking into the internals of questionManager
-		if (this.questionManager.questionStatus == 'COMPLETE'){
+        if (this.questionManager.isLevelFinished()) {
+                this.levelFinished();
+                return;
+        }
+
+		if (this.questionManager.isQuestionComplete()){
 		    // release any touch holds on answers
 		    // TODO check this on a touch device
 		    this.release();
-		    // start the next question
-		    this.questionManager.currentQuestion++;
-		    this.questionManager.intro();
+
+            // start the next question
+            this.questionManager.currentQuestion++;
+            this.questionManager.intro();
+
 		}
 
     	// update the timebar
-    	// TODO time from JSON
     	this.timeBarCropRect.width = (this.timer.duration/(this.questionManager.questionJSON.time*1000)) * this.timerBarWidth;
     	this.timerBar.updateCrop();
 	},

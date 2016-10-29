@@ -1,6 +1,6 @@
 
 var Question = function(game, x, y) {
-  this.FONT_SIZE = 76;
+  this.FONT_SIZE = 96;
   Phaser.BitmapText.call(this, game, x, y,'raffic', 'some text', this.FONT_SIZE);
   game.add.existing(this);
 
@@ -16,6 +16,11 @@ Question.prototype.update = function() {
 Question.prototype.setText = function(text) {
   // update the question text
    this.text = text;
+};
+
+Question.prototype.setX = function() {
+  // update the question text
+   this.x = (game.width-this.width)/2;
 };
 
 Question.prototype.setQuestionMark = function(questionMark) {

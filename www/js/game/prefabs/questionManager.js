@@ -18,6 +18,8 @@ var QuestionManager = function(level,scoreBar) {
     this.scoreBar = scoreBar;
 
     this.initialiseCollisionGroup();
+
+    this.transitionTime = 350;
 };
 
 QuestionManager.prototype.initialiseCollisionGroup = function() {
@@ -37,9 +39,22 @@ QuestionManager.prototype.setQuestion = function(questionNumber) {
 
         // set the question text
         this.question.setText(this.questions[questionNumber].q);
+        this.question.setX();
 
         // set the answer text
         this.answers.setAnswers(questionNumber);
+};
+
+QuestionManager.prototype.isLevelFinished = function() {
+    return (this.isQuestionComplete() && this.isLastQuestion());
+};
+
+QuestionManager.prototype.isLastQuestion = function() {
+    return (this.currentQuestion == this.questions.length-1);
+};
+
+QuestionManager.prototype.isQuestionComplete = function() {
+    return (this.questionStatus == 'COMPLETE');
 };
 
 
@@ -49,25 +64,27 @@ QuestionManager.prototype.getAnswerBodies = function() {
 };
 
 QuestionManager.prototype.manageAnswerTransition = function(answer) {
+    this.answers.setChosenAnswer(answer);
     // manage the transitions of the answer
     // update the score: TODO
     this.scoreBar.addToScore(answer.isCorrect);
 
     // move the answer into place onto the question Mark
-    answerMoveTween = answer.moveToSprite(this.questionMark);
+    answerMoveTween = answer.moveToSprite(this.questionMark, this.transitionTime);
+    answerMoveTween.start();
 
     // & fade out the question mark
-    questionMarkTween = this.questionMark.fadeOut();
+    questionMarkTween = this.questionMark.fadeOut(this.transitionTime);
 
     // reveal the cargo
     // first fade out the answer text
-    answerTextTween = answer.fadeTextOut();
-    answerTextTween.delay(1000);
+    answerTextTween = answer.fadeTextOut(this.transitionTime);
+    answerTextTween.delay(this.transitionTime*2);
     answerTextTween.start();
 
     // then reveal the cargo
-    cargoTween = answer.fadeInCargo();
-    cargoTween.delay(1500);
+    cargoTween = answer.fadeInCargo(this.transitionTime);
+    cargoTween.delay(this.transitionTime*3);
     cargoTween.start();
 
     // when the cargo is revealed create a score sprite
@@ -76,23 +93,35 @@ QuestionManager.prototype.manageAnswerTransition = function(answer) {
 
 QuestionManager.prototype.updateScore = function(answer) {
     // update the score
-    cargoToScoreTween = this.scoreBar.createScore(answer);
+    cargoToScoreTween = this.scoreBar.createScore(answer, this.transitionTime);
 
     // play all animations
     this.answers.playAnimation();
 
     // fade out all incorrect answers
-    this.answers.fadeOutIncorrect();
+    this.answers.fadeOutIncorrect(this.transitionTime);
 
     // pre-outro this question
     cargoToScoreTween.onComplete.add(this.preOutro, this);
 }
 
 QuestionManager.prototype.preOutro = function() {
+    answer = this.answers.getChosenAnswer();
+    // if the answer was correct move to outro,
+    // if it was incorrect then move the correct answer into place
+    if (answer.isCorrect) {
+        this.outro();
+        return;
+    } else {
+        // move correct answer to position
+        correctAnswerMoveTween = this.answers.moveCorrectAnswerToQuestionMark(this.questionMark, this.transitionTime);
+        // add a child tween to hold it in place before outro
+        holdCorrectAnswerTween = game.add.tween(answer).to( { }, this.transitionTime);
+        correctAnswerMoveTween.chain(holdCorrectAnswerTween);
+        correctAnswerMoveTween.start();
+        holdCorrectAnswerTween.onComplete.add(this.outro, this);
+    }
 
-    // move correct answer to position
-    correctAnswerMoveTween = this.answers.moveCorrectAnswerToQuestionMark(this.questionMark);
-    correctAnswerMoveTween.onComplete.add(this.outro, this);
 }
 
 QuestionManager.prototype.intro = function() {
@@ -103,7 +132,7 @@ QuestionManager.prototype.intro = function() {
     this.setQuestion(this.currentQuestion);
     this.question.setQuestionMark(this.questionMark);
 
-    questionMarkTween = this.questionMark.fadeIn();
+    questionMarkTween = this.questionMark.fadeIn(this.transitionTime);
     //  When the intro transition completes update the status
     questionMarkTween.onComplete.add(this.onIntroComplete, this);
 
@@ -114,7 +143,7 @@ QuestionManager.prototype.intro = function() {
 
 QuestionManager.prototype.outro = function() {
 
-    questionMarkTween = this.questionMark.fadeOut();
+    questionMarkTween = this.questionMark.fadeOut(this.transitionTime);
     //  When the outro transition completes update the status
     questionMarkTween.onComplete.add(this.onOutroComplete, this);
 

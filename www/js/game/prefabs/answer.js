@@ -4,8 +4,10 @@ var Answer = function(game, x, y) {
     game.physics.p2.enable(this);
     game.add.existing(this);
 
+    scale = 1.25;
+    this.scale.setTo(scale,scale); //TODO remove me!
     this.body.clearShapes();
-    this.body.addRectangle(118,112);
+    this.body.addRectangle(118*scale,112*scale);
 
     this.alpha = 0;
     this.isCorrect = false;
@@ -17,6 +19,7 @@ var Answer = function(game, x, y) {
 
     // the cargo (healthkit or bomb) as a child
     this.cargo;
+
 };
 
 Answer.prototype = Object.create(Phaser.Sprite.prototype);
@@ -53,23 +56,23 @@ Answer.prototype.setCargo = function(cargo) {
     this.hideCargo();
 };
 
-Answer.prototype.fadeIn = function() {
+Answer.prototype.fadeIn = function(duration) {
     answerTween = game.add.tween(this);
-    answerTween.to( { alpha: 1 }, 500);
+    answerTween.to( { alpha: 1 }, duration);
     answerTween.start();
     return answerTween;
 };
 
-Answer.prototype.fadeOut = function() {
+Answer.prototype.fadeOut = function(duration) {
     answerTween = game.add.tween(this);
-    answerTween.to( { alpha: 0 }, 500);
+    answerTween.to( { alpha: 0 }, duration);
     answerTween.start();
     return answerTween;
 };
 
-Answer.prototype.fadeTextOut = function() {
+Answer.prototype.fadeTextOut = function(duration) {
     answerTextTween = game.add.tween(this.answerTextChild);
-    answerTextTween.to( { alpha: 0 }, 500);
+    answerTextTween.to( { alpha: 0 }, duration);
     return answerTextTween;
 };
 
@@ -88,9 +91,9 @@ Answer.prototype.reset = function(x,y) {
     this.hideCargo();
 };
 
-Answer.prototype.fadeInCargo = function() {
+Answer.prototype.fadeInCargo = function(duration) {
     tween = game.add.tween(this.cargo);
-    tween.to( { alpha: 1 }, 500);
+    tween.to( { alpha: 1 }, duration);
     return tween;
 };
 
@@ -102,7 +105,7 @@ Answer.prototype.showText = function() {
     this.answerTextChild.alpha = 1.0;
 };
 
-Answer.prototype.moveToSprite = function(targetSprite) {
+Answer.prototype.moveToSprite = function(targetSprite, duration) {
     // stop it
     this.body.setZeroVelocity();
     this.body.setZeroRotation();
@@ -112,7 +115,7 @@ Answer.prototype.moveToSprite = function(targetSprite) {
     // reset rotation to be moduli of 360 degrees to avoid multiple revolutions
     this.body.rotation %= 2*Math.PI;
     tween = game.add.tween(this.body);
-    tween.to( { y: targetSprite.body.y, x: targetSprite.body.x, rotation: targetSprite.body.rotation}, 500);
+    tween.to( { y: targetSprite.body.y, x: targetSprite.body.x, rotation: targetSprite.body.rotation}, duration);
     tween.start();
     return tween;
 };
