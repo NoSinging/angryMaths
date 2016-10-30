@@ -1,5 +1,5 @@
 {
-    "time": "90",
+    "time": "100",
     "label": "x9",
     "title": "?x9",
     "rating": ["6", "8", "10"],
@@ -11,7 +11,7 @@
             "a": [
                 {"option": "1",      "correct": true},
                 {"option": "8",     "correct": false},
-                {"option": "99",      "correct": false},
+                {"option": "2",      "correct": false},
                 {"option": "19",     "correct": false}
             ]
         },
@@ -20,8 +20,8 @@
             "display": "2 x 9 = 18",
             "q": "? x 9 = 18",
             "a": [
-            {"option": "2",      "correct": true},
-                {"option": "19",      "correct": false},
+                {"option": "2",      "correct": true},
+                {"option": "9",      "correct": false},
                 {"option": "3",      "correct": false},
                 {"option": "7",     "correct": false}
             ]
@@ -54,7 +54,7 @@
             "q": "? x 9 = 45",
             "a": [
                 {"option": "5",      "correct": true},
-                {"option": "35",      "correct": false},
+                {"option": "3",      "correct": false},
                 {"option": "7",      "correct": false},
                 {"option": "6",     "correct": false}
             ]
@@ -67,7 +67,7 @@
                 {"option": "6",      "correct": true},
                 {"option": "7",     "correct": false},
                 {"option": "8",      "correct": false},
-                {"option": "9",     "correct": false}
+                {"option": "5",     "correct": false}
             ]
         },
         {   "id": "7",
@@ -76,7 +76,7 @@
             "q": "? x 9 = 63",
             "a": [
                 {"option": "7",      "correct": true},
-                {"option": "6",      "correct": false},
+                {"option": "8",      "correct": false},
                 {"option": "9",      "correct": false},
                 {"option": "11",     "correct": false}
             ]
@@ -98,9 +98,9 @@
             "q": "? x 9 = 81",
             "a": [
                 {"option": "9",      "correct": true},
-                {"option": "90",     "correct": false},
+                {"option": "8",     "correct": false},
                 {"option": "19",      "correct": false},
-                {"option": "91",     "correct": false}
+                {"option": "7",     "correct": false}
             ]
         },
         {   "id": "10",

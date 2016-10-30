@@ -21,7 +21,6 @@ angryMaths.playLevel.prototype = {
 	    game.physics.p2.updateBoundsCollisionGroup();
 
 	    // create physics body for mouse which we will use for dragging clicked bodies
-	    // TODO best placed here or at world set up?
 	    this.mouseBody = new p2.Body();
 	    game.physics.p2.world.addBody(this.mouseBody);
 
@@ -31,12 +30,7 @@ angryMaths.playLevel.prototype = {
 	    game.input.onUp.add(this.release, this);
 	    game.input.addMoveCallback(this.move, this);
 
-		// TODO: is the required?
-		// sort questions according to order
-		//this.sortQuestions();
-
 		this.stars = 0;
-
 
   		// create a timer bar
   		// progress outer
@@ -55,7 +49,6 @@ angryMaths.playLevel.prototype = {
 	    this.timer = game.time.create(false);
 
 	    //  Set a TimerEvent to occur after configured seconds
-	    //TODO read time from JSON
 	    this.timer.add(this.questionManager.questionJSON.time*1000, this.levelFinished, this);
 
 	    //  Start the timer
@@ -74,7 +67,6 @@ angryMaths.playLevel.prototype = {
 
 		if (this.questionManager.isQuestionComplete()){
 		    // release any touch holds on answers
-		    // TODO check this on a touch device
 		    this.release();
 
             // start the next question

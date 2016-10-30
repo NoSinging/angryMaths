@@ -66,7 +66,7 @@ QuestionManager.prototype.getAnswerBodies = function() {
 QuestionManager.prototype.manageAnswerTransition = function(answer) {
     this.answers.setChosenAnswer(answer);
     // manage the transitions of the answer
-    // update the score: TODO
+    // update the score
     this.scoreBar.addToScore(answer.isCorrect);
 
     // move the answer into place onto the question Mark
@@ -116,7 +116,7 @@ QuestionManager.prototype.preOutro = function() {
         // move correct answer to position
         correctAnswerMoveTween = this.answers.moveCorrectAnswerToQuestionMark(this.questionMark, this.transitionTime);
         // add a child tween to hold it in place before outro
-        holdCorrectAnswerTween = game.add.tween(answer).to( { }, this.transitionTime);
+        holdCorrectAnswerTween = game.add.tween(answer).to( { }, 2*this.transitionTime);
         correctAnswerMoveTween.chain(holdCorrectAnswerTween);
         correctAnswerMoveTween.start();
         holdCorrectAnswerTween.onComplete.add(this.outro, this);

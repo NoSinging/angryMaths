@@ -5,7 +5,7 @@ var Answer = function(game, x, y) {
     game.add.existing(this);
 
     scale = 1.25;
-    this.scale.setTo(scale,scale); //TODO remove me!
+    this.scale.setTo(scale,scale);
     this.body.clearShapes();
     this.body.addRectangle(118*scale,112*scale);
 
@@ -32,7 +32,8 @@ Answer.prototype.update = function() {
 Answer.prototype.setText = function(text) {
     // update text, scale it to fit and centre is on x axis
     textScaleRatio = 1.0;
-    maxTextWidth = this.width-32.0;
+    maxTextWidth = 100.0;
+
     this.answerTextChild.text = text;
     // and scale it down to fit into the frame if it's too big
     if (this.answerTextChild.width > maxTextWidth)  {
@@ -116,6 +117,5 @@ Answer.prototype.moveToSprite = function(targetSprite, duration) {
     this.body.rotation %= 2*Math.PI;
     tween = game.add.tween(this.body);
     tween.to( { y: targetSprite.body.y, x: targetSprite.body.x, rotation: targetSprite.body.rotation}, duration);
-    tween.start();
     return tween;
 };

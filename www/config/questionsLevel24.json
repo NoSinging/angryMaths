@@ -1,7 +1,7 @@
 {
-    "time": "90",
+    "time": "100",
     "label": "x9",
-    "title": "x9",
+    "title": "x9 (random)",
     "rating": ["6", "8", "10"],
     "questions": [
         {   "id": "1",

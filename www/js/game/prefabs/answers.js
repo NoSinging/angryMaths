@@ -118,7 +118,6 @@ Answers.prototype.getChosenAnswer = function() {
 };
 
 Answers.prototype.moveCorrectAnswerToQuestionMark = function(questionMark, duration) {
-    // TODO get correct question mark
     return this.correctAnswer.moveToSprite(questionMark, duration);
 };
 

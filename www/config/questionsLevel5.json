@@ -1,5 +1,5 @@
 {
-    "time": "90",
+    "time": "100",
     "label": "x3",
     "title": "x3",
     "rating": ["6", "8", "10"],
@@ -33,7 +33,7 @@
             "a": [
                 {"option": "9",      "correct": true},
                 {"option": "12",      "correct": false},
-                {"option": "6",      "correct": false},
+                {"option": "8",      "correct": false},
                 {"option": "33",     "correct": false}
             ]
         },
