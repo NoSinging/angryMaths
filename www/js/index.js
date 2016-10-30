@@ -42,7 +42,7 @@ var app = {
         // the device model comes from phonegap plugin, e.g. iPad6,3
         // determine if this is running as a native app an iPad
         if (!(typeof device === 'undefined')) {
-        deviceIsiPad = device.model.includes("iPad");
+            deviceIsiPad = (device.model.indexOf("iPad") !== -1);
         }
 
         app.receivedEvent('deviceready');

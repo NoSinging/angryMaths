@@ -9,14 +9,16 @@
   <author href="http://incrediblespottydog.com" email="hello@incrediblespottydog.com">The incredible spotty dog</author>
   <content src="index.html"/>
   <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/apache/cordova-plugin-screen-orientation"  />
+  <plugin name="cordova-plugin-device" spec="https://github.com/apache/cordova-plugin-device"  />
   <plugin name="org.apache.cordova.splashscreen" spec="1.0.0" source="pgb" />
-  <plugin name="org.apache.cordova.device" spec="0.3.0" source="pgb" />
+  <!-- <plugin name="org.apache.cordova.device" spec="0.3.0" source="pgb" /> -->
   <preference name="Orientation" value="portrait" />
   <preference name="DisallowOverscroll" value="true"/>
 
 
   <!-- Android only -->
   <preference name="android-minSdkVersion" value="16"/>
+  <preference name="SplashMaintainAspectRatio" value="true" />
   <platform name="android">
     <icon density="ldpi" src="res/icons/android/icon-36-ldpi.png" />
     <icon density="mdpi" src="res/icons/android/icon-48-mdpi.png" />
