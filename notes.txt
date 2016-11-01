@@ -2,5 +2,12 @@ useful resources
 icons and splash
 http://pgicons.abiro.com/
 
+resize to iPhone 7plus
+convert IMG_3181.png -resize 1242x2208\! IMG_3181_1242x2208.png
+
+
+resize to large iPad
+convert IMG_2112.png -resize 2048x2732\! IMG_2112_2048x2732.png
+
 
 ...
