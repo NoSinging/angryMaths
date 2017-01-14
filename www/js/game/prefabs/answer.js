@@ -17,8 +17,12 @@ var Answer = function(game, x, y) {
     this.answerTextChild = game.add.bitmapText(0, -30,'raffic', '', this.FONT_SIZE);
     this.addChild(this.answerTextChild,0);
 
+    this.transitionTime = 350;
+
     // the cargo (healthkit or bomb) as a child
     this.cargo;
+
+    this.status = 'READY'; // READY TRANSITION
 
 };
 
@@ -57,6 +61,53 @@ Answer.prototype.setCargo = function(cargo) {
     this.hideCargo();
 };
 
+
+Answer.prototype.answered = function() {
+
+    //only act on a hit if the answer is ready.
+    if (this.status != 'READY') {
+        return;
+    }
+
+console.log("answer: Answer Status = " + answer.status);
+    //stop any further collision behaviour
+    this.status = 'TRANSITION';
+
+    // reveal the cargo
+    // first fade out the answer text
+    answerTextTween = this.fadeTextOut(this.transitionTime);
+    answerTextTween.delay(this.transitionTime);
+    answerTextTween.start();
+
+    // then reveal the cargo
+    cargoTween = this.fadeInCargo(this.transitionTime);
+    cargoTween.delay(this.transitionTime*2);
+    cargoTween.onComplete.add(this.outro, this);
+    cargoTween.start();
+
+
+}
+
+Answer.prototype.outro = function() {
+
+    //  if it's incorrect then
+    //  animate the explosion
+    //  remove the answer
+    //  keep going
+    if (this.isCorrect) {
+        this.status = 'COMPLETE';
+    } else {
+        console.log('playAnimation');
+        // remove from world before animation
+        this.body.removeFromWorld();
+        this.cargo.playAnimation();
+        this.fadeOut();
+        this.status = 'COMPLETE';
+    }
+
+        console.log('answer>outro>this.status: ' + this.status);
+}
+
 Answer.prototype.fadeIn = function(duration) {
     answerTween = game.add.tween(this);
     answerTween.to( { alpha: 1 }, duration);
@@ -78,18 +129,26 @@ Answer.prototype.fadeTextOut = function(duration) {
 };
 
 Answer.prototype.reset = function(x,y) {
+
+    this.status = 'READY';
     this.fadeIn();
+
+    // add the answer body back into the world
+    this.body.addToWorld();
+
     this.body.x = x;
     this.body.y = y;
 
     //reset physics to allow movement
     this.body.static=false;
 
-    //reset the question to show
-    this.showText();
 
     // reset the cargo to hide
     this.hideCargo();
+
+
+    //reset the question to show
+    this.showText();
 };
 
 Answer.prototype.fadeInCargo = function(duration) {
@@ -106,16 +165,16 @@ Answer.prototype.showText = function() {
     this.answerTextChild.alpha = 1.0;
 };
 
-Answer.prototype.moveToSprite = function(targetSprite, duration) {
-    // stop it
-    this.body.setZeroVelocity();
-    this.body.setZeroRotation();
-    this.body.static=true;
+// Answer.prototype.moveToSprite = function(targetSprite, duration) {
+//     // stop it
+//     this.body.setZeroVelocity();
+//     this.body.setZeroRotation();
+//     this.body.static=true;
 
-    // centre it and rotate it onto the destinationSprite
-    // reset rotation to be moduli of 360 degrees to avoid multiple revolutions
-    this.body.rotation %= 2*Math.PI;
-    tween = game.add.tween(this.body);
-    tween.to( { y: targetSprite.body.y, x: targetSprite.body.x, rotation: targetSprite.body.rotation}, duration);
-    return tween;
-};
+//     // centre it and rotate it onto the destinationSprite
+//     // reset rotation to be moduli of 360 degrees to avoid multiple revolutions
+//     this.body.rotation %= 2*Math.PI;
+//     tween = game.add.tween(this.body);
+//     tween.to( { y: targetSprite.body.y, x: targetSprite.body.x, rotation: targetSprite.body.rotation}, duration);
+//     return tween;
+// };

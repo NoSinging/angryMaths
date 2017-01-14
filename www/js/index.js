@@ -61,8 +61,13 @@ var app = {
         // let's set a target device iphone 5
         // aspect 9:16
         // 640 x 1136 resolution twice 320 x 568 logical
-        var targetDeviceWidth = 640;
-        var targetDeviceHeight = 1136;
+
+
+        // let's set a target device iphone 6&7
+        // aspect 9:16
+        // 750 x 1334
+        var targetDeviceWidth = 1334;
+        var targetDeviceHeight = 730;
 
         // let's do something special for native app on ipads, as we love them
         // consider the iPad2

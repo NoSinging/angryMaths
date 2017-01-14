@@ -11,10 +11,6 @@ angryMaths.Preload.prototype = {
     this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
     this.preloadBar.anchor.setTo(0.5);
 
-    //this.load.audio('gameMusic', ['assets/audio/Pamgaea.mp3', 'assets/audio/Pamgaea.ogg']);
-    //this.load.audio('coin', 'assets/audio/coin.wav');
-    //this.load.audio('death', 'assets/audio/death.wav');
-
     this.load.bitmapFont('raffic', 'assets/fonts/raffic/font.png', 'assets/fonts/raffic/font.xml');
 
 
@@ -37,18 +33,29 @@ angryMaths.Preload.prototype = {
     this.load.image('settings', 'assets/images/btn_cicle_setting_green.png');
     this.load.image('back', 'assets/images/btn_back.png');
     this.load.image('timer', 'assets/images/icon_time.png');
+    this.load.image('heartDimmed', 'assets/images/icon_heart_dimmed.png');
     this.load.image('progressOuter', 'assets/images/progress_outer.png');
     this.load.image('progressBarGreen', 'assets/images/progress_bar_green.png');
     this.load.image('frame', 'assets/images/answerFrame.png');
 
+    this.load.image('sky', 'assets/images/sky1334_834.png');
+    this.load.image('questionBackground', 'assets/images/bg_setting.png');
 
+    // tiles
+
+    this.game.load.tilemap('tilemap0', 'config/levelMaps/boxTileMap0.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.tilemap('tilemap1', 'config/levelMaps/boxTileMap1.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.tilemap('tilemap2', 'config/levelMaps/boxTileMap2.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.tilemap('tilemap3', 'config/levelMaps/boxTileMap3.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.image('box', 'assets/images/box.png');
+    this.game.load.image('boxCoin', 'assets/images/boxCoin.png');
+    this.game.load.image('stone', 'assets/images/stone.png');
+    this.game.load.image('grassMid', 'assets/images/grassMid.png');
 
 
     // answers frame
     // TODO rationalise these with above, e.g. remove answerFrame?
     game.load.image('answerFrame', 'assets/images/answerFrame.png');
-
-    //game.load.image('progressBar', 'progress_outer.png');
 
     // Duplicate Tick and cross with bomb and healthkit
     game.load.image('bomb', 'assets/images/icon_bomb.png');
@@ -56,7 +63,8 @@ angryMaths.Preload.prototype = {
 
     game.load.spritesheet('explosion', 'assets/images/part_explosion.png',1000,1000);
 
-
+    // sprites , a margin of 2 pixels
+    game.load.spritesheet('hearts', 'assets/images/hearts.png',72,68,2,0,2);
 
     this.load.setPreloadSprite(this.preloadBar);
 
@@ -94,6 +102,9 @@ angryMaths.Preload.prototype = {
 
     // load this app version config
     game.load.json('version', 'config/version.json');
+
+    //
+    game.level=1;
   },
   create: function() {
     this.preloadBar.cropEnabled = false;

@@ -1,10 +1,10 @@
 var Answers = function(questions) {
 
     // spawn points for the answers
-    this.spawnPoint = [ {x:250, y:500},
-                        {x:275, y:650},
-                        {x:350, y:750},
-                        {x:400, y:750}
+    this.spawnPoint = [ {x:150, y:100},
+                        {x:175, y:250},
+                        {x:250, y:350},
+                        {x:300, y:450}
                         ];
     // array of answers
     this.answers = [];
@@ -115,10 +115,6 @@ Answers.prototype.setChosenAnswer = function(Answer) {
 
 Answers.prototype.getChosenAnswer = function() {
     return this.chosenAnswer;
-};
-
-Answers.prototype.moveCorrectAnswerToQuestionMark = function(questionMark, duration) {
-    return this.correctAnswer.moveToSprite(questionMark, duration);
 };
 
 

@@ -1,5 +1,5 @@
 
-var QuestionManager = function(level,scoreBar) {
+var QuestionManager = function(level,scoreBar, lives) {
 
     var questionsKey = 'questionsLevel' + level;
     this.questionJSON = game.cache.getJSON(questionsKey);
@@ -9,30 +9,24 @@ var QuestionManager = function(level,scoreBar) {
     this.questionStatus = 'COMPLETE';
     this.answers =  new Answers(this.questions);
 
-    // create a question Mark physics body and set it in position on the question
-    this.question = new Question(game, 100, 400);
-    this.questionMark = new QuestionMark(game, 0,0);
+    // create a question
+    this.question = new Question(game, 400, 40);
 
     this.currentQuestion = -1;
     // make the scoreBar available to update the score
     this.scoreBar = scoreBar;
-
-    this.initialiseCollisionGroup();
+    this.lives = lives;
 
     this.transitionTime = 350;
+
 };
 
-QuestionManager.prototype.initialiseCollisionGroup = function() {
+QuestionManager.prototype.initialiseCollisionGroup = function(collisionGroup) {
 
-    //  Create collision group for the answers &  question
-    var blockCollisionGroup = game.physics.p2.createCollisionGroup();
 
     // add answers to collision group
-    this.answers.setCollisionGroup(blockCollisionGroup);
+    this.answers.setCollisionGroup(collisionGroup);
 
-    // add question mark to the collision group
-    this.questionMark.body.setCollisionGroup(blockCollisionGroup);
-    this.questionMark.body.collides(blockCollisionGroup, this.hitQuestion, this);
 };
 
 QuestionManager.prototype.setQuestion = function(questionNumber) {
@@ -63,121 +57,56 @@ QuestionManager.prototype.getAnswerBodies = function() {
     return this.answers.getAnswerBodies();
 };
 
-QuestionManager.prototype.manageAnswerTransition = function(answer) {
-    this.answers.setChosenAnswer(answer);
-    // manage the transitions of the answer
-    // update the score
-    this.scoreBar.addToScore(answer.isCorrect);
-
-    // move the answer into place onto the question Mark
-    answerMoveTween = answer.moveToSprite(this.questionMark, this.transitionTime);
-    answerMoveTween.start();
-
-    // & fade out the question mark
-    questionMarkTween = this.questionMark.fadeOut(this.transitionTime);
-
-    // reveal the cargo
-    // first fade out the answer text
-    answerTextTween = answer.fadeTextOut(this.transitionTime);
-    answerTextTween.delay(this.transitionTime*2);
-    answerTextTween.start();
-
-    // then reveal the cargo
-    cargoTween = answer.fadeInCargo(this.transitionTime);
-    cargoTween.delay(this.transitionTime*3);
-    cargoTween.start();
-
-    // when the cargo is revealed create a score sprite
-    cargoTween.onComplete.add(this.updateScore, this);
-}
 
 QuestionManager.prototype.updateScore = function(answer) {
+
     // update the score
-    cargoToScoreTween = this.scoreBar.createScore(answer, this.transitionTime);
+    this.scoreBar.addToScore(answer.isCorrect);
+    // tween the cargo
+    cargoToScoreTween = this.scoreBar.createScore(answer.cargo, this.transitionTime);
 
-    // play all animations
-    this.answers.playAnimation();
-
-    // fade out all incorrect answers
-    this.answers.fadeOutIncorrect(this.transitionTime);
-
-    // pre-outro this question
-    cargoToScoreTween.onComplete.add(this.preOutro, this);
 }
 
-QuestionManager.prototype.preOutro = function() {
-    answer = this.answers.getChosenAnswer();
-    // if the answer was correct move to outro,
-    // if it was incorrect then move the correct answer into place
-    if (answer.isCorrect) {
-        this.outro();
-        return;
-    } else {
-        // move correct answer to position
-        correctAnswerMoveTween = this.answers.moveCorrectAnswerToQuestionMark(this.questionMark, this.transitionTime);
-        // add a child tween to hold it in place before outro
-        holdCorrectAnswerTween = game.add.tween(answer).to( { }, 2*this.transitionTime);
-        correctAnswerMoveTween.chain(holdCorrectAnswerTween);
-        correctAnswerMoveTween.start();
-        holdCorrectAnswerTween.onComplete.add(this.outro, this);
-    }
+
+QuestionManager.prototype.updateLives = function(answer) {
+
+    // update the score
+    //this.lives.updateLives(answer.isCorrect);
+    // tween the cargo
+    cargoToLifeTween = this.lives.looseLife(answer.cargo, this.transitionTime);
 
 }
 
 QuestionManager.prototype.intro = function() {
 
-    this.questionStatus = 'NOT_READY';
-
-    // get the question and then set the questionMark object, in the place of the '?' question text.
+    // get the question
     this.setQuestion(this.currentQuestion);
-    this.question.setQuestionMark(this.questionMark);
 
-    questionMarkTween = this.questionMark.fadeIn(this.transitionTime);
-    //  When the intro transition completes update the status
-    questionMarkTween.onComplete.add(this.onIntroComplete, this);
+    this.questionStatus = 'READY';
 
     // reset the answers
     this.answers.reset();
 }
 
 
-QuestionManager.prototype.outro = function() {
 
-    questionMarkTween = this.questionMark.fadeOut(this.transitionTime);
-    //  When the outro transition completes update the status
-    questionMarkTween.onComplete.add(this.onOutroComplete, this);
+QuestionManager.prototype.answered = function(answer) {
 
-    // fadeOut the answers
-    this.answers.fadeOut();
-}
+    answer.answered();
 
-
-QuestionManager.prototype.hitQuestion = function(body1, body2) {
-
-    //  body1 is the question  (as it's the body that owns the callback)
-    //  body2 is the body it impacted with, in this case our answer
-
-    // only act on a hit if the question is ready.
-    if (this.questionStatus != 'READY') {
-        return;
+    if (answer.status == 'COMPLETE' && answer.isCorrect) {
+        this.updateScore(answer);
+        this.questionStatus = 'COMPLETE';
     }
 
-    // stop any further collision behaviour with the question Mark
-    this.questionStatus = 'NOT_READY';
 
-    // move the answer (body2) to the question Mark (body1)
-    this.manageAnswerTransition(body2.sprite);
+    if (answer.status == 'COMPLETE' && !answer.isCorrect) {
+        this.updateLives(answer);
+    }
+
+
 }
 
-QuestionManager.prototype.onOutroComplete = function() {
-    // restart the next question
-    // TODO - check for last question and finish the level.
-    this.questionStatus = 'COMPLETE';
-}
-
-QuestionManager.prototype.onIntroComplete = function() {
-    this.questionStatus = 'READY';
-}
 
 QuestionManager.prototype.sortQuestions = function() {
     this.questions.sort(function (a, b) {

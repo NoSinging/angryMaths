@@ -1,52 +1,47 @@
-
-var ScoreBar = function(game, x, y, key, frame) {
+var Lives = function(game, x, y) {
     // The ScoreBar is a sprite, image is progress bar
-    Phaser.Sprite.call(this, game, x, y, 'healthKit');
-    game.add.existing(this);
-    scale = 0.8;
-    this.scale.setTo(scale,scale);
+    Phaser.Group.call(this, game);
 
-    // add child text, at index zero, later we'll add cargo at index 1
-    this.FONT_SIZE = 76;
-    this.levelScoreText = game.add.bitmapText(160, 30,'raffic', '', this.FONT_SIZE);
-    this.addChild(this.levelScoreText,0);
+    this.INITIAL_LIVES = 3;
+    this.livesCount = this.INITIAL_LIVES;
+    this.lifeSprites = [];
 
-    // create an array of cargo items scored
-    //this.cargos = [];
-
-    this.score = 0;
-    this.updateScoreText();
-
-};
-
-ScoreBar.prototype = Object.create(Phaser.Sprite.prototype);
-ScoreBar.prototype.constructor = ScoreBar;
-
-ScoreBar.prototype.update = function() {
-  // write prefab's specific update code here
-
-};
-
-ScoreBar.prototype.addToScore = function(boolenCorrectAnswer) {
-    // update the score
-    if (boolenCorrectAnswer) {
-        this.score++;
-    } else {
-        this.totalWrong++;
+    for (var i = 0; i < this.INITIAL_LIVES; i++) {
+        sprite = this.create(x + i*80, y, 'hearts', 0);
+        this.lifeSprites.push(sprite);
     }
+
+};
+
+Lives.prototype = Object.create(Phaser.Group.prototype);
+Lives.prototype.constructor = Lives;
+
+Lives.prototype.update = function() {
+  // write prefab's specific update code here
+
 };
 
 
-ScoreBar.prototype.updateScoreText = function() {
-  // write prefab's specific update code here
+Lives.prototype.updateLives = function(boolenCorrectAnswer) {
+    // update the score
 
-    this.levelScoreText.text = this.score;
+    for (var i = 0; i < this.INITIAL_LIVES; i++) {
+        frame = (i<this.livesCount) ? 0:1
+        this.lifeSprites[i].frame = frame;
+    }
+
+
     if(this.scoreCargo) {
         this.scoreCargo.destroy(); // TODO: put this in a function of a fitting name
     }
+
 };
 
-ScoreBar.prototype.createScore = function(cargo, delay) {
+
+Lives.prototype.looseLife = function(cargo, delay) {
+
+
+    this.livesCount--;
 
     // hide the cargo in the answer
     cargo.alpha = 0.0;
@@ -57,16 +52,15 @@ ScoreBar.prototype.createScore = function(cargo, delay) {
     this.scoreCargo.anchor.x = 0.5;
     this.scoreCargo.anchor.y = 0.5;
     game.add.existing(this.scoreCargo);
-    //this.cargos.push(scoreCargo);
 
     // then move it to the score tray
     scoreCargoTween = game.add.tween(this.scoreCargo);
-    targetX = this.x + 70;
-    targetY = this.y + 40;
+    targetX = this.lifeSprites[this.livesCount].x+30;
+    targetY = this.lifeSprites[1].y+35;
     scoreCargoTween.to( {x: targetX,  y: targetY}, 500);
     scoreCargoTween.delay(delay);
     // when it's arrived update the score text
-    scoreCargoTween.onComplete.add(this.updateScoreText,this);
+    scoreCargoTween.onComplete.add(this.updateLives,this);
     // start
     scoreCargoTween.start();
 

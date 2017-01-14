@@ -19,7 +19,7 @@ angryMaths.Boot.prototype = {
 
     //  scale the game, no lower than iphone 4 (320,480) and no higher than ipad pro (2048, 2732)
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    game.scale.setMinMax(320, 480, 2048, 2732);
+    game.scale.setMinMax(480, 320, 2732, 2048);
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
     this.scale.refresh();

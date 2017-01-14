@@ -3,22 +3,41 @@ angryMaths.playLevel = function() {
 		var mouseConstraint;
 		var questionManager;
 		var scoreBar;
+        var answer;
+        var isAnswerTouching;
   };
 
 angryMaths.playLevel.prototype = {
   	create: function(){
 
-    	game.add.sprite(0, 0, 'background');
+    	game.add.sprite(0, 0, 'sky');
+
+
+        questionBackground = game.add.sprite(360, 0, 'questionBackground');
+        questionBackground.scale.setTo(0.8,0.3);
+
 
 	    // create the score tray
-	    this.scoreBar = new ScoreBar(game, 40,20);
+	    this.scoreBar = new ScoreBar(game, 20,80);
+
+        // create the timer
+        this.levelTimer = new LevelTimer(game, 960,20);
+
+        // create the lives
+        this.lives = new Lives(game, 20,20);
+
+
+        //  Create collision group for the answers &  question
+        this.collisionGroup = game.physics.p2.createCollisionGroup();
 
 	    // create a single question manager
-	    this.questionManager = new QuestionManager(game.levels.level, this.scoreBar);
+	    this.questionManager = new QuestionManager(game.levels.level, this.scoreBar, this.lives);
+        this.questionManager.initialiseCollisionGroup(this.collisionGroup);
 
 	    //  objects with their own collision groups to  collide with the world bounds
 	    //  what this does is adjust the bounds to use its own collision group.
 	    game.physics.p2.updateBoundsCollisionGroup();
+
 
 	    // create physics body for mouse which we will use for dragging clicked bodies
 	    this.mouseBody = new p2.Body();
@@ -32,39 +51,62 @@ angryMaths.playLevel.prototype = {
 
 		this.stars = 0;
 
-  		// create a timer bar
-  		// progress outer
-  		var timerBarOffsetY = 120;
-  		this.timerBarBackground = game.add.image(40,timerBarOffsetY + 20, 'progressOuter');
-  		// progress bar
-  		this.timerBar = game.add.image(110,timerBarOffsetY + 36, 'progressBarGreen');
-  		this.timeBarCropRect = new Phaser.Rectangle(0, 0, this.timerBar.width, this.timerBar.height);
-  		this.timerBar.crop(this.timeBarCropRect);
-  		this.timerBarWidth = this.timerBar.width;
+        this.touchPosition = new Phaser.Point(0,0);
 
-  		// timer icon
-  		this.timerIcon = game.add.image(0,timerBarOffsetY, 'timer');
-
-	    //  Create our Timer
-	    this.timer = game.time.create(false);
-
-	    //  Set a TimerEvent to occur after configured seconds
-	    this.timer.add(this.questionManager.questionJSON.time*1000, this.levelFinished, this);
 
 	    //  Start the timer
-	    this.timer.start();
+        this.levelTimer.start(this.questionManager.questionJSON.time*1000);
 
         // navigation
         game.add.button(game.width - 160, 40,  "menuGreen", this.menu, this);
 
+        // tiles
+        //Add the tilemap and tileset image. The first parameter in addTilesetImage
+        //is the name you gave the tilesheet when importing it into Tiled, the second
+        //is the key to the asset in Phaser
+        tileMapLevel = 'tilemap' + game.levels.level;
+        this.map = this.game.add.tilemap(tileMapLevel);
+        this.map.addTilesetImage('box','box');
+        this.map.addTilesetImage('target','boxCoin');
+        this.map.addTilesetImage('foreground','stone');
+        this.map.addTilesetImage('grass','grassMid');
+
+
+        // create ground
+        this.ground = new Ground(this.map);
+        this.ground.setCollisionGroup(this.collisionGroup);
+
+        // create foreground
+        this.foreground = new Foreground(this.map);
+        this.foreground.setCollisionGroup(this.collisionGroup);
+
+        // create target
+        this.target = new Target(this.map);
+        this.target.setCollisionGroup(this.collisionGroup);
+
+        // create boxes
+        this.boxManager = new BoxManager(this.map);
+        this.boxManager.setCollisionGroup(this.collisionGroup);
+
 	},
 	update: function() {
 
+        // test for an answer
+        if (this.target.isBodyTouching ) {
+            answer = this.target.bodyTouching;
+            speed = this.distance([0,0],[answer.body.velocity.x, answer.body.velocity.y]);
+            if (speed < 1) {
+                this.questionManager.answered(answer);
+                }
+        }
+
+        // test for a level finished
         if (this.questionManager.isLevelFinished()) {
                 this.levelFinished();
                 return;
         }
 
+        // test for a question completed
 		if (this.questionManager.isQuestionComplete()){
 		    // release any touch holds on answers
 		    this.release();
@@ -75,17 +117,29 @@ angryMaths.playLevel.prototype = {
 
 		}
 
-    	// update the timebar
-    	this.timeBarCropRect.width = (this.timer.duration/(this.questionManager.questionJSON.time*1000)) * this.timerBarWidth;
-    	this.timerBar.updateCrop();
+
+        // test for timeout
+        if (this.levelTimer.isTimeOut) {
+                this.levelFinished();
+                return;
+        }
+
+        // test for no lives left
+        if (this.lives.livesCount == 0) {
+                this.levelFinished();
+                return;
+        }
+
 	},
 	shutdown: function() {
 
 	},
 	levelFinished: function(){
 		this.calculateStars();
-		game.levels.levelFinished(this.stars);
+		//game.levels.levelFinished(this.stars);
 		// back to level selection
+
+        game.level += 1;
 		game.state.start("LevelOver");
 	},
 	calculateStars: function(){
@@ -112,6 +166,10 @@ angryMaths.playLevel.prototype = {
 
     click: function(pointer) {
 
+        // record the point of the click, we'll use it later to implement the flick
+        this.touchPosition.x = pointer.position.x;
+        this.touchPosition.y = pointer.position.y;
+
 	    // enable pick up of answers, by doing a hit test on the touch/mouse pointer with the answers
 	    var bodies = game.physics.p2.hitTest(pointer.position, this.questionManager.getAnswerBodies());
 
@@ -127,8 +185,11 @@ angryMaths.playLevel.prototype = {
 	        // this function takes physicsPos and coverts it to the body's local coordinate system
 	        clickedBody.toLocalFrame(localPointInBody, physicsPos);
 
-	        // use a revoluteContraint to attach mouseBody to the clicked body
-	        this.mouseConstraint = this.game.physics.p2.createRevoluteConstraint(this.mouseBody, [0, 0], clickedBody, [game.physics.p2.mpxi(localPointInBody[0]), game.physics.p2.mpxi(localPointInBody[1]) ]);
+            // only bodies that are stationary can be picked up TODO stationary vs static ????
+            if (this.distance([0,0],clickedBody.velocity)<1) {
+                // use a revoluteContraint to attach mouseBody to the clicked body
+                this.mouseConstraint = this.game.physics.p2.createRevoluteConstraint(this.mouseBody, [0, 0], clickedBody, [game.physics.p2.mpxi(localPointInBody[0]), game.physics.p2.mpxi(localPointInBody[1]) ]);
+            }
 	    }
 
 	},
@@ -142,10 +203,20 @@ angryMaths.playLevel.prototype = {
 
     move: function(pointer) {
 
+        if (this.touchPosition.distance(pointer.position, this.touchPosition) > 120) {
+            this.release();
+        }
+
 	    // p2 uses different coordinate system, so convert the pointer position to p2's coordinate system
 	    this.mouseBody.position[0] = game.physics.p2.pxmi(pointer.position.x);
 	    this.mouseBody.position[1] = game.physics.p2.pxmi(pointer.position.y);
 
-	}
+	},
+
+    distance: function(a,b) {
+
+        return Math.sqrt(Math.pow((a[0]-b[0]),2) + Math.pow((a[1]-b[1]),2));
+
+    }
 
 }
