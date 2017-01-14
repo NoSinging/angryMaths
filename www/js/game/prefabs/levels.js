@@ -1,8 +1,8 @@
 function levels() {
 
-    this.thumbRows = 7;
+    this.thumbRows = 4;
     // number of thumbnail cololumns
-    this.thumbCols = 4;
+    this.thumbCols = 7;
     // width of a thumbnail, in pixels
     this.thumbWidth = 180; //64;
     // height of a thumbnail, in pixels

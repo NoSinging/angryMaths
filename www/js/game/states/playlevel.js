@@ -136,7 +136,7 @@ angryMaths.playLevel.prototype = {
 	},
 	levelFinished: function(){
 		this.calculateStars();
-		//game.levels.levelFinished(this.stars);
+		game.levels.levelFinished(this.stars);
 		// back to level selection
 
         game.level += 1;

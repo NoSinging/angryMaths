@@ -78,7 +78,7 @@ angryMaths.levelSelect.prototype = {
 			// I am not interested in having level thumbnails vertically centered in the page, but
 			// if you are, simple replace my "20" with
 			// (game.height-levelHeight)/2
-			var offsetY = 120 + (game.height-levelHeight)/2;
+			var offsetY = 60 +  (game.height-levelHeight)/2;
 			// looping through each level thumbnails
 		     for(var i = 0; i < game.levels.thumbRows; i ++){
 		     	for(var j = 0; j < game.levels.thumbCols; j ++){
