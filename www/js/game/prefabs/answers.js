@@ -1,10 +1,10 @@
 var Answers = function(questions) {
 
     // spawn points for the answers
-    this.spawnPoint = [ {x:150, y:100},
-                        {x:175, y:250},
-                        {x:250, y:350},
-                        {x:300, y:450}
+    this.spawnPoint = [ {x:150, y:250},
+                        {x:175, y:350},
+                        {x:250, y:450},
+                        {x:300, y:550}
                         ];
     // array of answers
     this.answers = [];

@@ -7,7 +7,7 @@ var LevelTimer = function(game, x, y, key, frame) {
 
     // add child text, at index zero, later we'll add cargo at index 1
     this.FONT_SIZE = 76;
-    this.levelTimeText = game.add.bitmapText(120, 30,'raffic', '', this.FONT_SIZE);
+    this.levelTimeText = game.add.bitmapText(110, 30,'raffic', '', this.FONT_SIZE);
     this.addChild(this.levelTimeText,0);
 
     // set the time

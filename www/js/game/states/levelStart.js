@@ -14,16 +14,23 @@ angryMaths.LevelStart.prototype = {
     var levelTitle = questionJSON.title;
 
     // title
-    var titleText = game.add.bitmapText(0, 0, 'raffic', levelTitle, 64);
-    titleText.x = 200;
-    titleText.y = 100;
+    var titleText = game.add.bitmapText(0, 0, 'raffic', levelTitle, 92);
+    titleText.x = this.game.width / 2 - titleText.textWidth / 2;
+    titleText.y = 80;
 
 
     // display the times table
-    var displayAnswer = '';
-    for(var i=0; i<questions.length; i++){
-        displayAnswer = questions[i].display;
-        game.add.bitmapText(titleText.x, 200 + i*64, 'raffic', displayAnswer, 32);
+    numItemsInFirstColumn = Math.ceil(questions.length/2);
+    firstColumnX = 200;
+    secondColumnX = 800;
+    itemSpacingY = 72;
+    //numItemsInSecondColumn = questions.length - numItemsInFirstColumn;
+    for(var i=0; i<numItemsInFirstColumn; i++){
+        game.add.bitmapText(firstColumnX, 200 + i*itemSpacingY, 'raffic', questions[i].display, 64);
+    }
+
+    for(var i=numItemsInFirstColumn; i<questions.length; i++){
+        game.add.bitmapText(secondColumnX, 200 + (i-numItemsInFirstColumn)*itemSpacingY, 'raffic', questions[i].display, 64);
     }
 
     // play navigation

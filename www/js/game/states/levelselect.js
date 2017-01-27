@@ -98,24 +98,28 @@ angryMaths.levelSelect.prototype = {
 					// Add a label in each level selection
 				    var questionJSON = game.cache.getJSON('questionsLevel' + (levelNumber+1));
 				    var levelLabel = questionJSON.label;
-					var levelThumbText = game.add.bitmapText(32, 40,'raffic', levelLabel, 64);
+					//var levelThumbText = game.add.bitmapText(32, 40,'raffic', levelLabel, 64);
+					var levelThumbText = game.add.bitmapText(52, 44,'raffic', levelLabel, 64);
+
+					// if it's a timed level, so the timer icon
+					// TODO: ugly code!
+					// TODO: make small timer image
+					// TODO: make greyed out timer image
+					if (questionJSON.mode == game.levels.TIMED) {
+			    		var playModeIcon = game.add.sprite(80, 20, 'timer');
+				    	playModeIcon.scale.setTo(0.6,0.6);
+				    	levelThumb.addChild(playModeIcon);
+			    	} else if (questionJSON.mode == game.levels.REVERSE) {
+			    		var playModeIcon = game.add.sprite(90, 20, 'radiationSmall');
+				    	playModeIcon.scale.setTo(0.7,0.7);
+				    	levelThumb.addChild(playModeIcon);
+			    	}
+
+
 					levelThumb.addChild(levelThumbText);
 					if (game.levels.starsArray[levelNumber] == 4) {
 						levelThumbText.alpha = 0.5;
 					}
-
-					//
-
-					// if the level is playable, also write level number
-					// if(game.levels.starsArray[levelNumber]<4){
-					// 	var style = {
-					// 		font: "18px Arial",
-					// 		fill: "#ffffff"
-					// 	};
-					// 	var levelText = game.add.text(levelThumb.x+5,levelThumb.y+5,levelNumber+1,style);
-					// 	levelText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 1);
-					// 	levelThumbsGroup.add(levelText);
-					// }
 				}
 			}
 		}

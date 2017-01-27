@@ -10,7 +10,8 @@ angryMaths.playLevel = function() {
 angryMaths.playLevel.prototype = {
   	create: function(){
 
-    	game.add.sprite(0, 0, 'sky');
+    	//game.add.sprite(0, 0, 'sky');
+        game.add.sprite(0, 0, 'background');
 
 
         questionBackground = game.add.sprite(360, 0, 'questionBackground');
@@ -19,9 +20,6 @@ angryMaths.playLevel.prototype = {
 
 	    // create the score tray
 	    this.scoreBar = new ScoreBar(game, 20,80);
-
-        // create the timer
-        this.levelTimer = new LevelTimer(game, 960,20);
 
         // create the lives
         this.lives = new Lives(game, 20,20);
@@ -54,11 +52,9 @@ angryMaths.playLevel.prototype = {
         this.touchPosition = new Phaser.Point(0,0);
 
 
-	    //  Start the timer
-        this.levelTimer.start(this.questionManager.questionJSON.time*1000);
-
         // navigation
-        game.add.button(game.width - 160, 40,  "menuGreen", this.menu, this);
+        menuButton = game.add.button(game.width - 120, 40,  "menuGreen", this.menu, this);
+        menuButton.scale.setTo(0.7,0.7);
 
         // tiles
         //Add the tilemap and tileset image. The first parameter in addTilesetImage
@@ -68,7 +64,7 @@ angryMaths.playLevel.prototype = {
         this.map = this.game.add.tilemap(tileMapLevel);
         this.map.addTilesetImage('box','box');
         this.map.addTilesetImage('target','boxCoin');
-        this.map.addTilesetImage('foreground','stone');
+        this.map.addTilesetImage('stone','stone');
         this.map.addTilesetImage('grass','grassMid');
 
 
@@ -87,6 +83,14 @@ angryMaths.playLevel.prototype = {
         // create boxes
         this.boxManager = new BoxManager(this.map);
         this.boxManager.setCollisionGroup(this.collisionGroup);
+
+        // if game mode is 'timed' then start
+        // create the timer
+        console.log(this.questionManager.isLevelTimed());
+        if (this.questionManager.isLevelTimed()) {
+            this.levelTimer = new LevelTimer(game, 950,20);
+            this.levelTimer.start(this.questionManager.questionJSON.time*1000);
+        }
 
 	},
 	update: function() {
@@ -119,7 +123,7 @@ angryMaths.playLevel.prototype = {
 
 
         // test for timeout
-        if (this.levelTimer.isTimeOut) {
+        if (typeof this.levelTimer != "undefined" && this.levelTimer.isTimeOut) {
                 this.levelFinished();
                 return;
         }

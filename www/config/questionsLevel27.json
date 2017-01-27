@@ -1,6 +1,7 @@
 {
     "time": "100",
-    "label": "x11",
+    "mode": "timed",
+    "label": "11",
     "title": "x11",
     "rating": ["6", "8", "10"],
     "questions": [

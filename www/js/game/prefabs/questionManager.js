@@ -52,6 +52,10 @@ QuestionManager.prototype.isQuestionComplete = function() {
 };
 
 
+QuestionManager.prototype.isLevelTimed = function(){
+        return (this.questionJSON.mode == game.levels.TIMED);
+};
+
 QuestionManager.prototype.getAnswerBodies = function() {
     // get an array of the answer physics bodies
     return this.answers.getAnswerBodies();

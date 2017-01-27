@@ -1,5 +1,11 @@
 function levels() {
 
+    // Identifiers for each game mode
+    this.PRACTICE = 'practice';
+    this.TIMED = 'timed';
+    this.REVERSE = 'reverse';
+
+
     this.thumbRows = 4;
     // number of thumbnail cololumns
     this.thumbCols = 7;
@@ -13,7 +19,8 @@ function levels() {
     // 0 = playable yet unfinished level
     // 1, 2, 3 = level finished with 1, 2, 3 stars
     // 4 = locked
-    this.INITIAL_GAME_STARS = [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+    //this.INITIAL_GAME_STARS =     [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+    this.INITIAL_GAME_STARS =       [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
     this.starsArray = this.INITIAL_GAME_STARS;
     this.retrieve();
 

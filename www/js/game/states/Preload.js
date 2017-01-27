@@ -38,19 +38,23 @@ angryMaths.Preload.prototype = {
     this.load.image('progressBarGreen', 'assets/images/progress_bar_green.png');
     this.load.image('frame', 'assets/images/answerFrame.png');
 
-    this.load.image('sky', 'assets/images/sky1334_834.png');
+    //this.load.image('sky', 'assets/images/sky1334_834.png');
     this.load.image('questionBackground', 'assets/images/bg_setting.png');
+    this.load.image('skull', 'assets/images/gage_icon_skull.png');
+    this.load.image('charge', 'assets/images/gage_icon_charge.png');
+    this.load.image('radiationSmall', 'assets/images/radiationBorder64.png');
 
     // tiles
+    for(var i=1; i<=9; i++){
+        tileMapKey = 'tilemap' + i;
+        tileMapFile = 'config/levelMaps/angryMathMap' + i + '.json'
+        this.game.load.tilemap(tileMapKey, tileMapFile, null, Phaser.Tilemap.TILED_JSON);
+    }
 
-    this.game.load.tilemap('tilemap0', 'config/levelMaps/boxTileMap0.json', null, Phaser.Tilemap.TILED_JSON);
-    this.game.load.tilemap('tilemap1', 'config/levelMaps/boxTileMap1.json', null, Phaser.Tilemap.TILED_JSON);
-    this.game.load.tilemap('tilemap2', 'config/levelMaps/boxTileMap2.json', null, Phaser.Tilemap.TILED_JSON);
-    this.game.load.tilemap('tilemap3', 'config/levelMaps/boxTileMap3.json', null, Phaser.Tilemap.TILED_JSON);
-    this.game.load.image('box', 'assets/images/box.png');
-    this.game.load.image('boxCoin', 'assets/images/boxCoin.png');
-    this.game.load.image('stone', 'assets/images/stone.png');
-    this.game.load.image('grassMid', 'assets/images/grassMid.png');
+    this.game.load.image('box', 'assets/images/box32_32.png');
+    this.game.load.image('boxCoin', 'assets/images/boxCoin32_32.png');
+    this.game.load.image('stone', 'assets/images/stone32_32.png');
+    this.game.load.image('grassMid', 'assets/images/grassMid32_32.png');
 
 
     // answers frame
@@ -71,40 +75,15 @@ angryMaths.Preload.prototype = {
     this.load.onLoadComplete.add(this.onLoadComplete, this);
 
     // load the questions
-    this.load.json('questionsLevel1', 'config/questionsLevel1.json');
-    this.load.json('questionsLevel2', 'config/questionsLevel2.json');
-    this.load.json('questionsLevel3', 'config/questionsLevel3.json');
-    this.load.json('questionsLevel4', 'config/questionsLevel4.json');
-    this.load.json('questionsLevel5', 'config/questionsLevel5.json');
-    this.load.json('questionsLevel6', 'config/questionsLevel6.json');
-    this.load.json('questionsLevel7', 'config/questionsLevel7.json');
-    this.load.json('questionsLevel8', 'config/questionsLevel8.json');
-    this.load.json('questionsLevel9', 'config/questionsLevel9.json');
-    this.load.json('questionsLevel10', 'config/questionsLevel10.json');
-    this.load.json('questionsLevel11', 'config/questionsLevel11.json');
-    this.load.json('questionsLevel12', 'config/questionsLevel12.json');
-    this.load.json('questionsLevel13', 'config/questionsLevel13.json');
-    this.load.json('questionsLevel14', 'config/questionsLevel14.json');
-    this.load.json('questionsLevel15', 'config/questionsLevel15.json');
-    this.load.json('questionsLevel16', 'config/questionsLevel16.json');
-    this.load.json('questionsLevel17', 'config/questionsLevel17.json');
-    this.load.json('questionsLevel18', 'config/questionsLevel18.json');
-    this.load.json('questionsLevel19', 'config/questionsLevel19.json');
-    this.load.json('questionsLevel20', 'config/questionsLevel20.json');
-    this.load.json('questionsLevel21', 'config/questionsLevel21.json');
-    this.load.json('questionsLevel22', 'config/questionsLevel22.json');
-    this.load.json('questionsLevel23', 'config/questionsLevel23.json');
-    this.load.json('questionsLevel24', 'config/questionsLevel24.json');
-    this.load.json('questionsLevel25', 'config/questionsLevel25.json');
-    this.load.json('questionsLevel26', 'config/questionsLevel26.json');
-    this.load.json('questionsLevel27', 'config/questionsLevel27.json');
-    this.load.json('questionsLevel28', 'config/questionsLevel28.json');
+    for(var i=1; i<=28; i++){
+        levelKey = 'questionsLevel' + i;
+        levelFile = 'config/questionsLevel' + i + '.json'
+        this.load.json(levelKey, levelFile);
+    }
 
     // load this app version config
     game.load.json('version', 'config/version.json');
 
-    //
-    game.level=1;
   },
   create: function() {
     this.preloadBar.cropEnabled = false;

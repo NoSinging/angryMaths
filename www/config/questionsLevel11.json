@@ -1,6 +1,7 @@
 {
     "time": "100",
-    "label": "x5",
+    "mode": "practice",
+    "label": "5",
     "title": "x5",
     "rating": ["6", "8", "10"],
     "questions": [

@@ -4,7 +4,7 @@ var Answer = function(game, x, y) {
     game.physics.p2.enable(this);
     game.add.existing(this);
 
-    scale = 1.25;
+    scale = 0.75;
     this.scale.setTo(scale,scale);
     this.body.clearShapes();
     this.body.addRectangle(118*scale,112*scale);
@@ -12,7 +12,7 @@ var Answer = function(game, x, y) {
     this.alpha = 0;
     this.isCorrect = false;
 
-    this.FONT_SIZE = 76;
+    this.FONT_SIZE = 60;//60 * scale;
     // add child text, at index zero, later we'll add cargo at index 1
     this.answerTextChild = game.add.bitmapText(0, -30,'raffic', '', this.FONT_SIZE);
     this.addChild(this.answerTextChild,0);
@@ -165,16 +165,3 @@ Answer.prototype.showText = function() {
     this.answerTextChild.alpha = 1.0;
 };
 
-// Answer.prototype.moveToSprite = function(targetSprite, duration) {
-//     // stop it
-//     this.body.setZeroVelocity();
-//     this.body.setZeroRotation();
-//     this.body.static=true;
-
-//     // centre it and rotate it onto the destinationSprite
-//     // reset rotation to be moduli of 360 degrees to avoid multiple revolutions
-//     this.body.rotation %= 2*Math.PI;
-//     tween = game.add.tween(this.body);
-//     tween.to( { y: targetSprite.body.y, x: targetSprite.body.x, rotation: targetSprite.body.rotation}, duration);
-//     return tween;
-// };

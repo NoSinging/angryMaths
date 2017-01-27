@@ -1,7 +1,8 @@
 {
     "time": "100",
-    "label": "x3",
-    "title": "x3 (random)",
+    "mode": "timed",
+    "label": "3",
+    "title": "x3",
     "rating": ["6", "8", "10"],
     "questions": [
         {   "id": "1",

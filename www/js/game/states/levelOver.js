@@ -17,19 +17,19 @@ angryMaths.LevelOver.prototype = {
     for(var i=1; i<=3; i++){
       // show either the gold or grey icon
       starIcon = (i<=stars) ? "star":"starGrey";
-      game.add.image((this.game.width / 2) + (i-2)*64 , 200,  starIcon);
+      game.add.image((this.game.width / 2) + (i-2)*64 , 100,  starIcon);
     }
 
     // show the number right and wrong
     // it's 146 wide
     var correctX = (this.game.width / 3) - 146/2
-    game.add.image(correctX, 300,  "correct");
-    game.add.bitmapText(correctX+150, 350, 'raffic', '' + totalCorrect, 64);
+    game.add.image(correctX, 200,  "correct");
+    game.add.bitmapText(correctX+150, 250, 'raffic', '' + totalCorrect, 64);
 
 
     var wrongX = (2*this.game.width / 3) - 146/2
-    game.add.image(wrongX , 300,  "wrong");
-    game.add.bitmapText(wrongX+150, 350, 'raffic', '' + totalWrong, 64);
+    game.add.image(wrongX , 200,  "wrong");
+    game.add.bitmapText(wrongX+150, 250, 'raffic', '' + totalWrong, 64);
 
     // Well done text
     var wellDoneText = '';
@@ -52,16 +52,16 @@ angryMaths.LevelOver.prototype = {
 
     this.startText = this.game.add.bitmapText(0,0, 'raffic', wellDoneText, 64);
     this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
-    this.startText.y = 500;
+    this.startText.y = 400;
 
     // navigation
-    this.menuButton = game.add.button(game.width/2-200, 1000,  "menu", this.menu, this);
+    this.menuButton = game.add.button(game.width/2-200, 600,  "menu", this.menu, this);
     this.menuButton.anchor.setTo(0.5);
-    this.replyButton = game.add.button(game.width/2, 1000,  "replay", this.replay, this);
+    this.replyButton = game.add.button(game.width/2, 600,  "replay", this.replay, this);
     this.replyButton.anchor.setTo(0.5);
     // show the 'play' next level if it's available
     if (game.levels.isNextLevelUnlocked()) {
-      this.nextButton = game.add.button(game.width/2 +200, 1000,  "next", this.next, this);
+      this.nextButton = game.add.button(game.width/2 +200, 600,  "next", this.next, this);
       this.nextButton.anchor.setTo(0.5);
     }
 

@@ -1,6 +1,7 @@
 {
     "time": "100",
-    "label": "x3",
+    "mode": "reverse",
+    "label": "3",
     "title": "? x 3 =",
     "rating": ["6", "8", "10"],
     "questions": [

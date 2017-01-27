@@ -1,6 +1,7 @@
 {
     "time": "100",
-    "label": "x10",
+    "mode": "timed",
+    "label": "10",
     "title": "x10",
     "rating": ["6", "8", "10"],
     "questions": [
