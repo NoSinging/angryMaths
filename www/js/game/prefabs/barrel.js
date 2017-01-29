@@ -38,6 +38,28 @@ Barrel.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation)
     {
         console.log('booomm');
         this.playDestroyAnimation();
+
+        // dont do this...
+        // if it's correct answer then ....
+        // show it is the correct answer
+        // loose a life?
+        // animate the lose of the health pack
+        // animate explosion of the barrel
+        // start next question
+
+        // if it's incorrect
+        // show it is incorrect
+        // explode the incorrect answer
+        // animate explosiong of the barrel
+        // keep question going
+
+        // or .. better/ simpler ... do this ...
+
+        // explode barrel
+        // impulse force to answer
+        // impulse to boxes?
+        // impulse to anything within range?
+        // loose a life?
     }
 
 };
