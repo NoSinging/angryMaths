@@ -68,6 +68,7 @@ angryMaths.Preload.prototype = {
     game.load.image('healthKit', 'assets/images/icon_emergency_kit.png');
 
     game.load.spritesheet('explosion', 'assets/images/part_explosion.png',1000,1000);
+    game.load.spritesheet('smoke', 'assets/images/smokeSpriteSheet.png',128,128);
 
     // sprites , a margin of 2 pixels
     game.load.spritesheet('hearts', 'assets/images/hearts.png',72,68,2,0,2);

@@ -67,13 +67,13 @@ Box.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation) {
 
 Box.prototype.playDestroyAnimation = function() {
     // play animation
-    myExplosion = game.add.sprite(this.x, this.y, 'explosion');
-    myExplosion.scale.setTo(0.2);
+    myExplosion = game.add.sprite(this.x, this.y, 'smoke');
+    myExplosion.scale.setTo(0.5);
     myExplosion.anchor.x = 0.5;
     myExplosion.anchor.y = 0.5;
     //myExplosion.animations.killOnComplete = true;
 
-    myExplosionAnimation = myExplosion.animations.add('explosion');
+    myExplosionAnimation = myExplosion.animations.add('smoke');
     myExplosionAnimation.onComplete.add(this.destroyBox, this);
     myExplosionAnimation.play(10, false, true);
 };
