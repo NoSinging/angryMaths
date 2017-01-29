@@ -38,18 +38,6 @@
                  "width":61,
                  "x":772,
                  "y":448
-                }, 
-                {
-                 "gid":5,
-                 "height":82,
-                 "id":4,
-                 "name":"barrel",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":61,
-                 "x":960,
-                 "y":285
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -80,7 +68,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":5,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,

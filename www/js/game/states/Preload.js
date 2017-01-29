@@ -57,6 +57,7 @@ angryMaths.Preload.prototype = {
     this.game.load.image('boxCoin', 'assets/images/boxCoin32_32.png');
     this.game.load.image('stone', 'assets/images/stone32_32.png');
     this.game.load.image('grassMid', 'assets/images/grassMid32_32.png');
+    this.game.load.image('barrel', 'assets/images/barrelSmall.png');
 
 
     // answers frame

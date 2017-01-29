@@ -66,6 +66,7 @@ angryMaths.playLevel.prototype = {
         this.map.addTilesetImage('target','boxCoin');
         this.map.addTilesetImage('stone','stone');
         this.map.addTilesetImage('grass','grassMid');
+        this.map.addTilesetImage('barrel','barrel');
 
 
         // create ground
@@ -83,6 +84,11 @@ angryMaths.playLevel.prototype = {
         // create boxes
         this.boxManager = new BoxManager(this.map);
         this.boxManager.setCollisionGroup(this.collisionGroup);
+
+        // create hazards
+        this.hazardManager = new HazardManager(this.map);
+        this.hazardManager.setCollisionGroup(this.collisionGroup);
+
 
         // if game mode is 'timed' then start
         // create the timer

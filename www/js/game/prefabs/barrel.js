@@ -1,42 +1,26 @@
-var Box = function(game,x,y,id) {
+var Barrel = function(game,x,y) {
 
-    Phaser.Sprite.call(this, game, x, y, 'woodenBox',0);
+    Phaser.Sprite.call(this, game, x, y-41, 'barrel',0);
+    // adding physics via hazard manager
     game.physics.p2.enable(this);
-    game.add.existing(this);
+    //game.add.existing(this);
 
-    // just for debugging
-    this.sequence = id;
 
-    // number of times it's been hit, used in damage
-    this.hits=0;
+    this.body.addRectangle(61,82);
 
     //  Check for collisions
     this.body.onBeginContact.add(this.beginContact, this);
 };
 
-Box.prototype = Object.create(Phaser.Sprite.prototype);
-Box.prototype.constructor = Box;
+Barrel.prototype = Object.create(Phaser.Sprite.prototype);
+Barrel.prototype.constructor = Barrel;
 
-Box.prototype.update = function() {
+Barrel.prototype.update = function() {
   // write your prefab's specific update code here
 };
 
-Box.prototype.setCollisionGroup = function(CollisionGroup) {
-    this.body.setCollisionGroup(CollisionGroup)
-};
 
-Box.prototype.collides = function(CollisionGroup) {
-    this.body.collides(CollisionGroup)
-};
-
-
-Box.prototype.getDamage = function() {
-    // Damage is 0, 1, 2, 3
-    //return Math.min(Math.floor(this.hits / 2), 3);
-    return Math.min(this.hits, 3);
-};
-
-Box.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation) {
+Barrel.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation) {
 
     //  The block hit something.
     //
@@ -52,19 +36,13 @@ Box.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation) {
 
     if (body !== null && body.sprite !== null && body.sprite.key == 'answerFrame')
     {
-        this.hits++;
-        console.log('frame: ' + this.frame);
-        console.log('damage: ' + this.getDamage());
-        this.frame = this.getDamage();
-        console.log('box: ' + this.sequence + ' ,number of answer hits: ' + this.hits);
-    }
-
-    if (this.getDamage() > 2) {
+        console.log('booomm');
         this.playDestroyAnimation();
     }
+
 };
 
-Box.prototype.playDestroyAnimation = function() {
+Barrel.prototype.playDestroyAnimation = function() {
     // play animation
     myExplosion = game.add.sprite(this.x, this.y, 'smoke');
     myExplosion.scale.setTo(0.5);
@@ -78,7 +56,6 @@ Box.prototype.playDestroyAnimation = function() {
 };
 
 
-Box.prototype.destroyBox = function() {
+Barrel.prototype.destroyBox = function() {
     this.destroy();
 };
-
