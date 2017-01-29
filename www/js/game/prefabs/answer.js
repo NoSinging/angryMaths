@@ -69,7 +69,6 @@ Answer.prototype.answered = function() {
         return;
     }
 
-console.log("answer: Answer Status = " + answer.status);
     //stop any further collision behaviour
     this.status = 'TRANSITION';
 
@@ -97,15 +96,12 @@ Answer.prototype.outro = function() {
     if (this.isCorrect) {
         this.status = 'COMPLETE';
     } else {
-        console.log('playAnimation');
         // remove from world before animation
         this.body.removeFromWorld();
         this.cargo.playAnimation();
         this.fadeOut();
         this.status = 'COMPLETE';
     }
-
-        console.log('answer>outro>this.status: ' + this.status);
 }
 
 Answer.prototype.fadeIn = function(duration) {

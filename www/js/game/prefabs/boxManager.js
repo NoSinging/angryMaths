@@ -14,7 +14,7 @@ var BoxManager = function(map) {
 
     for (i = 0; i < this.boxTiles.length; i++) {
         tile = this.boxTiles[i];
-        this.boxes.push(new Box(game, tile.worldX+tile.centerX, tile.worldY+tile.centerY));
+        this.boxes.push(new Box(game, tile.worldX+tile.centerX, tile.worldY+tile.centerY,i));
         map.removeTile(tile.x, tile.y, 'box');
     }
 };

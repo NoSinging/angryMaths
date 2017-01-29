@@ -44,6 +44,8 @@ angryMaths.Preload.prototype = {
     this.load.image('charge', 'assets/images/gage_icon_charge.png');
     this.load.image('radiationSmall', 'assets/images/radiationBorder64.png');
 
+    this.load.spritesheet("woodenBox", "assets/images/woodBoxSheet32.png", 32, 32,3,2,2);
+
     // tiles
     for(var i=1; i<=9; i++){
         tileMapKey = 'tilemap' + i;
