@@ -1,5 +1,5 @@
 
-var QuestionManager = function(level,scoreBar, lives) {
+var QuestionManager = function(level,scoreBar, lives, spawns) {
 
     var questionsKey = 'questionsLevel' + level;
     this.questionJSON = game.cache.getJSON(questionsKey);
@@ -7,7 +7,7 @@ var QuestionManager = function(level,scoreBar, lives) {
     this.sortQuestions();
 
     this.questionStatus = 'COMPLETE';
-    this.answers =  new Answers(this.questions);
+    this.answers =  new Answers(this.questions, spawns);
 
     // create a question
     this.question = new Question(game, 400, 40);

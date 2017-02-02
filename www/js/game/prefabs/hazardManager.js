@@ -14,8 +14,7 @@ var HazardManager = function(map) {
 HazardManager.prototype.setCollisionGroup = function(CollisionGroup) {
 
     this.barrels.forEach(function(item) {
-        item.body.setCollisionGroup(CollisionGroup);
-        item.body.collides([CollisionGroup]);
+        item.setCollisionGroup(CollisionGroup);
     });
 };
 

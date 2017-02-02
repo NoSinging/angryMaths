@@ -62,7 +62,7 @@ angryMaths.Preload.prototype = {
 
     // answers frame
     // TODO rationalise these with above, e.g. remove answerFrame?
-    game.load.image('answerFrame', 'assets/images/answerFrame.png');
+    game.load.image('answerFrame', 'assets/images/answerFrameSmall.png');
 
     // Duplicate Tick and cross with bomb and healthkit
     game.load.image('bomb', 'assets/images/icon_bomb.png');

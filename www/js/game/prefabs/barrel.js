@@ -1,6 +1,6 @@
 var Barrel = function(game,x,y) {
 
-    Phaser.Sprite.call(this, game, x, y-41, 'barrel',0);
+    Phaser.Sprite.call(this, game, x+30.5, y-41, 'barrel',0);
     // adding physics via hazard manager
     game.physics.p2.enable(this);
     //game.add.existing(this);
@@ -9,7 +9,7 @@ var Barrel = function(game,x,y) {
     this.body.addRectangle(61,82);
 
     //  Check for collisions
-    this.body.onBeginContact.add(this.beginContact, this);
+    //this.body.onBeginContact.add(this.hitSomething, this);
 };
 
 Barrel.prototype = Object.create(Phaser.Sprite.prototype);
@@ -20,46 +20,33 @@ Barrel.prototype.update = function() {
 };
 
 
-Barrel.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation) {
 
-    //  The block hit something.
-    //
-    //  This callback is sent 5 arguments:
-    //
-    //  The Phaser.Physics.P2.Body it is in contact with. *This might be null* if the Body was created directly in the p2 world.
-    //  The p2.Body this Body is in contact with.
-    //  The Shape from this body that caused the contact.
-    //  The Shape from the contact body.
-    //  The Contact Equation data array.
+Barrel.prototype.setCollisionGroup = function(CollisionGroup) {
+
+        this.body.setCollisionGroup(CollisionGroup);
+        this.body.collides([CollisionGroup],this.hitSomething, this);
+};
+
+
+Barrel.prototype.hitSomething =  function(BarrelBody, CollidingBody) {
+
+    //  body1 is the barrel (as it's the body that owns the callback)
+    //  body2 is the body it impacted with,
+    //  As body2 is a Phaser.Physics.P2.Body object, you access its owner (the sprite) via the sprite property:
+    if (BarrelBody !== null && BarrelBody.sprite !== null ) {console.log('body: ' + BarrelBody.sprite.key);}
+    if (CollidingBody !== null && CollidingBody.sprite !== null ) {console.log('CollidingBody: ' + CollidingBody.sprite.key);}
     //
     //  The first argument may be null or not have a sprite property, such as when you hit the world bounds.
-
-    if (body !== null && body.sprite !== null && body.sprite.key == 'answerFrame')
+    if (CollidingBody !== null && CollidingBody.sprite !== null && CollidingBody.sprite.key == 'answerFrame')
     {
-        console.log('booomm');
+        var vectorBetweenSprites = new Phaser.Point((this.x - CollidingBody.sprite.x), (this.y - CollidingBody.sprite.y));
+        vectorBetweenSprites.setMagnitude(50);
+        CollidingBody.applyImpulse([vectorBetweenSprites.x,vectorBetweenSprites.y],0,0);
         this.playDestroyAnimation();
-
-        // dont do this...
-        // if it's correct answer then ....
-        // show it is the correct answer
-        // loose a life?
-        // animate the lose of the health pack
-        // animate explosion of the barrel
-        // start next question
-
-        // if it's incorrect
-        // show it is incorrect
-        // explode the incorrect answer
-        // animate explosiong of the barrel
-        // keep question going
-
-        // or .. better/ simpler ... do this ...
-
-        // explode barrel
-        // impulse force to answer
-        // impulse to boxes?
+this.destroy();
         // impulse to anything within range?
         // loose a life?
+
     }
 
 };
@@ -67,17 +54,17 @@ Barrel.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation)
 Barrel.prototype.playDestroyAnimation = function() {
     // play animation
     myExplosion = game.add.sprite(this.x, this.y, 'smoke');
-    myExplosion.scale.setTo(0.5);
     myExplosion.anchor.x = 0.5;
     myExplosion.anchor.y = 0.5;
     //myExplosion.animations.killOnComplete = true;
 
     myExplosionAnimation = myExplosion.animations.add('smoke');
-    myExplosionAnimation.onComplete.add(this.destroyBox, this);
+    //myExplosionAnimation.onComplete.add(this.destroyBox, this);
     myExplosionAnimation.play(10, false, true);
+    this.alpha = 0;
 };
 
 
-Barrel.prototype.destroyBox = function() {
-    this.destroy();
-};
+// Barrel.prototype.destroyBox = function() {
+//     this.destroy();
+// };

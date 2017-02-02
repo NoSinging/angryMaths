@@ -4,15 +4,13 @@ var Answer = function(game, x, y) {
     game.physics.p2.enable(this);
     game.add.existing(this);
 
-    scale = 0.75;
-    this.scale.setTo(scale,scale);
     this.body.clearShapes();
-    this.body.addRectangle(118*scale,112*scale);
+    this.body.addRectangle(89,84);
 
     this.alpha = 0;
     this.isCorrect = false;
 
-    this.FONT_SIZE = 60;//60 * scale;
+    this.FONT_SIZE = 60;
     // add child text, at index zero, later we'll add cargo at index 1
     this.answerTextChild = game.add.bitmapText(0, -30,'raffic', '', this.FONT_SIZE);
     this.addChild(this.answerTextChild,0);

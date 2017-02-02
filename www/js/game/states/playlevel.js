@@ -28,9 +28,6 @@ angryMaths.playLevel.prototype = {
         //  Create collision group for the answers &  question
         this.collisionGroup = game.physics.p2.createCollisionGroup();
 
-	    // create a single question manager
-	    this.questionManager = new QuestionManager(game.levels.level, this.scoreBar, this.lives);
-        this.questionManager.initialiseCollisionGroup(this.collisionGroup);
 
 	    //  objects with their own collision groups to  collide with the world bounds
 	    //  what this does is adjust the bounds to use its own collision group.
@@ -89,6 +86,12 @@ angryMaths.playLevel.prototype = {
         this.hazardManager = new HazardManager(this.map);
         this.hazardManager.setCollisionGroup(this.collisionGroup);
 
+        // create spawn points
+        this.spawns = new Spawns(this.map);
+
+        // create a single question manager
+        this.questionManager = new QuestionManager(game.levels.level, this.scoreBar, this.lives, this.spawns);
+        this.questionManager.initialiseCollisionGroup(this.collisionGroup);
 
         // if game mode is 'timed' then start
         // create the timer

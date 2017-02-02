@@ -1,15 +1,12 @@
-var Answers = function(questions) {
+var Answers = function(questions, spawns) {
 
     // spawn points for the answers
-    this.spawnPoint = [ {x:150, y:250},
-                        {x:175, y:350},
-                        {x:250, y:450},
-                        {x:300, y:550}
-                        ];
+    this.spawnPoints = spawns.spawnPoints;
+
     // array of answers
     this.answers = [];
-    for (i = 0; i < this.spawnPoint.length; i++) {
-        this.answers.push(new Answer(game, this.spawnPoint[i].x, this.spawnPoint[i].y));
+    for (i = 0; i < this.spawnPoints.length; i++) {
+        this.answers.push(new Answer(game, this.spawnPoints[i].x, this.spawnPoints[i].y));
     }
 
     this.questions = questions;
@@ -79,7 +76,7 @@ Answers.prototype.fadeOutIncorrect = function(duration) {
 
 Answers.prototype.reset = function() {
     // Shuffle the spawn points
-    shuffledSpawnPoints = this.randomiseArray(this.spawnPoint);
+    shuffledSpawnPoints = this.randomiseArray(this.spawnPoints);
 
     // reset the position
     for (i = 0; i < this.answers.length; i++) {

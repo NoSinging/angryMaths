@@ -24,7 +24,7 @@
         }, 
         {
          "draworder":"topdown",
-         "height":23,
+         "height":0,
          "name":"hazard",
          "objects":[
                 {
@@ -50,11 +50,23 @@
                  "width":61,
                  "x":960,
                  "y":285
+                }, 
+                {
+                 "gid":5,
+                 "height":82,
+                 "id":5,
+                 "name":"barrel",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":61,
+                 "x":1026,
+                 "y":447
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":42,
+         "width":0,
          "x":0,
          "y":0
         }, 
@@ -80,7 +92,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":5,
+ "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
