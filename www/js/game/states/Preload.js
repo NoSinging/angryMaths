@@ -81,7 +81,7 @@ angryMaths.Preload.prototype = {
     // load the questions
     for(var i=1; i<=28; i++){
         levelKey = 'questionsLevel' + i;
-        levelFile = 'config/questionsLevel' + i + '.json'
+        levelFile = 'config/levelQuestions/questionsLevel' + i + '.json'
         this.load.json(levelKey, levelFile);
     }
 
