@@ -47,7 +47,7 @@ angryMaths.Preload.prototype = {
     this.load.spritesheet("woodenBox", "assets/images/woodBoxSheet32.png", 32, 32,3,2,2);
 
     // tiles
-    for(var i=1; i<=9; i++){
+    for(var i=1; i<=28; i++){
         tileMapKey = 'tilemap' + i;
         tileMapFile = 'config/levelMaps/angryMathMap' + i + '.json'
         this.game.load.tilemap(tileMapKey, tileMapFile, null, Phaser.Tilemap.TILED_JSON);
