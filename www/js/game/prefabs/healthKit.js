@@ -1,7 +1,6 @@
 
 var HealthKit = function(game, x, y, key, frame) {
     Phaser.Sprite.call(this, game, x, y, 'healthKit');
-    this.scale.setTo(0.75,0.75);
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
 };

@@ -16,7 +16,6 @@ Foreground.prototype.setCollisionGroup = function(CollisionGroup) {
         for (i = 0; i < this.bodies.length; i++) {
             this.bodies[i].setCollisionGroup(CollisionGroup);
             this.bodies[i].collides([CollisionGroup]);
-
         }
 };
 

@@ -1,7 +1,6 @@
 
 var Bomb = function(game, x, y, key, frame) {
     Phaser.Sprite.call(this, game, x, y, 'bomb');
-    this.scale.setTo(0.75,0.75);
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
 };
@@ -16,7 +15,6 @@ Bomb.prototype.update = function() {
 Bomb.prototype.playAnimation = function() {
     // play animation
     myExplosion = game.add.sprite(this.parent.x, this.parent.y, 'explosion');
-    myExplosion.scale.setTo(0.2);
     myExplosion.anchor.x = 0.5;
     myExplosion.anchor.y = 0.5;
     myExplosion.animations.killOnComplete = true;

@@ -88,8 +88,8 @@ var app = {
         game.state.add('Boot', angryMaths.Boot);
         game.state.add('Preloader', angryMaths.Preload);
         game.state.add('MainMenu', angryMaths.MainMenu);
-        game.state.add("LevelSelect", angryMaths.levelSelect);
-        game.state.add("PlayLevel", angryMaths.playLevel);
+        game.state.add("LevelSelect", angryMaths.LevelSelect);
+        game.state.add("PlayLevel", angryMaths.PlayLevel);
         game.state.add("LevelOver", angryMaths.LevelOver);
         game.state.add("LevelStart", angryMaths.LevelStart);
         game.state.add("Settings", angryMaths.Settings);

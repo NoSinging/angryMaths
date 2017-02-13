@@ -1,18 +1,14 @@
 
 var ScoreBar = function(game, x, y, key, frame) {
     // The ScoreBar is a sprite, image is progress bar
-    Phaser.Sprite.call(this, game, x, y, 'healthKit');
+    Phaser.Sprite.call(this, game, x, y, 'healthKitLarge');
     game.add.existing(this);
-    scale = 0.8;
-    this.scale.setTo(scale,scale);
 
     // add child text, at index zero, later we'll add cargo at index 1
-    this.FONT_SIZE = 76;
-    this.levelScoreText = game.add.bitmapText(160, 30,'raffic', '', this.FONT_SIZE);
+    this.FONT_SIZE = 60;
+    this.levelScoreText = game.add.bitmapText(120, 20,'raffic', '', this.FONT_SIZE);
     this.addChild(this.levelScoreText,0);
 
-    // create an array of cargo items scored
-    //this.cargos = [];
 
     this.score = 0;
     this.updateScoreText();

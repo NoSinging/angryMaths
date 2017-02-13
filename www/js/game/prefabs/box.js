@@ -53,10 +53,7 @@ Box.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation) {
     if (body !== null && body.sprite !== null && body.sprite.key == 'answerFrame')
     {
         this.hits++;
-        console.log('frame: ' + this.frame);
-        console.log('damage: ' + this.getDamage());
         this.frame = this.getDamage();
-        console.log('box: ' + this.sequence + ' ,number of answer hits: ' + this.hits);
     }
 
     if (this.getDamage() > 2) {
@@ -67,7 +64,6 @@ Box.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation) {
 Box.prototype.playDestroyAnimation = function() {
     // play animation
     myExplosion = game.add.sprite(this.x, this.y, 'smoke');
-    myExplosion.scale.setTo(0.5);
     myExplosion.anchor.x = 0.5;
     myExplosion.anchor.y = 0.5;
     //myExplosion.animations.killOnComplete = true;

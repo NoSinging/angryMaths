@@ -29,6 +29,7 @@ angryMaths.Preload.prototype = {
     this.load.image('next', 'assets/images/btn_cicle_right_red.png');
     this.load.image('menu', 'assets/images/btn_cicle_menu_red.png');
     this.load.image('menuGreen', 'assets/images/btn_cicle_menu_green.png');
+    this.load.image('menuGreenSmall', 'assets/images/btn_cicle_menu_green104.png');
     this.load.image('play', 'assets/images/btn_play_n.png');
     this.load.image('settings', 'assets/images/btn_cicle_setting_green.png');
     this.load.image('back', 'assets/images/btn_back.png');
@@ -37,9 +38,7 @@ angryMaths.Preload.prototype = {
     this.load.image('progressOuter', 'assets/images/progress_outer.png');
     this.load.image('progressBarGreen', 'assets/images/progress_bar_green.png');
     this.load.image('frame', 'assets/images/answerFrame.png');
-
-    //this.load.image('sky', 'assets/images/sky1334_834.png');
-    this.load.image('questionBackground', 'assets/images/bg_setting.png');
+    this.load.image('questionBackground', 'assets/images/bg_setting600.png');
     this.load.image('skull', 'assets/images/gage_icon_skull.png');
     this.load.image('charge', 'assets/images/gage_icon_charge.png');
     this.load.image('radiationSmall', 'assets/images/radiationBorder64.png');
@@ -65,10 +64,11 @@ angryMaths.Preload.prototype = {
     game.load.image('answerFrame', 'assets/images/answerFrameSmall.png');
 
     // Duplicate Tick and cross with bomb and healthkit
-    game.load.image('bomb', 'assets/images/icon_bomb.png');
-    game.load.image('healthKit', 'assets/images/icon_emergency_kit.png');
+    game.load.image('bomb', 'assets/images/icon_bomb80.png');
+    game.load.image('healthKit', 'assets/images/icon_emergency_kit80.png');
+    game.load.image('healthKitLarge', 'assets/images/icon_emergency_kit104.png');
 
-    game.load.spritesheet('explosion', 'assets/images/part_explosion.png',1000,1000);
+    game.load.spritesheet('explosion', 'assets/images/part_explosion512.png',250,250);
     game.load.spritesheet('smoke', 'assets/images/smokeSpriteSheet.png',128,128);
 
     // sprites , a margin of 2 pixels

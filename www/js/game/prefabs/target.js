@@ -28,7 +28,6 @@ Target.prototype.setCollisionGroup = function(CollisionGroup) {
             this.bodies[i].onBeginContact.add(this.beginContact, this);
             //  Check for the block leaving the target
             this.bodies[i].onEndContact.add(this.endContact, this);
-
         }
 };
 

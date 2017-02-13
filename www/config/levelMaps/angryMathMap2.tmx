@@ -15,6 +15,9 @@
  <tileset firstgid="5" name="answer" tilewidth="94" tileheight="91" tilecount="1" columns="1">
   <image source="../../platformSet/answerFrameSmall.png" width="94" height="91"/>
  </tileset>
+ <tileset firstgid="6" name="barrel" tilewidth="61" tileheight="82" tilecount="1" columns="1">
+  <image source="../../platformSet/barrelSmall.png" width="61" height="82"/>
+ </tileset>
  <layer name="ground" width="42" height="23">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -42,6 +45,7 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 </data>
  </layer>
+ <objectgroup name="hazard"/>
  <objectgroup name="Spawn">
   <object id="1" name="spawnPoint" gid="5" x="64" y="572" width="94" height="91"/>
   <object id="2" name="spawnPoint" gid="5" x="224" y="512" width="94" height="91"/>

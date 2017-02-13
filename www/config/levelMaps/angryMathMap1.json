@@ -14,6 +14,18 @@
         {
          "draworder":"topdown",
          "height":0,
+         "name":"hazard",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":0,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":0,
          "name":"Spawn",
          "objects":[
                 {
@@ -173,6 +185,19 @@
          "tilecount":1,
          "tileheight":91,
          "tilewidth":94
+        }, 
+        {
+         "columns":1,
+         "firstgid":6,
+         "image":"..\/..\/platformSet\/barrelSmall.png",
+         "imageheight":82,
+         "imagewidth":61,
+         "margin":0,
+         "name":"barrel",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":82,
+         "tilewidth":61
         }],
  "tilewidth":32,
  "version":1,

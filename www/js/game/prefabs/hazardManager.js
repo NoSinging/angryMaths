@@ -10,7 +10,6 @@ var HazardManager = function(map) {
 
 };
 
-
 HazardManager.prototype.setCollisionGroup = function(CollisionGroup) {
 
     this.barrels.forEach(function(item) {

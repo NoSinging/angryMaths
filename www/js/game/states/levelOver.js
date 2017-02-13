@@ -11,7 +11,6 @@ angryMaths.LevelOver.prototype = {
     // TODO: stop pocking in the internals of others
     var stars = game.state.states['PlayLevel'].stars;
     var totalCorrect = game.state.states['PlayLevel'].scoreBar.score;
-    var totalWrong = game.state.states['PlayLevel'].scoreBar.totalWrong;
 
     // Show stars for that level
     for(var i=1; i<=3; i++){
@@ -22,14 +21,10 @@ angryMaths.LevelOver.prototype = {
 
     // show the number right and wrong
     // it's 146 wide
-    var correctX = (this.game.width / 3) - 146/2
+    var correctX = (this.game.width / 2) - 146/2
     game.add.image(correctX, 200,  "correct");
     game.add.bitmapText(correctX+150, 250, 'raffic', '' + totalCorrect, 64);
 
-
-    var wrongX = (2*this.game.width / 3) - 146/2
-    game.add.image(wrongX , 200,  "wrong");
-    game.add.bitmapText(wrongX+150, 250, 'raffic', '' + totalWrong, 64);
 
     // Well done text
     var wellDoneText = '';

@@ -1,4 +1,4 @@
-angryMaths.playLevel = function() {
+angryMaths.PlayLevel = function() {
 		var mouseBody;
 		var mouseConstraint;
 		var questionManager;
@@ -7,16 +7,11 @@ angryMaths.playLevel = function() {
         var isAnswerTouching;
   };
 
-angryMaths.playLevel.prototype = {
+angryMaths.PlayLevel.prototype = {
   	create: function(){
-
-    	//game.add.sprite(0, 0, 'sky');
         game.add.sprite(0, 0, 'background');
 
-
         questionBackground = game.add.sprite(360, 0, 'questionBackground');
-        questionBackground.scale.setTo(0.8,0.3);
-
 
 	    // create the score tray
 	    this.scoreBar = new ScoreBar(game, 20,80);
@@ -24,15 +19,12 @@ angryMaths.playLevel.prototype = {
         // create the lives
         this.lives = new Lives(game, 20,20);
 
-
         //  Create collision group for the answers &  question
         this.collisionGroup = game.physics.p2.createCollisionGroup();
-
 
 	    //  objects with their own collision groups to  collide with the world bounds
 	    //  what this does is adjust the bounds to use its own collision group.
 	    game.physics.p2.updateBoundsCollisionGroup();
-
 
 	    // create physics body for mouse which we will use for dragging clicked bodies
 	    this.mouseBody = new p2.Body();
@@ -48,10 +40,8 @@ angryMaths.playLevel.prototype = {
 
         this.touchPosition = new Phaser.Point(0,0);
 
-
         // navigation
-        menuButton = game.add.button(game.width - 120, 40,  "menuGreen", this.menu, this);
-        menuButton.scale.setTo(0.7,0.7);
+        menuButton = game.add.button(game.width - 120, 40,  "menuGreenSmall", this.menu, this);
 
         // tiles
         //Add the tilemap and tileset image. The first parameter in addTilesetImage
@@ -64,7 +54,6 @@ angryMaths.playLevel.prototype = {
         this.map.addTilesetImage('stone','stone');
         this.map.addTilesetImage('grass','grassMid');
         this.map.addTilesetImage('barrel','barrel');
-
 
         // create ground
         this.ground = new Ground(this.map);
@@ -95,7 +84,6 @@ angryMaths.playLevel.prototype = {
 
         // if game mode is 'timed' then start
         // create the timer
-        console.log(this.questionManager.isLevelTimed());
         if (this.questionManager.isLevelTimed()) {
             this.levelTimer = new LevelTimer(game, 950,20);
             this.levelTimer.start(this.questionManager.questionJSON.time*1000);
@@ -201,7 +189,8 @@ angryMaths.playLevel.prototype = {
             // only bodies that are stationary can be picked up TODO stationary vs static ????
             if (this.distance([0,0],clickedBody.velocity)<1) {
                 // use a revoluteContraint to attach mouseBody to the clicked body
-                this.mouseConstraint = this.game.physics.p2.createRevoluteConstraint(this.mouseBody, [0, 0], clickedBody, [game.physics.p2.mpxi(localPointInBody[0]), game.physics.p2.mpxi(localPointInBody[1]) ]);
+                // set max force to a large number,10000, but less than infinite, so that answers can't be dragged through walls
+                this.mouseConstraint = this.game.physics.p2.createRevoluteConstraint(this.mouseBody, [0, 0], clickedBody, [game.physics.p2.mpxi(localPointInBody[0]), game.physics.p2.mpxi(localPointInBody[1]) ],10000);
             }
 	    }
 

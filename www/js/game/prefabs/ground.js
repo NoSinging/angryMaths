@@ -7,7 +7,7 @@ var Ground = function(map) {
     map.setCollisionBetween(1, 220, true, 'ground');
 
     // convert it into physics bodies
-    this.bodies = game.physics.p2.convertTilemap(map, this.layer);
+    this.bodies = game.physics.p2.convertTilemap(map, this.layer, true, true);
 
 };
 
@@ -16,7 +16,6 @@ Ground.prototype.setCollisionGroup = function(CollisionGroup) {
         for (i = 0; i < this.bodies.length; i++) {
             this.bodies[i].setCollisionGroup(CollisionGroup);
             this.bodies[i].collides([CollisionGroup]);
-
         }
 };
 

@@ -1,4 +1,4 @@
-angryMaths.levelSelect = function() {
+angryMaths.LevelSelect = function() {
 	// how many pages are needed to show all levels?
 	var pages;
 	// group where to place all level thumbnails
@@ -12,7 +12,7 @@ angryMaths.levelSelect = function() {
 	var info;
   };
 
-angryMaths.levelSelect.prototype = {
+angryMaths.LevelSelect.prototype = {
   	create: function(){
   		// background
     	game.add.sprite(0, 0, 'background');
@@ -127,7 +127,6 @@ angryMaths.levelSelect.prototype = {
 		levelThumbsGroup.x = currentPage * game.width * -1
 	},
 	update:function() {
-		//this.displayScaleInfo();
 	},
 	arrowClicked:function(button){
 		// touching right arrow and still not reached last page
@@ -187,17 +186,5 @@ angryMaths.levelSelect.prototype = {
 	},
 	home:function() {
 		game.state.start("MainMenu");
-	},
-	displayScaleInfo:function(){
-
-		s = "Game size: " + game.width + " x " + game.height + "\n";
-		s = s.concat("Actual size: " + game.scale.width + " x " + game.scale.height + "\n");
-		s = s.concat("minWidth: " + game.scale.minWidth + " - minHeight: " + game.scale.minHeight + "\n");
-		s = s.concat("maxWidth: " + game.scale.maxWidth + " - maxHeight: " + game.scale.maxHeight + "\n");
-		s = s.concat("aspect ratio: " + game.scale.aspectRatio + "\n");
-		s = s.concat("parent is window: " + game.scale.parentIsWindow + "\n");
-		s = s.concat("bounds x: " + game.scale.bounds.x + " y: " + game.scale.bounds.y + " width:\
-		" + game.scale.bounds.width + " height: " + game.scale.bounds.height + "\n");
-		info.text = s;
 	}
 };
