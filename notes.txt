@@ -8,7 +8,11 @@ https://pixabay.com/en/radiation-symbol-danger-646213/
 main imagery - paid
 https://www.assetstore.unity3d.com/en/#!/content/19120
 
+smoke animation
+http://powstudios.com/content/smoke-animation-pack-1
 
+tileset
+kenny
 
 resize to iPhone 7plus
 convert IMG_3181.png -resize 1242x2208\! IMG_3181_1242x2208.png

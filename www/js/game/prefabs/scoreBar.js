@@ -52,6 +52,10 @@ ScoreBar.prototype.createScore = function(cargo, delay) {
     this.scoreCargo.scale.setTo(0.94,0.94);
     this.scoreCargo.anchor.x = 0.5;
     this.scoreCargo.anchor.y = 0.5;
+
+    // set rotation same as cargo
+    //this.scoreCargo.rotation = cargo.rotation;
+
     game.add.existing(this.scoreCargo);
     //this.cargos.push(scoreCargo);
 

@@ -178,16 +178,20 @@ angryMaths.PlayLevel.prototype = {
 	    var physicsPos = [game.physics.p2.pxmi(pointer.position.x), game.physics.p2.pxmi(pointer.position.y)];
 
 
-	    if (bodies.length)
+	    if (bodies.length && bodies[0].parent != "undefined" &&
+            bodies[0].parent.sprite != "undefined" && bodies[0].parent.sprite.key =="answerFrame")
 	    {
 	        var clickedBody = bodies[0];
+
+            console.log(clickedBody);
 
 	        var localPointInBody = [0, 0];
 	        // this function takes physicsPos and coverts it to the body's local coordinate system
 	        clickedBody.toLocalFrame(localPointInBody, physicsPos);
 
-            // only bodies that are stationary can be picked up TODO stationary vs static ????
-            if (this.distance([0,0],clickedBody.velocity)<1) {
+            // only bodies that are stationary can be picked up
+            //
+            if (this.distance([0,0],clickedBody.velocity)<1 && bodies[0].parent.sprite.status == 'READY') {
                 // use a revoluteContraint to attach mouseBody to the clicked body
                 // set max force to a large number,10000, but less than infinite, so that answers can't be dragged through walls
                 this.mouseConstraint = this.game.physics.p2.createRevoluteConstraint(this.mouseBody, [0, 0], clickedBody, [game.physics.p2.mpxi(localPointInBody[0]), game.physics.p2.mpxi(localPointInBody[1]) ],10000);
