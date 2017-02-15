@@ -51,13 +51,16 @@ Lives.prototype.looseLife = function(cargo, delay) {
     this.scoreCargo.scale.setTo(0.94,0.94);
     this.scoreCargo.anchor.x = 0.5;
     this.scoreCargo.anchor.y = 0.5;
+    // set rotation same as cargo
+    this.scoreCargo.rotation = cargo.parent.rotation % (2*Math.PI);
+
     game.add.existing(this.scoreCargo);
 
     // then move it to the score tray
     scoreCargoTween = game.add.tween(this.scoreCargo);
     targetX = this.lifeSprites[this.livesCount].x+30;
     targetY = this.lifeSprites[1].y+35;
-    scoreCargoTween.to( {x: targetX,  y: targetY}, 500);
+    scoreCargoTween.to( {x: targetX,  y: targetY, rotation: 0}, 500);
     scoreCargoTween.delay(delay);
     // when it's arrived update the score text
     scoreCargoTween.onComplete.add(this.updateLives,this);

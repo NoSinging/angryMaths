@@ -183,8 +183,6 @@ angryMaths.PlayLevel.prototype = {
 	    {
 	        var clickedBody = bodies[0];
 
-            console.log(clickedBody);
-
 	        var localPointInBody = [0, 0];
 	        // this function takes physicsPos and coverts it to the body's local coordinate system
 	        clickedBody.toLocalFrame(localPointInBody, physicsPos);

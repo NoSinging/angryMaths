@@ -27,8 +27,6 @@ ScoreBar.prototype.addToScore = function(boolenCorrectAnswer) {
     // update the score
     if (boolenCorrectAnswer) {
         this.score++;
-    } else {
-        this.totalWrong++;
     }
 };
 
@@ -54,7 +52,7 @@ ScoreBar.prototype.createScore = function(cargo, delay) {
     this.scoreCargo.anchor.y = 0.5;
 
     // set rotation same as cargo
-    //this.scoreCargo.rotation = cargo.rotation;
+    this.scoreCargo.rotation = cargo.parent.rotation % (2*Math.PI);
 
     game.add.existing(this.scoreCargo);
     //this.cargos.push(scoreCargo);
@@ -63,7 +61,7 @@ ScoreBar.prototype.createScore = function(cargo, delay) {
     scoreCargoTween = game.add.tween(this.scoreCargo);
     targetX = this.x + 70;
     targetY = this.y + 40;
-    scoreCargoTween.to( {x: targetX,  y: targetY}, 500);
+    scoreCargoTween.to( {x: targetX,  y: targetY, rotation: 0}, 500);
     scoreCargoTween.delay(delay);
     // when it's arrived update the score text
     scoreCargoTween.onComplete.add(this.updateScoreText,this);
