@@ -100,7 +100,7 @@
             "a": [
                 {"option": "9",      "correct": true},
                 {"option": "7",     "correct": false},
-                {"option": "6",      "correct": false},
+                {"option": "8",      "correct": false},
                 {"option": "11",     "correct": false}
             ]
         },

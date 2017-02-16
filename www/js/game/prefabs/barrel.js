@@ -42,11 +42,11 @@ Barrel.prototype.hitSomething =  function(BarrelBody, CollidingBody) {
 
 Barrel.prototype.playDestroyAnimation = function() {
     // play animation
-    myExplosion = game.add.sprite(this.x, this.y, 'smoke');
+    myExplosion = game.add.sprite(this.x, this.y, 'toxicSmoke');
     myExplosion.anchor.x = 0.5;
     myExplosion.anchor.y = 0.5;
 
-    myExplosionAnimation = myExplosion.animations.add('smoke');
+    myExplosionAnimation = myExplosion.animations.add('toxicSmoke');
     myExplosionAnimation.play(10, false, true);
     this.alpha = 0;
 };

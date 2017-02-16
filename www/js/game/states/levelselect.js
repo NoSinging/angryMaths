@@ -119,6 +119,7 @@ angryMaths.LevelSelect.prototype = {
 					levelThumb.addChild(levelThumbText);
 					if (game.levels.starsArray[levelNumber] == 4) {
 						levelThumbText.alpha = 0.5;
+						playModeIcon.alpha = 0.5;
 					}
 				}
 			}
