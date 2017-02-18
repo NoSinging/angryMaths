@@ -1,4 +1,4 @@
-var Answers = function(questions, spawns) {
+var Answers = function(questions, spawns, scoreBar, lives) {
 
     // spawn points for the answers
     this.spawnPoints = spawns.spawnPoints;
@@ -7,11 +7,13 @@ var Answers = function(questions, spawns) {
     this.answers = [];
     for (i = 0; i < this.spawnPoints.length; i++) {
         this.answers.push(new Answer(game, this.spawnPoints[i].x, this.spawnPoints[i].y));
+        this.answers[i].setScoreBar(scoreBar);
+        this.answers[i].setLives(lives);
+
     }
 
     this.questions = questions;
     this.correctAnswer;
-    this.chosenAnswer;
 };
 
 Answers.prototype.setCollisionGroup = function(CollisionGroup) {
@@ -106,12 +108,8 @@ Answers.prototype.fadeOut = function(duration) {
 
 };
 
-Answers.prototype.setChosenAnswer = function(Answer) {
-    this.chosenAnswer = Answer;
-};
-
-Answers.prototype.getChosenAnswer = function() {
-    return this.chosenAnswer;
+Answers.prototype.isCorrectlyAnswered = function() {
+    return this.correctAnswer.status == 'DEAD';
 };
 
 

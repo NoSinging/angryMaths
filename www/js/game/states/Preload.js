@@ -8,8 +8,7 @@ angryMaths.Preload.prototype = {
     this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loadingtext');
     this.splash.anchor.setTo(0.5);
 
-    this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
-    this.preloadBar.anchor.setTo(0.5);
+    this.preloadBar = this.add.sprite(this.game.world.centerX-200, this.game.world.centerY + 128, 'preloadbar');
 
     this.load.bitmapFont('raffic', 'assets/fonts/raffic/font.png', 'assets/fonts/raffic/font.xml');
 
@@ -92,12 +91,8 @@ angryMaths.Preload.prototype = {
 
   },
   create: function() {
-    this.preloadBar.cropEnabled = false;
   },
   update: function() {
-    // if(this.cache.isSoundDecoded('gameMusic') && this.ready === true) {
-    //   this.state.start('MainMenu');
-    // }
     if(this.ready) {
       this.state.start('MainMenu');
     }

@@ -1,14 +1,17 @@
 angryMaths.PlayLevel = function() {
 		var mouseBody;
-		var mouseConstraint;
+		var touchConstraint;
 		var questionManager;
 		var scoreBar;
         var answer;
         var isAnswerTouching;
+        var FLICK_DISTANCE;
   };
 
 angryMaths.PlayLevel.prototype = {
   	create: function(){
+        this.FLICK_DISTANCE = 1500;//150;
+
         game.add.sprite(0, 0, 'background');
 
         questionBackground = game.add.sprite(360, 0, 'questionBackground');
@@ -81,6 +84,7 @@ angryMaths.PlayLevel.prototype = {
         // create a single question manager
         this.questionManager = new QuestionManager(game.levels.level, this.scoreBar, this.lives, this.spawns);
         this.questionManager.initialiseCollisionGroup(this.collisionGroup);
+this.questionManager.intro();
 
         // if game mode is 'timed' then start
         // create the timer
@@ -92,15 +96,6 @@ angryMaths.PlayLevel.prototype = {
 	},
 	update: function() {
 
-        // test for an answer
-        if (this.target.isBodyTouching ) {
-            answer = this.target.bodyTouching;
-            speed = this.distance([0,0],[answer.body.velocity.x, answer.body.velocity.y]);
-            if (speed < 1) {
-                this.questionManager.answered(answer);
-                }
-        }
-
         // test for a level finished
         if (this.questionManager.isLevelFinished()) {
                 this.levelFinished();
@@ -108,16 +103,15 @@ angryMaths.PlayLevel.prototype = {
         }
 
         // test for a question completed
-		if (this.questionManager.isQuestionComplete()){
-		    // release any touch holds on answers
-		    this.release();
+        if (this.questionManager.isQuestionComplete()){
+            // release any touch holds on answers
+            this.release();
 
             // start the next question
             this.questionManager.currentQuestion++;
             this.questionManager.intro();
 
-		}
-
+        }
 
         // test for timeout
         if (typeof this.levelTimer != "undefined" && this.levelTimer.isTimeOut) {
@@ -192,7 +186,13 @@ angryMaths.PlayLevel.prototype = {
             if (this.distance([0,0],clickedBody.velocity)<1 && bodies[0].parent.sprite.status == 'READY') {
                 // use a revoluteContraint to attach mouseBody to the clicked body
                 // set max force to a large number,10000, but less than infinite, so that answers can't be dragged through walls
-                this.mouseConstraint = this.game.physics.p2.createRevoluteConstraint(this.mouseBody, [0, 0], clickedBody, [game.physics.p2.mpxi(localPointInBody[0]), game.physics.p2.mpxi(localPointInBody[1]) ],10000);
+                this.touchConstraint = this.game.physics.p2.createRevoluteConstraint(
+                    this.mouseBody,
+                    [0, 0],
+                    clickedBody,
+                    [game.physics.p2.mpxi(localPointInBody[0]), game.physics.p2.mpxi(localPointInBody[1]) ],
+                    10000);
+                bodies[0].parent.sprite.setTouchConstraint(this.touchConstraint);
             }
 	    }
 
@@ -201,13 +201,13 @@ angryMaths.PlayLevel.prototype = {
     release: function() {
 
 	    // release the answers from any touch/mouse holed by removing constraint from object's body
-	    game.physics.p2.removeConstraint(this.mouseConstraint);
+	    game.physics.p2.removeConstraint(this.touchConstraint);
 
 	},
 
     move: function(pointer) {
 
-        if (this.touchPosition.distance(pointer.position, this.touchPosition) > 120) {
+        if (this.touchPosition.distance(pointer.position, this.touchPosition) > this.FLICK_DISTANCE) {
             this.release();
         }
 

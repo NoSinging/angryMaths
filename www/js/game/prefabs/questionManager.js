@@ -6,16 +6,12 @@ var QuestionManager = function(level,scoreBar, lives, spawns) {
     this.questions = this.questionJSON.questions;
     this.sortQuestions();
 
-    this.questionStatus = 'COMPLETE';
-    this.answers =  new Answers(this.questions, spawns);
+    this.answers =  new Answers(this.questions, spawns, scoreBar, lives);
 
     // create a question
     this.question = new Question(game, 400, 40);
 
-    this.currentQuestion = -1;
-    // make the scoreBar available to update the score
-    this.scoreBar = scoreBar;
-    this.lives = lives;
+    this.currentQuestion = 0;
 
     this.transitionTime = 350;
 
@@ -48,7 +44,7 @@ QuestionManager.prototype.isLastQuestion = function() {
 };
 
 QuestionManager.prototype.isQuestionComplete = function() {
-    return (this.questionStatus == 'COMPLETE');
+    return this.answers.isCorrectlyAnswered();
 };
 
 
@@ -62,53 +58,13 @@ QuestionManager.prototype.getAnswerBodies = function() {
 };
 
 
-QuestionManager.prototype.updateScore = function(answer) {
-
-    // update the score
-    this.scoreBar.addToScore(answer.isCorrect);
-    // tween the cargo
-    cargoToScoreTween = this.scoreBar.createScore(answer.cargo, this.transitionTime);
-
-}
-
-
-QuestionManager.prototype.updateLives = function(answer) {
-
-    // update the score
-    //this.lives.updateLives(answer.isCorrect);
-    // tween the cargo
-    cargoToLifeTween = this.lives.looseLife(answer.cargo, this.transitionTime);
-
-}
-
 QuestionManager.prototype.intro = function() {
 
     // get the question
     this.setQuestion(this.currentQuestion);
 
-    this.questionStatus = 'READY';
-
     // reset the answers
     this.answers.reset();
-}
-
-
-
-QuestionManager.prototype.answered = function(answer) {
-
-    answer.answered();
-
-    if (answer.status == 'COMPLETE' && answer.isCorrect) {
-        this.updateScore(answer);
-        this.questionStatus = 'COMPLETE';
-    }
-
-
-    if (answer.status == 'COMPLETE' && !answer.isCorrect) {
-        this.updateLives(answer);
-    }
-
-
 }
 
 

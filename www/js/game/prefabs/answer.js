@@ -7,6 +7,19 @@ var Answer = function(game, x, y) {
     this.body.clearShapes();
     this.body.addRectangle(89,84);
 
+
+    //  Check for the block hitting the target
+    this.body.onBeginContact.add(this.beginContact, this);
+    //  Check for the block leaving the target
+    this.body.onEndContact.add(this.endContact, this);
+
+
+    // make the scoreBar available to update the score
+    this.scoreBar;
+    this.lives;
+
+    this.isOnTarget = false;
+
     this.alpha = 0;
     this.isCorrect = false;
 
@@ -20,15 +33,47 @@ var Answer = function(game, x, y) {
     // the cargo (healthkit or bomb) as a child
     this.cargo;
 
-    this.status = 'READY'; // READY TRANSITION
+    this.touchConstraint;
 
+    // answer status
+    // READY ... ready to take part in game
+    // TRANSITION ... answer is being processed and tween started
+    // COMPLETE ... answer is complete and tweening is complete
+    // DEAD .... answer has been removed from the game
+    this.status = 'READY'; // READY, TRANSITION, COMPLETE, DEAD
 };
 
 Answer.prototype = Object.create(Phaser.Sprite.prototype);
 Answer.prototype.constructor = Answer;
 
 Answer.prototype.update = function() {
-  // write your prefab's specific update code here
+        // test ... is this answer on a target, ready & static ... if so it's answered.
+        if (this.isOnTarget && this.status == 'READY') {
+            speed = this.distance([0,0],[this.body.velocity.x, this.body.velocity.y]);
+            if (speed < 1) {
+                this.answered();
+                }
+        }
+
+
+    if (this.status == 'COMPLETE' && this.isCorrect) {
+        this.status = 'DEAD';
+
+        // update the score
+        this.scoreBar.addToScore(this.isCorrect);
+        // tween the cargo to the score bar
+        cargoToScoreTween = this.scoreBar.createScore(this.cargo, this.transitionTime);
+
+    }
+
+
+    if (this.status == 'COMPLETE' && !this.isCorrect) {
+        this.status = 'DEAD';
+
+        // tween the cargo to the lives bar
+        cargoToLifeTween = this.lives.looseLife(this.cargo, this.transitionTime);
+    }
+
 };
 
 Answer.prototype.setText = function(text) {
@@ -65,6 +110,8 @@ Answer.prototype.answered = function() {
     if (this.status != 'READY') {
         return;
     }
+
+    this.release();
 
     //stop any further collision behaviour
     this.status = 'TRANSITION';
@@ -124,6 +171,7 @@ Answer.prototype.fadeTextOut = function(duration) {
 Answer.prototype.reset = function(x,y) {
 
     this.status = 'READY';
+    this.isOnTarget=false;
     this.fadeIn();
 
     // add the answer body back into the world
@@ -156,5 +204,69 @@ Answer.prototype.hideCargo = function() {
 
 Answer.prototype.showText = function() {
     this.answerTextChild.alpha = 1.0;
+};
+
+Answer.prototype.setScoreBar = function(scoreBar) {
+    this.scoreBar = scoreBar;
+};
+
+
+Answer.prototype.setLives = function(lives) {
+    this.lives = lives;
+};
+
+
+Answer.prototype.setTouchConstraint = function(touchConstraint) {
+    this.touchConstraint = touchConstraint;
+};
+
+Answer.prototype.release = function() {
+
+        // release the answers from any touch/mouse holed by removing constraint from object's body
+        game.physics.p2.removeConstraint(this.touchConstraint);
+
+};
+
+Answer.prototype.beginContact =  function(body, bodyB, shapeA, shapeB, equation) {
+    //  The block hit something.
+    //
+    //  This callback is sent 5 arguments:
+    //
+    //  The Phaser.Physics.P2.Body it is in contact with. *This might be null* if the Body was created directly in the p2 world.
+    //  The p2.Body this Body is in contact with.
+    //  The Shape from this body that caused the contact.
+    //  The Shape from the contact body.
+    //  The Contact Equation data array.
+    //
+    //  The first argument may be null or not have a sprite property, such as when you hit the world bounds.
+    if (body !== null && body.parent !== null && typeof body.parent !== 'undefined' && body.parent.key == 'target')
+    {
+        this.isOnTarget=true;
+    }
+};
+Answer.prototype.endContact =  function(body, bodyB, shapeA, shapeB, equation) {
+
+    //  The block hit something.
+    //
+    //  This callback is sent 5 arguments:
+    //
+    //  The Phaser.Physics.P2.Body it is in contact with. *This might be null* if the Body was created directly in the p2 world.
+    //  The p2.Body this Body is in contact with.
+    //  The Shape from this body that caused the contact.
+    //  The Shape from the contact body.
+    //  The Contact Equation data array.
+    //
+    //  The first argument may be null or not have a sprite property, such as when you hit the world bounds.
+
+    if (body !== null && body.parent !== null && typeof body.parent !== 'undefined' && body.parent.key == 'target')
+    {
+        this.isOnTarget=false;
+    }
+};
+
+Answer.prototype.distance = function(a,b) {
+
+    return Math.sqrt(Math.pow((a[0]-b[0]),2) + Math.pow((a[1]-b[1]),2));
+
 };
 
