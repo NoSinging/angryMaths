@@ -37,7 +37,7 @@ var app = {
     onDeviceReady: function() {
 
         // set to portrait
-        screen.lockOrientation('portrait');
+        screen.lockOrientation('landscape');
 
         // the device model comes from phonegap plugin, e.g. iPad6,3
         // determine if this is running as a native app an iPad

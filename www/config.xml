@@ -1,8 +1,8 @@
   <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "com.incrediblespottydog.timestablemission"
-    versionCode = "6"
-    version     = "1.4.0" >
+    versionCode = "10"
+    version     = "2.0.0" >
 
   <name>times table mission</name>
   <description>A times table mission</description>
@@ -13,12 +13,12 @@
   <plugin name="cordova-plugin-splashscreen" spec="https://github.com/apache/cordova-plugin-splashscreen.git"  />
   <!-- <plugin name="org.apache.cordova.splashscreen" spec="1.0.0" source="pgb" />  -->
   <!-- <plugin name="org.apache.cordova.device" spec="0.3.0" source="pgb" /> -->
-  <preference name="Orientation" value="portrait" />
+  <preference name="Orientation" value="landscape" />
   <preference name="DisallowOverscroll" value="true"/>
 
 
   <!-- Android only -->
-  <preference name="android-minSdkVersion" value="16"/>
+  <preference name="android-minSdkVersion" value="19"/>
   <preference name="SplashMaintainAspectRatio" value="true" />
   <platform name="android">
     <icon density="ldpi" src="res/icons/android/icon-36-ldpi.png" />
@@ -36,6 +36,12 @@
     <splash density="port-xhdpi" src="res/screens/android/screen-xhdpi-portrait.png" />
     <splash density="port-xxhdpi" src="res/screens/android/screen-xxhdpi-portrait.png" />
     <splash density="port-xxxhdpi" src="res/screens/android/screen-xxxhdpi-portrait.png" />
+    <splash density="land-hdpi" src="res/screens/android/screen-hdpi-landscape.png" />
+    <splash density="land-ldpi" src="res/screens/android/screen-ldpi-landscape.png" />
+    <splash density="land-mdpi" src="res/screens/android/screen-mdpi-landscape.png" />
+    <splash density="land-xhdpi" src="res/screens/android/screen-xhdpi-landscape.png" />
+    <splash density="land-xxhdpi" src="res/screens/android/screen-xxhdpi-landscape.png" />
+    <splash density="land-xxxhdpi" src="res/screens/android/screen-xxxhdpi-landscape.png" />
 </platform>
 
   <!-- iOS only -->
