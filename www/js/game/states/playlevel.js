@@ -10,7 +10,7 @@ angryMaths.PlayLevel = function() {
 
 angryMaths.PlayLevel.prototype = {
   	create: function(){
-        this.FLICK_DISTANCE = 1500;//150;
+        this.FLICK_DISTANCE = 150;
 
         game.add.sprite(0, 0, 'background');
 
