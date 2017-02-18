@@ -98,6 +98,6 @@ var app = {
 
         // hide the splash screen
         // Cordova function
-        navigator.splashscreen.hide()
+        navigator.splashscreen.hide();
     }
 };
