@@ -179,6 +179,8 @@ Answer.prototype.reset = function(x,y) {
 
     this.body.x = x;
     this.body.y = y;
+    this.body.rotation = 0;
+
 
     //reset physics to allow movement
     this.body.static=false;

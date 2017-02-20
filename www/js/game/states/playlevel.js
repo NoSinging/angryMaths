@@ -84,7 +84,7 @@ angryMaths.PlayLevel.prototype = {
         // create a single question manager
         this.questionManager = new QuestionManager(game.levels.level, this.scoreBar, this.lives, this.spawns);
         this.questionManager.initialiseCollisionGroup(this.collisionGroup);
-this.questionManager.intro();
+        this.questionManager.intro();
 
         // if game mode is 'timed' then start
         // create the timer

@@ -101,26 +101,25 @@ angryMaths.LevelSelect.prototype = {
 					//var levelThumbText = game.add.bitmapText(32, 40,'raffic', levelLabel, 64);
 					var levelThumbText = game.add.bitmapText(52, 44,'raffic', levelLabel, 64);
 
-					// if it's a timed level, so the timer icon
+					// if it's a timed level, show the timer icon
 					// TODO: ugly code!
 					// TODO: make small timer image
-					// TODO: make greyed out timer image
+					var iconAlpha = (game.levels.starsArray[levelNumber] == 4) ? 0.5:1.0;
 					if (questionJSON.mode == game.levels.TIMED) {
 			    		var playModeIcon = game.add.sprite(80, 20, 'timer');
 				    	playModeIcon.scale.setTo(0.6,0.6);
+						playModeIcon.alpha = iconAlpha;
 				    	levelThumb.addChild(playModeIcon);
 			    	} else if (questionJSON.mode == game.levels.REVERSE) {
 			    		var playModeIcon = game.add.sprite(90, 20, 'radiationSmall');
 				    	playModeIcon.scale.setTo(0.7,0.7);
+						playModeIcon.alpha = iconAlpha;
 				    	levelThumb.addChild(playModeIcon);
 			    	}
 
 
 					levelThumb.addChild(levelThumbText);
-					if (game.levels.starsArray[levelNumber] == 4) {
-						levelThumbText.alpha = 0.5;
-						playModeIcon.alpha = 0.5;
-					}
+					levelThumbText.alpha = iconAlpha;
 				}
 			}
 		}
