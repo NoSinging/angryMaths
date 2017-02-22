@@ -8,11 +8,9 @@
   <description>A times table mission</description>
   <author href="http://incrediblespottydog.com" email="hello@incrediblespottydog.com">The incredible spotty dog</author>
   <content src="index.html"/>
-  <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/apache/cordova-plugin-screen-orientation"  />
-  <plugin name="cordova-plugin-device" spec="https://github.com/apache/cordova-plugin-device"  />
-  <plugin name="cordova-plugin-splashscreen" spec="https://github.com/apache/cordova-plugin-splashscreen.git"  />
-  <!-- <plugin name="org.apache.cordova.splashscreen" spec="1.0.0" source="pgb" />  -->
-  <!-- <plugin name="org.apache.cordova.device" spec="0.3.0" source="pgb" /> -->
+  <plugin name="cordova-plugin-device" spec="https://github.com/apache/cordova-plugin-device#48e0e7f" />
+  <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/apache/cordova-plugin-screen-orientation#9fca54e" />
+  <plugin name="cordova-plugin-splashscreen" spec="https://github.com/apache/cordova-plugin-splashscreen.git#1185561" />
   <preference name="Orientation" value="landscape" />
   <preference name="DisallowOverscroll" value="true"/>
 
