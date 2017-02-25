@@ -91,6 +91,8 @@ angryMaths.PlayLevel.prototype = {
         if (this.questionManager.isLevelTimed()) {
             this.levelTimer = new LevelTimer(game, 950,20);
             this.levelTimer.start(this.questionManager.questionJSON.time*1000);
+        } else {
+            this.levelTimer = undefined;
         }
 
 	},
@@ -155,7 +157,11 @@ angryMaths.PlayLevel.prototype = {
 		}
 	},
     menu: function() {
-        // going to level select state
+        // save progress
+        this.calculateStars();
+        game.levels.levelFinished(this.stars);
+
+        // back to level selection
         this.game.state.start('LevelSelect');
     },
 

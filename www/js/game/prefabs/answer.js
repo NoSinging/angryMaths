@@ -177,9 +177,12 @@ Answer.prototype.reset = function(x,y) {
     // add the answer body back into the world
     this.body.addToWorld();
 
+    // reset the body properties, position, rotation, angular velocity and velocity
     this.body.x = x;
     this.body.y = y;
     this.body.rotation = 0;
+    this.body.setZeroVelocity();
+    this.body.setZeroRotation();
 
 
     //reset physics to allow movement
