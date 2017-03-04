@@ -40,9 +40,22 @@ levels.prototype.levelFinished = function(stars) {
         this.save();
 };
 
+levels.prototype.unlockNextLevel = function(){
+        // if next level  exists and is locked - and- then unlock it
+        if(this.level<this.starsArray.length && this.starsArray[this.level]==4){
+            this.starsArray[this.level] = 0;
+        }
+        this.save();
+};
+
 levels.prototype.isNextLevelUnlocked = function(){
         // test next level exists and it's status
         return (this.level<this.starsArray.length && this.starsArray[this.level] !=4);
+};
+
+levels.prototype.isNextLevelLocked = function(){
+        // test next level exists and it's status
+        return (this.level<this.starsArray.length && this.starsArray[this.level] ==4);
 };
 
 levels.prototype.clearProgress = function(){

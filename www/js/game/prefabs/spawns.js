@@ -10,7 +10,8 @@ var Spawns = function(map) {
 };
 
 Spawns.prototype.addSpawnPoint = function(element, index, array) {
-        spawnPoint = new Phaser.Point(element.x, element.y);
+        // add 0.5 width and height to sprite co-ords, i.e. 45 pixels
+        spawnPoint = new Phaser.Point(element.x+45, element.y-45);
         this.spawnPoints.push(spawnPoint);
 };
 

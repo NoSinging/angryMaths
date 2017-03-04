@@ -25,8 +25,8 @@
                  "type":"",
                  "visible":true,
                  "width":94,
-                 "x":320,
-                 "y":480
+                 "x":768,
+                 "y":320
                 }, 
                 {
                  "gid":5,
@@ -37,8 +37,8 @@
                  "type":"",
                  "visible":true,
                  "width":94,
-                 "x":64,
-                 "y":640
+                 "x":640,
+                 "y":288
                 }, 
                 {
                  "gid":5,
@@ -49,7 +49,7 @@
                  "type":"",
                  "visible":true,
                  "width":94,
-                 "x":1184,
+                 "x":1216,
                  "y":416
                 }, 
                 {
@@ -61,8 +61,8 @@
                  "type":"",
                  "visible":true,
                  "width":94,
-                 "x":672,
-                 "y":608
+                 "x":1088,
+                 "y":480
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -73,21 +73,9 @@
         }, 
         {
          "draworder":"topdown",
-         "height":23,
+         "height":0,
          "name":"hazard",
          "objects":[
-                {
-                 "gid":6,
-                 "height":82,
-                 "id":20,
-                 "name":"barrel",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":61,
-                 "x":672,
-                 "y":384
-                }, 
                 {
                  "gid":6,
                  "height":82,
@@ -115,7 +103,7 @@
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":42,
+         "width":0,
          "x":0,
          "y":0
         }, 

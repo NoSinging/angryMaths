@@ -86,6 +86,14 @@ angryMaths.PlayLevel.prototype = {
         this.questionManager.initialiseCollisionGroup(this.collisionGroup);
         this.questionManager.intro();
 
+        // let's make challenge level's skipable
+        // if this level is a challenge level (i.e. we've tried it)
+        // and next level is locked -  and exists - then unlock it
+        if (this.questionManager.isLevelChallenge()     &&
+            game.levels.isNextLevelLocked()) {
+                game.levels.unlockNextLevel();
+        }
+
         // if game mode is 'timed' then start
         // create the timer
         if (this.questionManager.isLevelTimed()) {
