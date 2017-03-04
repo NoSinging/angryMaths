@@ -10,7 +10,8 @@ var Spawns = function(map) {
 };
 
 Spawns.prototype.addSpawnPoint = function(element, index, array) {
-        spawnPoint = new Phaser.Point(element.x, element.y);
+        // centre spawn point co-ords on the answer.
+        spawnPoint = new Phaser.Point(element.x+45, element.y-45);
         this.spawnPoints.push(spawnPoint);
 };
 

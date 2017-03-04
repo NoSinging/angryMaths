@@ -1,6 +1,6 @@
 var Answer = function(game, x, y) {
 
-    Phaser.Sprite.call(this, game, this.initialX, this.initialY, 'answerFrame');
+    Phaser.Sprite.call(this, game, x, y, 'answerFrame');
     game.physics.p2.enable(this);
     game.add.existing(this);
     this.anchor.setTo(0.5,0.5);

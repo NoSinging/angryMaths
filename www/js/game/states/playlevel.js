@@ -199,7 +199,7 @@ angryMaths.PlayLevel.prototype = {
             //
             if (this.distance([0,0],clickedBody.velocity)<1 && bodies[0].parent.sprite.status == 'READY') {
                 // use a revoluteContraint to attach mouseBody to the clicked body
-                // set max force to a large number,10000, but less than infinite, so that answers can't be dragged through walls
+                // set max force to a large number,10,000, but less than infinite, so that answers can't be dragged through walls
                 this.touchConstraint = this.game.physics.p2.createRevoluteConstraint(
                     this.mouseBody,
                     [0, 0],
