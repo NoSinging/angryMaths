@@ -1,6 +1,7 @@
 useful resources
 icons and splash
 http://pgicons.abiro.com/
+https://www.npmjs.com/package/splashicon-generator
 
 hazard icon
 https://pixabay.com/en/radiation-symbol-danger-646213/
