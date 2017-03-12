@@ -12,7 +12,12 @@ angryMaths.PlayLevel.prototype = {
   	create: function(){
         this.FLICK_DISTANCE = 150;
 
+        // Add in the background
         game.add.sprite(0, 0, 'background');
+
+        // Add in the grass background at the bottom of the lowest tile
+        // 23 tiles x32pixels = 736
+        game.add.sprite(0, 736, 'grassBackground');
 
         questionBackground = game.add.sprite(360, 0, 'questionBackground');
 

@@ -41,6 +41,7 @@ angryMaths.Preload.prototype = {
     this.load.image('skull', 'assets/images/gage_icon_skull.png');
     this.load.image('charge', 'assets/images/gage_icon_charge.png');
     this.load.image('radiationSmall', 'assets/images/radiationBorder64.png');
+    this.load.image('grassBackground', 'assets/images/grassBackground.png');
 
     this.load.spritesheet("woodenBox", "assets/images/woodBoxSheet32.png", 32, 32,3,2,2);
 

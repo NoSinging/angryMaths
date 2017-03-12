@@ -4,7 +4,8 @@ var Ground = function(map) {
     this.layer = map.createLayer('ground');
 
     //Before you can use the collide function you need to set what tiles can collide
-    map.setCollisionBetween(1, 220, true, 'ground');
+    // max 42x23 tiles
+    map.setCollisionBetween(1, 966, true, 'ground');
 
     // convert it into physics bodies
     this.bodies = game.physics.p2.convertTilemap(map, this.layer, true, true);

@@ -68,7 +68,7 @@ var app = {
         // aspect 9:16
         // 750 x 1334
         var targetDeviceWidth = 1334;
-        var targetDeviceHeight = 730;
+        var targetDeviceHeight = 750;
 
         // let's do something special for native app on ipads, as we love them
         // consider the iPad2
@@ -79,7 +79,7 @@ var app = {
         // and let phasers scale manager scale it up.
 
         if (deviceIsiPad) {
-            targetDeviceWidth = 852;
+            targetDeviceHeight = 1000;
         }
 
         game = new Phaser.Game(targetDeviceWidth, targetDeviceHeight, Phaser.AUTO, '');

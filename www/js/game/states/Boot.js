@@ -7,8 +7,7 @@ angryMaths.Boot.prototype = {
   preload: function() {
     this.load.image('loadingtext', 'assets/images/loading_text.png');
     this.load.image('preloadbar', 'assets/images/loading_bar.png');
-    //this.load.image('background', 'assets/images/backgroundiPad.png');
-    this.load.image('background', 'assets/images/backgroundLandscape.png');
+    this.load.image('background', 'assets/images/background1334_1000.png');
 
   },
   create: function() {
