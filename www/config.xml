@@ -46,7 +46,7 @@
   <!-- iOS only -->
   <preference name="target-device" value="universal" />
   <preference name="exit-on-suspend" value="true" />
-  <preference name="deployment-target" value="9.0" />
+  <preference name="deployment-target" value="10.0" />
 
 <platform name="ios">
     <icon height="29" src="res/icons/ios/icon-small.png" width="29" />
