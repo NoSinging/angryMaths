@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "37710020179",
+    "firebase_url": "https://timestablemission.firebaseio.com",
+    "project_id": "timestablemission",
+    "storage_bucket": "timestablemission.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37710020179:android:9ded8fb29526712d",
+        "android_client_info": {
+          "package_name": "com.incrediblespottydog.timestablemission"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37710020179-ls2tmdht5da6895dfivchrmmtbdefo7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBK-e7aCCTqzdIaZ1yNckTFsvNAtlXHpU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
