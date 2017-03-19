@@ -11,7 +11,7 @@
   <plugin name="cordova-plugin-device" spec="https://github.com/apache/cordova-plugin-device#48e0e7f" />
   <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/apache/cordova-plugin-screen-orientation#9fca54e" />
   <plugin name="cordova-plugin-splashscreen" spec="https://github.com/apache/cordova-plugin-splashscreen.git#1185561" />
-  <!-- <plugin name="cordova-plugin-firebase-analytics" spec="https://github.com/chemerisuk/cordova-plugin-firebase-analytics# 6fa0b85" />-->
+  <plugin name="cordova-plugin-firebase-analytics" spec="https://github.com/chemerisuk/cordova-plugin-firebase-analytics.git#6fa0b85" />
   <preference name="Orientation" value="landscape" />
   <preference name="DisallowOverscroll" value="true"/>
 
