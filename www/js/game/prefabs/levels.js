@@ -38,6 +38,21 @@ levels.prototype.levelFinished = function(stars) {
             this.starsArray[this.level] = 0;
         }
         this.save();
+
+        // send event to firebase
+        // DH not tested yet!
+        params =    {
+                        "level":0,
+                        "stars":0
+                    };
+        params.level = this.level;
+        params.stars = stars;
+        try {
+            window.cordova.plugins.firebase.analytics.logEvent("levelFinished", params);
+        }
+        catch(err) {
+            console.log(err.message);
+        }
 };
 
 levels.prototype.unlockNextLevel = function(){

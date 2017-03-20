@@ -1,0 +1,26 @@
+
+cd /Users/daniel_haughey/Library/Android/sdk/tools/emulator
+emulator -list-avds
+emulator -avd AVD_for_Galaxy_Nexus_by_Google
+
+adb devices
+adb -s emulator-5554 shell
+
+adb install timestablemission-release.apk
+adb uninstall com.incrediblespottydog.timestablemission
+
+To enable Firebase Analytics Debug mode on an emulated Android device, execute the following command lines:
+
+adb shell
+setprop debug.firebase.analytics.app com.incrediblespottydog.timestablemission
+
+This behavior persists until you explicitly disable Debug mode by executing the following command line :
+
+adb shell
+setprop debug.firebase.analytics.app .none.
+
+
+adb shell
+am start -n "com.incrediblespottydog.timestablemission/com.incrediblespottydog.timestablemission.MainActivity" -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
+
+am force-stop com.incrediblespottydog.timestablemission

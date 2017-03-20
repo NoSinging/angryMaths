@@ -99,6 +99,25 @@ var app = {
 
         // hide the splash screen
         // Cordova function
-        navigator.splashscreen.hide();
+        try {
+            navigator.splashscreen.hide();
+        }
+        catch(err) {
+            console.log(err.message);
+        }
+
+        // send event to firebase
+        // DH not tested yet!
+        params =    {
+                        "levels":""
+                    };
+        params.levels = game.levels.starsArray.join();
+        try {
+            window.cordova.plugins.firebase.analytics.logEvent("appStart", params);
+        }
+        catch(err) {
+            console.log(err.message);
+        }
+
     }
 };
