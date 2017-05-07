@@ -37,7 +37,7 @@ var app = {
     onDeviceReady: function() {
 
         // set to portrait
-        //screen.lockOrientation('landscape');
+        // phonegap plugin
         screen.orientation.lock('landscape');
 
         // the device model comes from phonegap plugin, e.g. iPad6,3
@@ -113,7 +113,7 @@ var app = {
                     };
         params.levels = game.levels.starsArray.join();
         try {
-            window.cordova.plugins.firebase.analytics.logEvent("appStart", params);
+            window.FirebasePlugin.logEvent("appStart", params);
         }
         catch(err) {
             console.log(err.message);

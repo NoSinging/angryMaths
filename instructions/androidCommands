@@ -1,10 +1,24 @@
 
-cd /Users/daniel_haughey/Library/Android/sdk/tools/emulator
-emulator -list-avds
-emulator -avd AVD_for_Galaxy_Nexus_by_Google
+
+*** Android SDK and tools up to date ***
+
+*** android build process ***
+cd /Users/daniel_haughey/Documents/development/angryMaths
+cordova platform remove android
+cordova platform add android
+
+*** open in Android Studio ***
+yes to gradle wrapper
+yes to upgrade android gradle plugin
+tools>firebase>analytics> add analytics to app
+check connect firebase to your app is green
+*Do not* do 'add analytics to your app'
+
+build the APK
+
+
 
 adb devices
-adb -s emulator-5554 shell
 
 adb install timestablemission-release.apk
 adb uninstall com.incrediblespottydog.timestablemission
@@ -19,8 +33,20 @@ This behavior persists until you explicitly disable Debug mode by executing the 
 adb shell
 setprop debug.firebase.analytics.app .none.
 
+emulator stuff
+
+
+cd /Users/daniel_haughey/Library/Android/sdk/tools/emulator
+emulator -list-avds
+emulator -avd AVD_for_Galaxy_Nexus_by_Google
+emulator -avd Nexus_6_API_25
+
+adb devices
+adb -s emulator-5554 shell
+
 
 adb shell
 am start -n "com.incrediblespottydog.timestablemission/com.incrediblespottydog.timestablemission.MainActivity" -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
 
 am force-stop com.incrediblespottydog.timestablemission
+

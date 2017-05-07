@@ -48,7 +48,7 @@ levels.prototype.levelFinished = function(stars) {
         params.level = this.level;
         params.stars = stars;
         try {
-            window.cordova.plugins.firebase.analytics.logEvent("levelFinished", params);
+            window.FirebasePlugin.logEvent("levelFinished", params);
         }
         catch(err) {
             console.log(err.message);
