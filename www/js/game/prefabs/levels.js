@@ -20,6 +20,7 @@ function levels() {
     // 1, 2, 3 = level finished with 1, 2, 3 stars
     // 4 = locked
     this.INITIAL_GAME_STARS =     [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+    this.INITIAL_GAME_STARS =     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     //this.INITIAL_GAME_STARS =       [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
     this.starsArray = this.INITIAL_GAME_STARS;
     this.retrieve();
@@ -40,7 +41,6 @@ levels.prototype.levelFinished = function(stars) {
         this.save();
 
         // send event to firebase
-        // DH not tested yet!
         params =    {
                         "level":0,
                         "stars":0
@@ -61,6 +61,25 @@ levels.prototype.unlockNextLevel = function(){
             this.starsArray[this.level] = 0;
         }
         this.save();
+};
+
+
+levels.prototype.unlockAllLevels = function(){
+
+        var saveRequiredBoolen = false;
+        var i = 0;
+        var len = this.starsArray.length;
+        for (; i < len; i++) {
+            if (this.starsArray[i] == 4) {
+                this.starsArray[i] = 0;
+                saveRequiredBoolen = true;
+            }
+        }
+
+        if (saveRequiredBoolen) {
+            this.save();
+        }
+
 };
 
 levels.prototype.isNextLevelUnlocked = function(){
@@ -98,6 +117,12 @@ levels.prototype.retrieve = function(){
             if (typeof(levels) !== "undefined" && levels !== null && levels.length >= 0) {
                 // store levels already exist
                 this.starsArray = JSON.parse(levels);
+
+                // In the current version of the game all levels are unlocked
+                // In previous versions levels were locked
+                // This will unlock levels that we locked in previous versions.
+                this.unlockAllLevels();
+
                 return true;
             } else {
                 // no levels stored yet
